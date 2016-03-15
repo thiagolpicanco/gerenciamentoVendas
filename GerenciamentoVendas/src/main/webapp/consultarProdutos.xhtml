@@ -1,0 +1,105 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
+
+
+
+	<ui:define name="body">
+		<p:fieldset legend="Pesquisa de Produtos"
+			style="width: 920px; margin: auto;">
+			<h:panelGrid columns="4" cellpadding="10" cellspacing="10">
+				<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" />
+				<p:inputText />
+
+				<p:outputLabel value="Palavra-chave" />
+				<p:inputText />
+
+				<p:outputLabel value="Código" />
+				<p:inputText />
+
+				<p:outputLabel value="Fornecedor" />
+				<p:selectOneMenu>
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Categoria" />
+				<p:inputText />
+
+			</h:panelGrid>
+		</p:fieldset>
+
+		<p:fieldset style="width: 920px; margin: auto;">
+
+			<p:dataTable style="margin-top: 20px;">
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Visualizar" />
+					</f:facet>
+
+					<p:commandButton icon="ui-icon-search" />
+				</p:column>
+
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Nome" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Marca" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Categoria" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Descrição" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Tamanho" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Quantidade disponivel" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+
+	</ui:define>
+
+</ui:composition>
+
+
+
+

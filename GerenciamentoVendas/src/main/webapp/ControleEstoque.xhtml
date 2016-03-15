@@ -1,0 +1,92 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
+
+
+
+	<ui:define name="body">
+	<p:panelGrid>>
+<p:commandButton value="Cadastro de Produtos" />	
+<p:commandButton value="Entrada de Produtos" />
+<p:commandButton value="Saida Manual" />
+
+</p:panelGrid>
+
+
+
+<p:spacer height="50"/>
+
+
+			<p:dataTable style="margin-top: 100px;">
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Nome" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Marca" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Categoria" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Descrição" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+
+				
+
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Tamanho" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Quantidade disponivel" />
+					</f:facet>
+					<h:outputText>
+					</h:outputText>
+				</p:column>
+
+
+
+			</p:dataTable>
+
+
+
+
+
+	</ui:define>
+
+</ui:composition>
+
+
+
+
