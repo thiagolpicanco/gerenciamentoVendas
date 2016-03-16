@@ -1,43 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<style>
+	<style>
 .menubar {
-	  background-color: lightblue;
-	}
-	
+	background-color: lightblue;
+}
 
+.ui-menu .ui-separator {
+	background: #A8A8A8;
+	border: none;
+	width: 1px;
+	clear: none;
+	height: 22px;
+	margin: 4px 6px 0;
+	box-shadow: none;
+}
 </style>
 
 	<h:form>
-		<p:menubar style="background-color: #FFF" >
-			<p:submenu label="Controle" styleClass="dropdown-submenu">
-
-				<p:submenu label="Clientes" styleClass="dropdown-submenu">
-					<p:menuitem value="Cadastrar" url="cadastroFuncionarios.jsf" />
-					<p:menuitem value="Listar" url="listarFuncionarios.jsf" />
-				</p:submenu>
-
-
-				<p:submenu label="Funcionarios" styleClass="dropdown-submenu">
-					<p:menuitem value="Cadastrar" url="cadastroFuncionarios.jsf" />
-					<p:menuitem value="Listar" url="listarFuncionarios.jsf" />
-				</p:submenu>
-				
-					<p:submenu label="Produtos" styleClass="dropdown-submenu">
-					<p:menuitem value="Cadastrar" url="cadastroFuncionarios.jsf" />
-					<p:menuitem value="Listar" url="listarFuncionarios.jsf" />
-				</p:submenu>
+		<p:menubar
+			style="background-color: #FFF; height: 100%; margin-top: -5px; text-align:center; margin-bottom: 20px;">
 
 
 
-				<p:menuitem value="#{messages['menu.menuitem.quit']}"
-					url="http://www.frameworkdemoiselle.gov.br/"
-					action="#{securityContext.logout}" />
+			<p:submenu label="Vendas" style="margin-left: 20%;"
+				styleClass="dropdown-submenu">
+				<p:menuitem value="Cadastrar" url="cadastroFuncionarios.jsf" />
+				<p:menuitem value="Listar" url="listarFuncionarios.jsf" />
 			</p:submenu>
+			<p:separator />
+
+			<p:submenu label="Clientes" styleClass="dropdown-submenu">
+				<p:menuitem value="Cadastrar" url="cadastroFuncionarios.jsf" />
+				<p:menuitem value="Listar" url="listarFuncionarios.jsf" />
+			</p:submenu>
+
+			<p:separator />
+			<p:submenu label="Funcionarios" styleClass="dropdown-submenu">
+				<p:menuitem value="Cadastrar" url="cadastroFuncionarios.jsf" />
+				<p:menuitem value="Listar" url="listarFuncionarios.jsf" />
+			</p:submenu>
+
+			<p:separator />
+			<p:submenu label="Produtos" styleClass="dropdown-submenu">
+				<p:menuitem value="Cadastrar" url="cadastroProdutos.jsf" />
+				<p:menuitem value="Listar" url="consultarProdutos.jsf" />
+			</p:submenu>
+
+			<p:separator />
+			<p:submenu label="Estoque" styleClass="dropdown-submenu">
+				<p:menuitem value="Vincular Produtos" url="" />
+				<p:menuitem value="Lançar em Estoque" url="" />
+				<p:menuitem value="Remover"></p:menuitem>
+			</p:submenu>
+
+			<p:separator />
+			<p:submenu label="Compras" styleClass="dropdown-submenu">
+				<p:menuitem value="Registrar Compra" url="" />
+
+			</p:submenu>
+
+			<p:separator />
+			<p:submenu label="Contas" styleClass="dropdown-submenu">
+				<p:menuitem value="Emitir Contas a Pagar" url="" />
+				<p:menuitem value="Gerar Contas a Pagar" url="" />
+				<p:menuitem value="Gerar Contas a Receber" url="" />
+
+			</p:submenu>
+
+
+
+			<p:menuitem value="#{messages['menu.menuitem.quit']}"
+				url="http://www.frameworkdemoiselle.gov.br/"
+				action="#{securityContext.logout}" />
+
+			<p:separator />
 		</p:menubar>
 
 

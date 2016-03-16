@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -8,8 +10,32 @@
 
 
 	<ui:define name="body">
-		<p:fieldset legend="Lista de FuncionÃ¡rios"
-			style="margin-top: 20px; width: 50%;  margin: auto; height: 50%; "
+
+		<p:fieldset legend="Pesquisa de Funcionarios"
+			style="width: 920px; margin: auto;">
+			<h:panelGrid columns="4" cellpadding="10" cellspacing="10">
+				<p:outputLabel value="Nome" style="margin-right: 10px;" />
+				<p:inputText />
+
+				<p:outputLabel value="CPF" />
+				<p:inputText />
+
+				<p:outputLabel value="Código" />
+				<p:inputText />
+
+				<p:outputLabel value="Cargo"/>
+				<p:selectOneMenu>
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+				</p:selectOneMenu>
+
+				<p:outputLabel value="E-mail" />
+				<p:inputText />
+
+			</h:panelGrid>
+		</p:fieldset>
+
+		<p:fieldset 
+			style="width: 920px; margin: auto;"
 			styleClass="container">
 
 			<p:dataTable>

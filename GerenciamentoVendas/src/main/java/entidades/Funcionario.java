@@ -2,12 +2,19 @@ package entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Funcionario implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3398693345378891333L;
+	
+	@Id
+	@GeneratedValue()
 	private Integer id;
 	private String nome;
 	private String cpfCnpj;

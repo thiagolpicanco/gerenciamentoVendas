@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -11,71 +13,89 @@
 
 		<form class="form-horizontal">
 
-			
-	<p:fieldset legend="Cadastro de Funcionários"
-		style="margin-top: 20px; width: 50%;  margin: auto; height: 50%; "
-		styleClass="container">
+
+			<p:fieldset legend="Cadastro de Funcionários"
+				style="margin-top: 20px; width: 920px; margin: auto; height: 50%; "
+				styleClass="container">
+
+				<h:panelGrid columns="2">
+
+					<h:panelGrid style="border: 2px;">
+						<p:fieldset style="width: 200px;">
+							<p:graphicImage value="resources/images/func.PNG" width="200px"
+								height="200px" />
+						</p:fieldset>
+						<p:fileUpload mode="simple" skinSimple="true" sizeLimit="10"
+						 label="Enviar Imagem"></p:fileUpload>
 
 
-		<h:panelGrid id="panel" columns="2"
-			style="margin-top:50px; margin: auto; cellpadding: 10;" width="100%"
-			styleClass="my-panel-grid" columnClasses="col1, col2">
-
-			<h:panelGrid style="margin-right: 100px; margin-bottom: 10px;">
-				<p:outputLabel value="Nome" />
-				<p:inputText value="#{mantemFuncionarioMB.funcionario.nome}" />
-			</h:panelGrid>
-
-			<h:panelGrid>
-				<p:outputLabel value="CPF" />
-				<p:inputText value="#{mantemFuncionarioMB.funcionario.cpfCnpj}" />
-
-			</h:panelGrid>
+					</h:panelGrid>
 
 
-			<h:panelGrid style=" margin-bottom: 10px;">
-				<p:outputLabel value="Telefone" />
-				<p:inputMask mask="(99) 9999-9999" value="#{mantemFuncionarioMB.funcionario.telefone}" />
-
-			</h:panelGrid>
 
 
-			<h:panelGrid>
-				<p:outputLabel value="Celular" />
-				<p:inputMask mask="(99) 9999-9999" value="#{mantemFuncionarioMB.funcionario.celular}" />
+					<h:panelGrid id="panel" columns="2"
+						style="margin-top:50px; margin: auto; cellpadding: 10;"
+						width="100%" styleClass="my-panel-grid" columnClasses="col1, col2">
 
-			</h:panelGrid>
+						<h:panelGrid style=" margin-bottom: 10px;">
+							<p:outputLabel value="Nome" />
+							<p:inputText value="#{mantemFuncionarioMB.funcionario.nome}" />
+						</h:panelGrid>
 
+						<h:panelGrid>
+							<p:outputLabel value="CPF" />
+							<p:inputText value="#{mantemFuncionarioMB.funcionario.cpfCnpj}" />
 
-			<h:panelGrid style="margin-bottom: 10px;">
-				<p:outputLabel value="E-Mail" />
-				<p:inputText value="#{mantemFuncionarioMB.funcionario.email}" />
-			</h:panelGrid>
-
-
-			<h:panelGrid>
-				<p:outputLabel value="Endereço" />
-				<p:inputText value="#{mantemFuncionarioMB.funcionario.endereco}" />
-
-			</h:panelGrid>
+						</h:panelGrid>
 
 
-			<h:panelGrid>
-				<p:outputLabel value="Cargo" />
-				<p:selectOneMenu style="width: 228px">
-					<f:selectItem noSelectionOption="true" itemLabel="Selecione"></f:selectItem>
-				</p:selectOneMenu>
-			</h:panelGrid>
+						<h:panelGrid style=" margin-bottom: 10px;">
+							<p:outputLabel value="Telefone" />
+							<p:inputMask mask="(99) 9999-9999"
+								value="#{mantemFuncionarioMB.funcionario.telefone}" />
 
-		</h:panelGrid>
+						</h:panelGrid>
 
-		<h:panelGrid columns="2" style="float:right">
-			<p:commandButton value="Cadastrar" action="#{mantemFuncionarioMB.cadastrarFuncionario}"
-				style="margin-left: 40px ;margin-right: 20px;" />
-			<p:commandButton value="Limpar" />
-		</h:panelGrid>
 
-	</p:fieldset>
+						<h:panelGrid>
+							<p:outputLabel value="Celular" />
+							<p:inputMask mask="(99) 9999-9999"
+								value="#{mantemFuncionarioMB.funcionario.celular}" />
+
+						</h:panelGrid>
+
+
+						<h:panelGrid style="margin-bottom: 10px;">
+							<p:outputLabel value="E-Mail" />
+							<p:inputText value="#{mantemFuncionarioMB.funcionario.email}" />
+						</h:panelGrid>
+
+
+						<h:panelGrid>
+							<p:outputLabel value="Endereço" />
+							<p:inputText value="#{mantemFuncionarioMB.funcionario.endereco}" />
+
+						</h:panelGrid>
+
+
+						<h:panelGrid>
+							<p:outputLabel value="Cargo" />
+							<p:selectOneMenu style="width: 228px">
+								<f:selectItem noSelectionOption="true" itemLabel="Selecione"></f:selectItem>
+							</p:selectOneMenu>
+						</h:panelGrid>
+
+					</h:panelGrid>
+				</h:panelGrid>
+				<h:panelGrid columns="2" style="float:right">
+					<p:commandButton value="Cadastrar"
+						action="#{mantemFuncionarioMB.cadastrarFuncionario}"
+						style="margin-left: 40px ;margin-right: 20px;" />
+					<p:commandButton value="Limpar" />
+				</h:panelGrid>
+
+			</p:fieldset>
 
 
 
