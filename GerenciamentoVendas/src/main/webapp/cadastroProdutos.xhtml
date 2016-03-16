@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/main.xhtml">
+
+	<style>
+.
+.ui-fileupload-simple input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
+</style>
+
+
+	<ui:define name="body">
+		<p:fieldset legend="Cadastro de Produtos"
+			style="width: 920px; margin: auto;">
+			<h:panelGrid columns="2">
+
+
+				<h:panelGrid style="border: 2px;">
+					<p:graphicImage value="resources/images/dog.jpg" width="200px"
+						height="200px" />
+
+					<p:fileUpload mode="simple" skinSimple="true" sizeLimit="10"
+						style="width: 200px; margin:auto;" label="Enviar Imagem"></p:fileUpload>
+
+
+				</h:panelGrid>
+
+
+
+				<h:panelGrid columns="4" cellpadding="10" cellspacing="10">
+					<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" />
+					<p:inputText />
+
+					<p:outputLabel value="Palavra-chave" />
+					<p:inputText />
+
+					<p:outputLabel value="Código" />
+					<p:inputText />
+
+					<p:outputLabel value="Fornecedor" />
+					<p:selectOneMenu>
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Categoria" />
+					<p:inputText />
+
+					<p:outputLabel value="Tamanho" />
+					<p:selectOneMenu>
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+					</p:selectOneMenu>
+
+				</h:panelGrid>
+
+			</h:panelGrid>
+			<h:panelGrid columns="2" style="float:right">
+				<p:commandButton value="Cadastrar"
+					action="#{mantemFuncionarioMB.cadastrarFuncionario}"
+					style="margin-left: 40px ;margin-right: 20px;" />
+				<p:commandButton value="Limpar" />
+			</h:panelGrid>
+		</p:fieldset>
+
+	</ui:define>
+
+
+
+</ui:composition>
