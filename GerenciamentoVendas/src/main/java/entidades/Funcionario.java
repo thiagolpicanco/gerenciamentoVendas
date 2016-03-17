@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 public class Funcionario implements Serializable {
 
@@ -12,7 +13,7 @@ public class Funcionario implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 3398693345378891333L;
-	
+
 	@Id
 	@GeneratedValue()
 	private Integer id;
@@ -24,7 +25,11 @@ public class Funcionario implements Serializable {
 	private String endereco;
 	private Integer tipo;
 	private Double salario;
-	private Double comissao;
+
+	private String percentualComissao;
+
+	@Transient
+	private Double comissaoMes;
 
 	public Funcionario() {
 		// TODO Auto-generated constructor stub
@@ -102,12 +107,20 @@ public class Funcionario implements Serializable {
 		this.salario = salario;
 	}
 
-	public Double getComissao() {
-		return comissao;
+	public String getPercentualComissao() {
+		return percentualComissao;
 	}
 
-	public void setComissao(Double comissao) {
-		this.comissao = comissao;
+	public void setPercentualComissao(String percentualComissao) {
+		this.percentualComissao = percentualComissao;
+	}
+
+	public Double getComissaoMes() {
+		return comissaoMes;
+	}
+
+	public void setComissaoMes(Double comissaoMes) {
+		this.comissaoMes = comissaoMes;
 	}
 
 	public static long getSerialversionuid() {

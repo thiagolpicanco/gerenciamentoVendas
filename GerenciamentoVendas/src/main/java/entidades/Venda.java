@@ -13,10 +13,9 @@ public class Venda implements Serializable {
 	 */
 	private static final long serialVersionUID = 3601125323849678360L;
 	private List<Produto> listaProdutos;
-	private Fornecedor fornecedor;
 	private Funcionario funcionarioResponsavel;
 	private String notaFiscal;
-	private Date dataCompra;
+	private Date dataVenda;
 	private String status;
 	private Double valorTotal;
 	
@@ -32,13 +31,7 @@ public class Venda implements Serializable {
 		this.listaProdutos = listaProdutos;
 	}
 
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
 
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
 
 	public Funcionario getFuncionarioResponsavel() {
 		return funcionarioResponsavel;
@@ -57,11 +50,11 @@ public class Venda implements Serializable {
 	}
 
 	public Date getDataCompra() {
-		return dataCompra;
+		return dataVenda;
 	}
 
 	public void setDataCompra(Date dataCompra) {
-		this.dataCompra = dataCompra;
+		this.dataVenda = dataCompra;
 	}
 
 	public String getStatus() {

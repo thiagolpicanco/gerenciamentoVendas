@@ -6,6 +6,10 @@ import java.util.List;
 
 public class Compra implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2597489331441641825L;
 	private List<Produto> listaProdutos;
 	private Fornecedor fornecedor;
 	private Funcionario funcionarioResponsavel;
