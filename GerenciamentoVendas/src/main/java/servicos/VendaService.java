@@ -1,5 +1,10 @@
 package servicos;
 
+/**
+ * 
+ * @author thiago.picanco
+ *
+ */
 import javax.ejb.Stateless;
 
 import entidades.Produto;

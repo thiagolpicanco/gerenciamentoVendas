@@ -1,5 +1,9 @@
 package enums;
-
+/**
+ * 
+ * @author thiago.picanco
+ *
+ */
 public enum TipoFuncionarioEnum {
 	DIRETOR(1, "Diretor"), GERENTE(2, "Gerente"), VENDEDOR(3, "Vendedor"), ESTOQUISTA(
 			4, "Estoquista");

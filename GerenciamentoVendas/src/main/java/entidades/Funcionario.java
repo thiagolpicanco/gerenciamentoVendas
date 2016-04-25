@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
+@Table(name="FUNCIONARIO")
 public class Funcionario implements Serializable {
 
 	/**

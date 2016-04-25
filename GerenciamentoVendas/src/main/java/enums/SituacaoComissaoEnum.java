@@ -2,7 +2,11 @@ package enums;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * 
+ * @author thiago.picanco
+ *
+ */
 public enum SituacaoComissaoEnum {
 
 	PAGA(1, "Pagamento Efetuado"), A_PAGAR(2, "Pagamento Pendente");

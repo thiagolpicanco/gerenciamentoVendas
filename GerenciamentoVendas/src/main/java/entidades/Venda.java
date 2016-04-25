@@ -11,12 +11,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="VENDA")
 public class Venda implements Serializable {
 
 	/**
 	 * 
+	 * @author thiago.picanco
+	 *
 	 */
 	private static final long serialVersionUID = 3601125323849678360L;
 	@Id
