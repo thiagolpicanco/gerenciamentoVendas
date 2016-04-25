@@ -2,11 +2,15 @@ package entidades;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
+@Entity
 public class Funcionario implements Serializable {
 
 	/**
@@ -15,17 +19,26 @@ public class Funcionario implements Serializable {
 	private static final long serialVersionUID = 3398693345378891333L;
 
 	@Id
-	@GeneratedValue()
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
 	private Integer id;
+	@Column
 	private String nome;
+	@Column
 	private String cpfCnpj;
+	@Column
 	private String telefone;
+	@Column
 	private String celular;
+	@Column
 	private String email;
+	@Column
 	private String endereco;
+	@Column
 	private Integer tipo;
+	@Column
 	private Double salario;
-
+	@Column
 	private String percentualComissao;
 
 	@Transient
