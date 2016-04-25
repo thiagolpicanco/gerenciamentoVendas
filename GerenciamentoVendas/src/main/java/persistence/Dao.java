@@ -14,6 +14,10 @@ public abstract class Dao<T> {
 	@PersistenceContext
 	EntityManager entityManager;
 
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
 	private Class<T> classe;
 
 	public final void setClasse(Class<T> classe) {
@@ -29,8 +33,11 @@ public abstract class Dao<T> {
 		entityManager.remove(obj);
 
 	}
+	
+	
 
 	public abstract List<T> findAll();
+		
 	
 	public abstract T findById();
 	}

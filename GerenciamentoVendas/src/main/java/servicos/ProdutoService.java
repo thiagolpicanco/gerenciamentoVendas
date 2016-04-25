@@ -1,4 +1,7 @@
 package servicos;
+
+import entidades.Produto;
+
 /**
  * 
  * @author thiago.picanco
@@ -6,4 +9,26 @@ package servicos;
  */
 public class ProdutoService {
 
+	
+	
+	public void cadastraProduto(Produto produto){
+		
+	}
+	
+	public void deletaProduto(Produto produto){
+		
+	}
+	
+	public void atualizaProduto(Produto produto){
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
