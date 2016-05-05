@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import arquitetura.Entidade;
+
 
 @Entity
 @Table(name="CLIENTE")
-public class Cliente implements Serializable {
+public class Cliente extends Entidade implements Serializable {
 	/**
 	 * 
 	 */

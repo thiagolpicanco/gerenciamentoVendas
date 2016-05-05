@@ -12,9 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import arquitetura.Entidade;
+
 @Entity
 @Table(name="PRODUTO")
-public class Produto implements Serializable {
+public class Produto extends Entidade implements  Serializable {
 
 	/**
 	 * 

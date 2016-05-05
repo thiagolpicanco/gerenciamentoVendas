@@ -13,9 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import arquitetura.Entidade;
+
 @Entity
-@Table(name="VENDA")
-public class Venda implements Serializable {
+@Table(name = "VENDA")
+public class Venda extends Entidade implements Serializable {
 
 	/**
 	 * 

@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import arquitetura.Entidade;
+
 @Entity
 @Table(name="FUNCIONARIO")
-public class Funcionario implements Serializable {
+public class Funcionario extends Entidade  implements Serializable {
 
 	/**
 	 * 

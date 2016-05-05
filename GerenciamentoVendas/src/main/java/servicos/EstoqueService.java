@@ -10,7 +10,7 @@ import entidades.Produto;
 public class EstoqueService {
 
 	public void cadastraProdutoEstoque() {
-
+		
 	}
 
 	public void removeProdutoEstoque() {

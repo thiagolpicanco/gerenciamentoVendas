@@ -8,5 +8,18 @@
       http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
    <!-- Write your navigation rules here. You are encouraged to use CDI for creating @Named managed beans. -->
+<application>
+		<resource-bundle>
+			<base-name>propriedades.persistencia</base-name>
+			<var>persistencia</var>
+		</resource-bundle>
+			<resource-bundle>
+			<base-name>propriedades.mensagem</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+
+
 
 </faces-config>
+

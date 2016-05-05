@@ -9,9 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import arquitetura.Entidade;
+
 @Entity
 @Table(name = "COMISSAO")
-public class Comissao {
+public class  Comissao extends Entidade  {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

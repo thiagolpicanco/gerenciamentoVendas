@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import arquitetura.Entidade;
+
 @Entity
 @Table(name="FORNECEDOR")
-public class Fornecedor implements Serializable {
+public class Fornecedor extends Entidade  implements Serializable {
 
 	/**
 	 * 
