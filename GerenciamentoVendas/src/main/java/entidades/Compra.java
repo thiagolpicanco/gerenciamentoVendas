@@ -38,10 +38,10 @@ public class Compra extends Entidade implements Serializable {
 					@JoinColumn(name = "produto_id", referencedColumnName = "id") })
 	private List<Produto> listaProdutos;
 	@ManyToOne
-	@Column(name = "id_fornecedor")
+	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
 	@ManyToOne
-	@Column(name = "id_funcionario")
+	@JoinColumn(name = "id_funcionario")
 	private Funcionario funcionarioResponsavel;
 	@Column(name = "nota_fiscal")
 	private String notaFiscal;

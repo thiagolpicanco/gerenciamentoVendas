@@ -21,7 +21,6 @@ import arquitetura.Entidade;
 @Entity
 @Table(name = "VENDA")
 @SequenceGenerator(name = "sq_venda", sequenceName = "sq_venda", allocationSize = 1, initialValue = 1)
-
 public class Venda extends Entidade implements Serializable {
 
 	/**
