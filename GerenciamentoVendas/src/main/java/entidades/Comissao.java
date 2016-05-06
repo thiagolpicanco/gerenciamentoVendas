@@ -15,6 +15,10 @@ import arquitetura.Entidade;
 @Table(name = "COMISSAO")
 public class  Comissao extends Entidade  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 864608216535010317L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column

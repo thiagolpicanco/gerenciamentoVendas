@@ -57,17 +57,21 @@
 						<p:inputText value="#{manterProdutoMB.produto.id}" />
 
 						<p:outputLabel value="Fornecedor" />
-						<h:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}" converter="omnifaces.SelectItemsConverter">
-							<f:selectItems value="#{manterProdutoMB.listaFornecedoresSelect}" ></f:selectItems>
+						<h:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}"
+							converter="omnifaces.SelectItemsConverter">
+								<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+							<f:selectItems value="#{manterProdutoMB.listaFornecedores}"  var="forn" itemLabel="#{forn.nome}"></f:selectItems>
 						</h:selectOneMenu>
 
 						<p:outputLabel value="Categoria" />
-						<p:inputText />
-
-						<p:outputLabel value="Tamanho" />
-						<p:selectOneMenu>
+						<p:selectOneMenu value="#{manterProdutoMB.produto.categoria}"
+							converter="omnifaces.SelectItemsConverter">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+							<f:selectItems value="#{manterProdutoMB.listaCategorias}"
+								var="categoria" itemLabel="#{categoria.noCategoria}"></f:selectItems>
+							
 						</p:selectOneMenu>
+					
 
 					</h:panelGrid>
 

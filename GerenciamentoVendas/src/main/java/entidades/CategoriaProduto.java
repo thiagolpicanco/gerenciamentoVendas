@@ -11,6 +11,11 @@ import arquitetura.Entidade;
 @Table(name = "categoria_produto")
 public class CategoriaProduto extends Entidade{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6261897825792516039L;
+
 	@Id
 	@Column(name = "id")
 	private Integer id;

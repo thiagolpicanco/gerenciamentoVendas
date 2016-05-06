@@ -15,38 +15,37 @@ import javax.persistence.Table;
 import arquitetura.Entidade;
 
 @Entity
-@Table(name="PRODUTO")
+@Table(name = "PRODUTO")
 @SequenceGenerator(name = "sq_produto", sequenceName = "sq_produto", allocationSize = 1, initialValue = 1)
-public class Produto extends Entidade implements  Serializable {
+public class Produto extends Entidade implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -542059481551882370L;
 	@Id
-	@GeneratedValue(generator= "sq_produto")
-	@Column(name="id")
+	@GeneratedValue(generator = "sq_produto")
+	@Column(name = "id")
 	private Integer id;
-	@Column(name="nome")
+	@Column(name = "nome")
 	private String nome;
 	@ManyToOne
-	@JoinColumn(name="id_fornecedor")
+	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
-	@Column(name="valor_compra")
+	@Column(name = "valor_compra")
 	private Double valorCompra;
-	@Column(name="valor_venda")
+	@Column(name = "valor_venda")
 	private Double valorVenda;
-	@Column(name="descricao")
+	@Column(name = "descricao")
 	private String descricao;
-	@Column(name="quantidade")
+	@Column(name = "quantidade")
 	private Integer quantidade;
-	@Column(name="categoria")
-	private Integer categoria;
-	@Column(name="tamanho")
-	private String tamanho;
-	@Column(name="palavras_chaves")
-	private String palavrasChaves;
+	@ManyToOne
+	@JoinColumn(name = "categoria")
+	private CategoriaProduto categoria;
 
+	@Column(name = "palavras_chaves")
+	private String palavrasChaves;
 
 	public Produto() {
 		// TODO Auto-generated constructor stub
@@ -59,8 +58,6 @@ public class Produto extends Entidade implements  Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
 
 	public String getNome() {
 		return nome;
@@ -118,20 +115,12 @@ public class Produto extends Entidade implements  Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public Integer getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Integer categoria) {
+	public void setCategoria(CategoriaProduto categoria) {
 		this.categoria = categoria;
 	}
 
-	public String getTamanho() {
-		return tamanho;
-	}
-
-	public void setTamanho(String tamanho) {
-		this.tamanho = tamanho;
+	public CategoriaProduto getCategoria() {
+		return categoria;
 	}
 
 	public String getDescricaoExtra() {

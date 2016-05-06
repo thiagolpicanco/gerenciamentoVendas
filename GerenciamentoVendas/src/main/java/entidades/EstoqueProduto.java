@@ -21,7 +21,7 @@ public class EstoqueProduto extends Entidade {
 	private static final long serialVersionUID = 2531784648848646946L;
 
 	@Id
-	@GeneratedValue(generator="sq_estoque_produto")
+	@GeneratedValue(generator = "sq_estoque_produto")
 	private Integer id;
 	@ManyToOne
 	@JoinColumn(name = "id_estoque")
@@ -34,6 +34,9 @@ public class EstoqueProduto extends Entidade {
 	private Integer qtdAtual;
 	@Column(name = "qtd_minima")
 	private Integer qtdMinima;
+
+	@Column(name = "tamanho")
+	private String tamanho;
 
 	public Integer getId() {
 		return id;
@@ -72,6 +75,22 @@ public class EstoqueProduto extends Entidade {
 	}
 
 	public EstoqueProduto() {
+	}
+
+	public Estoque getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Estoque estoque) {
+		this.estoque = estoque;
+	}
+
+	public String getTamanho() {
+		return tamanho;
+	}
+
+	public void setTamanho(String tamanho) {
+		this.tamanho = tamanho;
 	}
 
 	@Override

@@ -151,7 +151,7 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	  descricao text,
 	  quantidade integer,
 	  categoria integer,
-	  tamanho text,
+	  
 	  palavras_chaves text,
 	  CONSTRAINT pk_produto PRIMARY KEY (id),
 	  CONSTRAINT fk_categoria FOREIGN KEY (categoria)
@@ -331,7 +331,7 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	  id integer NOT NULL DEFAULT nextval('sq_estoque_produto'::regclass),
 	  	  id_estoque integer NOT NULL,
 	  id_produto integer NOT NULL,
-
+		tamanho text,
 	  qtd_atual integer,
 	  qtd_minima integer,
 	  CONSTRAINT pk_estoque_produto PRIMARY KEY (id),

@@ -6,17 +6,28 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
+import entidades.CategoriaProduto;
 import entidades.Fornecedor;
 import entidades.Produto;
+import enums.TamanhoCalcadosEnum;
+import enums.TamanhoRoupasLetrasEnum;
+import enums.TamanhoRoupasNumeralEnum;
+import persistence.CategoriaProdutoDao;
 import servicos.FornecedorService;
 import servicos.ProdutoService;
+import util.MensagensUtil;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class ManterProdutoMB {
+
+	final String MSG_PRODUTO_CADASTRADO = "Produto cadastrado com sucesso.";
+	final String MSG_PRODUTO_ERRO = "Erro ao cadastrar produto: ";
+	final String MSG_PRODUTO_REMOVIDO = "Produto removido com sucesso";
 
 	@EJB
 	ProdutoService produtoService;
@@ -24,28 +35,37 @@ public class ManterProdutoMB {
 	@EJB
 	FornecedorService fornecedorService;
 
-	private List<SelectItem> listaFornecedoresSelect;
+	@EJB
+	CategoriaProdutoDao categoriaProdutoDao;
+
+	private List<CategoriaProduto> listaCategorias;
 
 	private List<Fornecedor> listaFornecedores;
 	private Produto produto;
-	
 
 	@PostConstruct
 	public void init() {
-		listaFornecedores = fornecedorService.listarTodos();
 		produto = new Produto();
-		listaFornecedoresSelect = new ArrayList<>();
-		for (Fornecedor f : listaFornecedores) {
-			SelectItem si = new SelectItem(f, f.getNome());
-			listaFornecedoresSelect.add(si);
+		this.inicializaCombos();
+
+	}
+
+	public void inicializaCombos() {
+		listaFornecedores = fornecedorService.listarTodos();
+		listaCategorias = categoriaProdutoDao.listarTudo();
+	}
+
+	public void cadastraProduto() {
+		try {
+			produtoService.cadastraProduto(this.produto);
+			MensagensUtil.adicionaMensagemSucesso(MSG_PRODUTO_CADASTRADO);
+		} catch (Exception e) {
+			MensagensUtil.adicionaMensagemErro(MSG_PRODUTO_ERRO + e.getMessage());
 		}
 
 	}
 
-	public void cadastraProduto() {
-		produtoService.cadastraProduto(this.produto);
-	}
-
+	
 	public Produto getProduto() {
 		return produto;
 	}
@@ -78,12 +98,21 @@ public class ManterProdutoMB {
 		this.listaFornecedores = listaFornecedores;
 	}
 
-	public List<SelectItem> getListaFornecedoresSelect() {
-		return listaFornecedoresSelect;
+	public CategoriaProdutoDao getCategoriaProdutoDao() {
+		return categoriaProdutoDao;
 	}
 
-	public void setListaFornecedoresSelect(List<SelectItem> listaFornecedoresSelect) {
-		this.listaFornecedoresSelect = listaFornecedoresSelect;
+	public void setCategoriaProdutoDao(CategoriaProdutoDao categoriaProdutoDao) {
+		this.categoriaProdutoDao = categoriaProdutoDao;
 	}
+
+	public List<CategoriaProduto> getListaCategorias() {
+		return listaCategorias;
+	}
+
+	public void setListaCategorias(List<CategoriaProduto> listaCategorias) {
+		this.listaCategorias = listaCategorias;
+	}
+	
 
 }
