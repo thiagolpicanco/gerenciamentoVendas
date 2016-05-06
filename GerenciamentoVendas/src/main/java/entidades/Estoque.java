@@ -31,7 +31,7 @@ public class Estoque extends Entidade implements Serializable {
 	@Column(name="no_estoque")
 	private String noEstoque;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "estoque")
-	private List<GerenciamentoProduto> listaProdutos;
+	private List<EstoqueProduto> listaProdutos;
 	@ManyToOne
 	@JoinColumn(name = "id_funcionario")
 	private Funcionario funcionarioResponsavel;
@@ -56,11 +56,11 @@ public class Estoque extends Entidade implements Serializable {
 		this.noEstoque = noEstoque;
 	}
 
-	public List<GerenciamentoProduto> getListaProdutos() {
+	public List<EstoqueProduto> getListaProdutos() {
 		return listaProdutos;
 	}
 
-	public void setListaProdutos(List<GerenciamentoProduto> listaProdutos) {
+	public void setListaProdutos(List<EstoqueProduto> listaProdutos) {
 		this.listaProdutos = listaProdutos;
 	}
 

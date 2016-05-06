@@ -10,23 +10,24 @@ import javax.persistence.Table;
 import arquitetura.Entidade;
 
 @Entity
-@Table(name = "gerenciamento_produto")
-public class GerenciamentoProduto extends Entidade {
+@Table(name = "estoque_produto")
+public class EstoqueProduto extends Entidade {
 
 	private static final long serialVersionUID = 2531784648848646946L;
 
 	@Id
 	private Integer id;
 	@ManyToOne
+	@JoinColumn(name = "id_estoque")
+	private Estoque estoque;
+	@ManyToOne
 	@JoinColumn(name = "id_produto")
 	private Produto produto;
+
 	@Column(name = "qtd_atual")
 	private Integer qtdAtual;
 	@Column(name = "qtd_minima")
 	private Integer qtdMinima;
-	@ManyToOne
-	@JoinColumn(name = "id_estoque")
-	private Estoque estoque;
 
 	public Integer getId() {
 		return id;
@@ -64,7 +65,7 @@ public class GerenciamentoProduto extends Entidade {
 		return serialVersionUID;
 	}
 
-	public GerenciamentoProduto() {
+	public EstoqueProduto() {
 	}
 
 	@Override
