@@ -30,7 +30,7 @@ public class Estoque extends Entidade implements Serializable {
 	@Column
 	private String noEstoque;
 	@OneToMany
-	private List<Produto> listaProdutos;
+	private List<GerenciamentoProduto> listaProdutos;
 	@Column
 	private Funcionario funcionarioResponsavel;
 
@@ -54,12 +54,18 @@ public class Estoque extends Entidade implements Serializable {
 		this.noEstoque = noEstoque;
 	}
 
-	public List<Produto> getListaProdutos() {
+
+
+	public List<GerenciamentoProduto> getListaProdutos() {
 		return listaProdutos;
 	}
 
-	public void setListaProdutos(List<Produto> listaProdutos) {
+	public void setListaProdutos(List<GerenciamentoProduto> listaProdutos) {
 		this.listaProdutos = listaProdutos;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public Funcionario getFuncionarioResponsavel() {
