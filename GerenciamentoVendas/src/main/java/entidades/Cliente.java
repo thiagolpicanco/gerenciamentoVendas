@@ -11,30 +11,29 @@ import javax.persistence.Table;
 
 import arquitetura.Entidade;
 
-
 @Entity
-@Table(name="CLIENTE")
+@Table(name = "CLIENTE")
 public class Cliente extends Entidade implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6069440809044428248L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	@Column(name = "id")
 	private Integer id;
-	@Column
+	@Column(name = "nome")
 	private String nome;
-	@Column
+	@Column(name = "cpf_cnpj")
 	private String cpfCnpj;
-	@Column
+	@Column(name = "telefone")
 	private String telefone;
-	@Column
+	@Column(name = "celular")
 	private String celular;
-	@Column
+	@Column(name = "email")
 	private String email;
-	@Column
+	@Column(name = "endereco")
 	private String endereco;
 
 	public Cliente() {

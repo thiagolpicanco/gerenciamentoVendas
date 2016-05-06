@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 import arquitetura.Entidade;
 
 @Entity
-@Table(name="ESTOQUE")
+@Table(name = "ESTOQUE")
 public class Estoque extends Entidade implements Serializable {
 	/**
 	 * 
@@ -25,13 +26,14 @@ public class Estoque extends Entidade implements Serializable {
 	private static final long serialVersionUID = 4326679135747328007L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	@Column(name="id")
 	private Integer id;
-	@Column
+	@Column(name="no_estoque")
 	private String noEstoque;
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "estoque")
 	private List<GerenciamentoProduto> listaProdutos;
-	@Column
+	@ManyToOne
+	@JoinColumn(name = "id_funcionario")
 	private Funcionario funcionarioResponsavel;
 
 	public Estoque() {
@@ -53,8 +55,6 @@ public class Estoque extends Entidade implements Serializable {
 	public void setNoEstoque(String noEstoque) {
 		this.noEstoque = noEstoque;
 	}
-
-
 
 	public List<GerenciamentoProduto> getListaProdutos() {
 		return listaProdutos;

@@ -25,26 +25,26 @@ public class Produto extends Entidade implements  Serializable {
 	private static final long serialVersionUID = -542059481551882370L;
 	@Id
 	@GeneratedValue(generator= "sq_produto")
-	@Column
+	@Column(name="id")
 	private Integer id;
-	@Column
+	@Column(name="nome")
 	private String nome;
 	@ManyToOne
 	@JoinColumn(name="id_fornecedor")
 	private Fornecedor fornecedor;
-	@Column
+	@Column(name="valor_compra")
 	private Double valorCompra;
-	@Column
+	@Column(name="valor_venda")
 	private Double valorVenda;
-	@Column
+	@Column(name="descricao")
 	private String descricao;
-	@Column
+	@Column(name="quantidade")
 	private Integer quantidade;
-	@Column
+	@Column(name="categoria")
 	private Integer categoria;
-	@Column
+	@Column(name="tamanho")
 	private String tamanho;
-	@Column
+	@Column(name="palavras_chaves")
 	private String palavrasChaves;
 
 

@@ -23,29 +23,29 @@ public class Funcionario extends Entidade  implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	@Column(name="id")
 	private Integer id;
-	@Column
+	@Column(name="nome")
 	private String nome;
-	@Column
+	@Column(name="cpf_nome")
 	private String cpfCnpj;
-	@Column
+	@Column(name="telefone")
 	private String telefone;
-	@Column
+	@Column(name="celular")
 	private String celular;
-	@Column
+	@Column(name="email")
 	private String email;
-	@Column
+	@Column(name="endereco")
 	private String endereco;
-	@Column
+	@Column(name="tipo")
 	private Integer tipo;
-	@Column
+	@Column(name="salario")
 	private Double salario;
-	@Column
-	private String percentualComissao;
-
-	@Transient
-	private Double comissaoMes;
+//	@Column
+//	private String percentualComissao;
+//
+//	@Transient
+//	private Double comissaoMes;
 
 	public Funcionario() {
 		// TODO Auto-generated constructor stub
@@ -123,24 +123,24 @@ public class Funcionario extends Entidade  implements Serializable {
 		this.salario = salario;
 	}
 
-	public String getPercentualComissao() {
-		return percentualComissao;
-	}
-
-	public void setPercentualComissao(String percentualComissao) {
-		this.percentualComissao = percentualComissao;
-	}
-
-	public Double getComissaoMes() {
-		return comissaoMes;
-	}
-
-	public void setComissaoMes(Double comissaoMes) {
-		this.comissaoMes = comissaoMes;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+//	public String getPercentualComissao() {
+//		return percentualComissao;
+//	}
+//
+//	public void setPercentualComissao(String percentualComissao) {
+//		this.percentualComissao = percentualComissao;
+//	}
+//
+//	public Double getComissaoMes() {
+//		return comissaoMes;
+//	}
+//
+//	public void setComissaoMes(Double comissaoMes) {
+//		this.comissaoMes = comissaoMes;
+//	}
+//
+//	public static long getSerialversionuid() {
+//		return serialVersionUID;
+//	}
 
 }

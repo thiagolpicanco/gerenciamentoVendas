@@ -21,21 +21,21 @@ public class Fornecedor extends Entidade  implements Serializable {
 	private static final long serialVersionUID = 8004385599919929779L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	@Column(name="id")
 	private Integer id;
-	@Column
+	@Column(name="nome")
 	private String nome;
-	@Column
+	@Column(name="cpf_cnpj")
 	private String cpfCnpj;
-	@Column
+	@Column(name="telefone")
 	private String telefone;
-	@Column
+	@Column(name="celular")
 	private String celular;
-	@Column
+	@Column(name="email")
 	private String email;
-	@Column
+	@Column(name="endereco")
 	private String endereco;
-	@Column
+	@Column(name="tipo")
 	private Integer tipo;
 
 	public Fornecedor() {

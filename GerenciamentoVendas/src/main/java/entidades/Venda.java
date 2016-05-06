@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,19 +29,23 @@ public class Venda extends Entidade implements Serializable {
 	private static final long serialVersionUID = 3601125323849678360L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column
+	@Column(name = "id")
 	private Integer id;
 	@OneToMany
+	@JoinTable(name = "venda_produto", joinColumns = {
+			@JoinColumn(name = "venda_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "produto_id", referencedColumnName = "id") })
 	private List<Produto> listaProdutos;
 	@ManyToOne
+	@JoinColumn(name = "id_funcionario")
 	private Funcionario funcionarioResponsavel;
-	@Column
+	@Column(name = "nota_fiscal")
 	private String notaFiscal;
-	@Column
+	@Column(name = "data_venda")
 	private Date dataVenda;
-	@Column
+	@Column(name = "status")
 	private String status;
-	@Column
+	@Column(name = "valor_total")
 	private Double valorTotal;
 
 	public Venda() {

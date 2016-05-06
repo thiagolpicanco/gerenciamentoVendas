@@ -4,22 +4,22 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import arquitetura.Entidade;
 
 @Entity
-@Table(name="COMPRA")
-public class Compra extends Entidade  implements Serializable {
+@Table(name = "COMPRA")
+public class Compra extends Entidade implements Serializable {
 
 	/**
 	 * 
@@ -30,18 +30,23 @@ public class Compra extends Entidade  implements Serializable {
 	@Column
 	private Integer id;
 	@OneToMany
+	@JoinTable(name = "compra_produto", joinColumns = {
+			@JoinColumn(name = "compra_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "produto_id", referencedColumnName = "id") })
 	private List<Produto> listaProdutos;
 	@ManyToOne
+	@Column(name = "id_fornecedor")
 	private Fornecedor fornecedor;
 	@ManyToOne
+	@Column(name = "id_funcionario")
 	private Funcionario funcionarioResponsavel;
-	@Column
+	@Column(name = "nota_fiscal")
 	private String notaFiscal;
-	@Column
+	@Column(name = "data_compra")
 	private Date dataCompra;
-	@Column
+	@Column(name = "status")
 	private String status;
-	@Column
+	@Column(name = "valor_total")
 	private Double valorTotal;
 
 	public Compra() {
