@@ -13,12 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import arquitetura.Entidade;
 
 @Entity
 @Table(name = "COMPRA")
+@SequenceGenerator(name = "sq_compra", sequenceName = "sq_compra", allocationSize = 1, initialValue = 1)
+
 public class Compra extends Entidade implements Serializable {
 
 	/**
@@ -26,7 +29,7 @@ public class Compra extends Entidade implements Serializable {
 	 */
 	private static final long serialVersionUID = -2597489331441641825L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator="sq_compra")
 	@Column
 	private Integer id;
 	@OneToMany

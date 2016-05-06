@@ -13,12 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import arquitetura.Entidade;
 
 @Entity
 @Table(name = "VENDA")
+@SequenceGenerator(name = "sq_venda", sequenceName = "sq_venda", allocationSize = 1, initialValue = 1)
+
 public class Venda extends Entidade implements Serializable {
 
 	/**
@@ -28,7 +31,7 @@ public class Venda extends Entidade implements Serializable {
 	 */
 	private static final long serialVersionUID = 3601125323849678360L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "sq_venda")
 	@Column(name = "id")
 	private Integer id;
 	@OneToMany

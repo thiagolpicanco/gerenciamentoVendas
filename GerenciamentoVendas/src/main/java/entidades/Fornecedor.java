@@ -5,37 +5,39 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import arquitetura.Entidade;
 
 @Entity
-@Table(name="FORNECEDOR")
-public class Fornecedor extends Entidade  implements Serializable {
+@Table(name = "FORNECEDOR")
+@SequenceGenerator(name = "sq_fornecedor", sequenceName = "sq_fornecedor", allocationSize = 1, initialValue = 1)
+
+public class Fornecedor extends Entidade implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8004385599919929779L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@GeneratedValue(generator = "sq_fornecedor")
+	@Column(name = "id")
 	private Integer id;
-	@Column(name="nome")
+	@Column(name = "nome")
 	private String nome;
-	@Column(name="cpf_cnpj")
+	@Column(name = "cpf_cnpj")
 	private String cpfCnpj;
-	@Column(name="telefone")
+	@Column(name = "telefone")
 	private String telefone;
-	@Column(name="celular")
+	@Column(name = "celular")
 	private String celular;
-	@Column(name="email")
+	@Column(name = "email")
 	private String email;
-	@Column(name="endereco")
+	@Column(name = "endereco")
 	private String endereco;
-	@Column(name="tipo")
+	@Column(name = "tipo")
 	private Integer tipo;
 
 	public Fornecedor() {

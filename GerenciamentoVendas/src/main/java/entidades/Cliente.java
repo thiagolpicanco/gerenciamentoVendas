@@ -7,12 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import arquitetura.Entidade;
 
 @Entity
 @Table(name = "CLIENTE")
+@SequenceGenerator(name = "sq_cliente", sequenceName = "sq_cliente", allocationSize = 1, initialValue = 1)
+
 public class Cliente extends Entidade implements Serializable {
 	/**
 	 * 
@@ -20,7 +23,7 @@ public class Cliente extends Entidade implements Serializable {
 	private static final long serialVersionUID = 6069440809044428248L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "id")
 	private Integer id;
 	@Column(name = "nome")

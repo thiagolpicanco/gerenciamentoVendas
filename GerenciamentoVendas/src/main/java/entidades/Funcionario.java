@@ -7,14 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import arquitetura.Entidade;
 
 @Entity
-@Table(name="FUNCIONARIO")
-public class Funcionario extends Entidade  implements Serializable {
+@Table(name = "FUNCIONARIO")
+@SequenceGenerator(name = "sq_funcionario", sequenceName = "sq_funcionario", allocationSize = 1, initialValue = 1)
+
+public class Funcionario extends Entidade implements Serializable {
 
 	/**
 	 * 
@@ -22,30 +25,30 @@ public class Funcionario extends Entidade  implements Serializable {
 	private static final long serialVersionUID = 3398693345378891333L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@GeneratedValue(generator = "sq_funcionario")
+	@Column(name = "id")
 	private Integer id;
-	@Column(name="nome")
+	@Column(name = "nome")
 	private String nome;
-	@Column(name="cpf_nome")
+	@Column(name = "cpf_nome")
 	private String cpfCnpj;
-	@Column(name="telefone")
+	@Column(name = "telefone")
 	private String telefone;
-	@Column(name="celular")
+	@Column(name = "celular")
 	private String celular;
-	@Column(name="email")
+	@Column(name = "email")
 	private String email;
-	@Column(name="endereco")
+	@Column(name = "endereco")
 	private String endereco;
-	@Column(name="tipo")
+	@Column(name = "tipo")
 	private Integer tipo;
-	@Column(name="salario")
+	@Column(name = "salario")
 	private Double salario;
-//	@Column
-//	private String percentualComissao;
-//
-//	@Transient
-//	private Double comissaoMes;
+	// @Column
+	// private String percentualComissao;
+	//
+	// @Transient
+	// private Double comissaoMes;
 
 	public Funcionario() {
 		// TODO Auto-generated constructor stub
@@ -123,24 +126,24 @@ public class Funcionario extends Entidade  implements Serializable {
 		this.salario = salario;
 	}
 
-//	public String getPercentualComissao() {
-//		return percentualComissao;
-//	}
-//
-//	public void setPercentualComissao(String percentualComissao) {
-//		this.percentualComissao = percentualComissao;
-//	}
-//
-//	public Double getComissaoMes() {
-//		return comissaoMes;
-//	}
-//
-//	public void setComissaoMes(Double comissaoMes) {
-//		this.comissaoMes = comissaoMes;
-//	}
-//
-//	public static long getSerialversionuid() {
-//		return serialVersionUID;
-//	}
+	// public String getPercentualComissao() {
+	// return percentualComissao;
+	// }
+	//
+	// public void setPercentualComissao(String percentualComissao) {
+	// this.percentualComissao = percentualComissao;
+	// }
+	//
+	// public Double getComissaoMes() {
+	// return comissaoMes;
+	// }
+	//
+	// public void setComissaoMes(Double comissaoMes) {
+	// this.comissaoMes = comissaoMes;
+	// }
+	//
+	// public static long getSerialversionuid() {
+	// return serialVersionUID;
+	// }
 
 }
