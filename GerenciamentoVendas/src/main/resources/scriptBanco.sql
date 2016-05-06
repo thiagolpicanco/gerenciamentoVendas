@@ -8,6 +8,18 @@
 
 	ALTER TABLE sq_cliente OWNER TO postgres;
 
+
+CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria text
+	)
+	
+	WITH ( OIDS=FALSE );
+	
+	
+	
+	CREATE TABLE tipo_funcionario ( id integer NOT NULL PRIMARY KEY, no_tipo text)
+	
+	WITH ( OIDS=FALSE );
+
 	CREATE TABLE CLIENTE
 	(
 	  id integer NOT NULL DEFAULT nextval('sq_cliente'::regclass),
@@ -46,10 +58,13 @@
 	  celular text,
 	  email text,
 	  endereco text,
-	  tipo integer,
+	  tipo_funcionario integer,
 	  salario numeric,
 	  percentualComissao text,
-	  CONSTRAINT pf_funcionario PRIMARY KEY (id)
+	  CONSTRAINT pf_funcionario PRIMARY KEY (id),
+	  CONSTRAINT fk_tipo_funcionario FOREIGN KEY (tipo_funcionario)
+	  REFERENCES tipo_funcionario (id) MATCH SIMPLE
+		  ON UPDATE RESTRICT ON DELETE RESTRICT
 	  )
 	WITH (
 	  OIDS=FALSE
@@ -139,6 +154,9 @@
 	  tamanho text,
 	  palavras_chaves text,
 	  CONSTRAINT pk_produto PRIMARY KEY (id),
+	  CONSTRAINT fk_categoria FOREIGN KEY (categoria)
+	  REFERENCES categoria_produto (id) MATCH SIMPLE
+		  ON UPDATE RESTRICT ON DELETE RESTRICT,
 	  CONSTRAINT fk_produto_fornecedor FOREIGN KEY (id_fornecedor)
 		  REFERENCES FORNECEDOR (id) MATCH SIMPLE
 		  ON UPDATE RESTRICT ON DELETE RESTRICT
@@ -329,6 +347,19 @@
 	);
 	
 	
+	
+	insert into categoria_produto values(1, 'Camisas');
+	insert into categoria_produto values(2, 'Shorts');
+	
+	insert into tipo_funcionario values(1, 'Gerente');
+	insert into tipo_funcionario values(2, 'Vendedor');
+	
+
+	
+	
+	
+	ALTER TABLE categoria_produto OWNER TO postgres;
+	ALTER TABLE tipo_funcionario OWNER TO postgres;
 		ALTER TABLE compra_produto OWNER TO postgres;
 		ALTER TABLE venda_produto OWNER TO postgres;
 	ALTER TABLE Estoque_produto OWNER TO postgres;

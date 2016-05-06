@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -40,8 +42,9 @@ public class Funcionario extends Entidade implements Serializable {
 	private String email;
 	@Column(name = "endereco")
 	private String endereco;
-	@Column(name = "tipo")
-	private Integer tipo;
+	@ManyToOne
+	@JoinColumn(name = "tipo_funcionario")
+	private TipoFuncionario tipoFuncionario;
 	@Column(name = "salario")
 	private Double salario;
 	// @Column
@@ -110,12 +113,16 @@ public class Funcionario extends Entidade implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public Integer getTipo() {
-		return tipo;
+	public TipoFuncionario getTipoFuncionario() {
+		return tipoFuncionario;
 	}
 
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
+	public void setTipoFuncionario(TipoFuncionario tipoFuncionario) {
+		this.tipoFuncionario = tipoFuncionario;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public Double getSalario() {
