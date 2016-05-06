@@ -24,7 +24,7 @@ public class ProdutoService {
 	public void cadastraProduto(Produto produto) {
 		try {
 			produtoDao.gravarOuAtualizar(produto);
-		} catch (PersistenciaException e) {
+		} catch (Exception 	e) {
 			e.printStackTrace();
 		}
 	}

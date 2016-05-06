@@ -28,9 +28,11 @@
 
 
 	<ui:define name="body">
-		<form class="form-horizontal">
+		<h:form>
+
 			<p:fieldset legend="Cadastro de Produtos"
 				style="width: 920px; margin: auto;">
+				<p:messages></p:messages>
 				<h:panelGrid columns="2">
 					<h:panelGrid style="border: 2px;">
 						<p:graphicImage value="resources/images/dog.jpg" width="200px"
@@ -55,9 +57,9 @@
 						<p:inputText value="#{manterProdutoMB.produto.id}" />
 
 						<p:outputLabel value="Fornecedor" />
-						<p:selectOneMenu>
-							<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-						</p:selectOneMenu>
+						<h:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}" converter="omnifaces.SelectItemsConverter">
+							<f:selectItems value="#{manterProdutoMB.listaFornecedoresSelect}" ></f:selectItems>
+						</h:selectOneMenu>
 
 						<p:outputLabel value="Categoria" />
 						<p:inputText />
@@ -71,14 +73,15 @@
 
 				</h:panelGrid>
 				<h:panelGrid columns="2" style="float:right">
-					<p:commandLink value="Cadastrar"
-						action="#{manterProdutoMB.}"
-						style="margin-left: 40px ;margin-right: 20px;"  />
+					<p:commandButton value="Cadastrar"
+						actionListener="#{manterProdutoMB.cadastraProduto()}" ajax="false"
+						style="margin-left: 40px ;margin-right: 20px;" />
 					<h:commandButton value="Limpar" />
+
 				</h:panelGrid>
 
 			</p:fieldset>
-		</form>
+		</h:form>
 	</ui:define>
 
 

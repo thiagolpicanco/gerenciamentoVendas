@@ -1,21 +1,22 @@
 package entidades;
 
-import java.io.File;
 import java.io.Serializable;
-import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import arquitetura.Entidade;
 
 @Entity
 @Table(name="PRODUTO")
+@SequenceGenerator(name = "sq_produto", sequenceName = "sq_produto", allocationSize = 1, initialValue = 1)
 public class Produto extends Entidade implements  Serializable {
 
 	/**
@@ -23,12 +24,13 @@ public class Produto extends Entidade implements  Serializable {
 	 */
 	private static final long serialVersionUID = -542059481551882370L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator= "sq_produto")
 	@Column
 	private Integer id;
 	@Column
 	private String nome;
 	@ManyToOne
+	@JoinColumn(name="id_fornecedor")
 	private Fornecedor fornecedor;
 	@Column
 	private Double valorCompra;
@@ -45,7 +47,6 @@ public class Produto extends Entidade implements  Serializable {
 	@Column
 	private String palavrasChaves;
 
-	private File imagem;
 
 	public Produto() {
 		// TODO Auto-generated constructor stub
@@ -59,13 +60,7 @@ public class Produto extends Entidade implements  Serializable {
 		this.id = id;
 	}
 
-	public File getImagem() {
-		return imagem;
-	}
 
-	public void setImagem(File imagem) {
-		this.imagem = imagem;
-	}
 
 	public String getNome() {
 		return nome;
