@@ -32,14 +32,9 @@ public class Produto extends Entidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
-	@Column(name = "valor_compra")
-	private Double valorCompra;
-	@Column(name = "valor_venda")
-	private Double valorVenda;
+
 	@Column(name = "descricao")
 	private String descricao;
-	@Column(name = "quantidade")
-	private Integer quantidade;
 	@ManyToOne
 	@JoinColumn(name = "categoria")
 	private CategoriaProduto categoria;
@@ -83,21 +78,7 @@ public class Produto extends Entidade implements Serializable {
 		this.palavrasChaves = palavrasChaves;
 	}
 
-	public Double getValorCompra() {
-		return valorCompra;
-	}
-
-	public void setValorCompra(Double valorCompra) {
-		this.valorCompra = valorCompra;
-	}
-
-	public Double getValorVenda() {
-		return valorVenda;
-	}
-
-	public void setValorVenda(Double valorVenda) {
-		this.valorVenda = valorVenda;
-	}
+	
 
 	public String getDescricao() {
 		return descricao;
@@ -107,13 +88,7 @@ public class Produto extends Entidade implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
+	
 
 	public void setCategoria(CategoriaProduto categoria) {
 		this.categoria = categoria;

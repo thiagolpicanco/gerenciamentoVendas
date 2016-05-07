@@ -146,10 +146,7 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	  id integer NOT NULL DEFAULT nextval('sq_produto'::regclass),
 	  nome text NOT NULL,
 	  id_fornecedor integer NOT NULL,
-	  valor_compra numeric,
-	  valor_venda numeric,
 	  descricao text,
-	  quantidade integer,
 	  categoria integer,
 	  
 	  palavras_chaves text,
@@ -223,6 +220,8 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	  id_produto integer NOT NULL,
 	  qtd_Atual integer,
 	  qtd_Minima integer,
+	   valor_compra numeric,
+	  valor_venda numeric,
 	  CONSTRAINT pk_gerenciamento_produto PRIMARY KEY (id),
 	  CONSTRAINT fk_gerenciamento_produto_produto FOREIGN KEY (id_produto)
 		  REFERENCES PRODUTO (id) MATCH SIMPLE

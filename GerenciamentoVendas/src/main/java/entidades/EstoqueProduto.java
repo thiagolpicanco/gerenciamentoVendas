@@ -38,6 +38,27 @@ public class EstoqueProduto extends Entidade {
 	@Column(name = "tamanho")
 	private String tamanho;
 
+	@Column(name = "valor_compra")
+	private Double valorCompra;
+	@Column(name = "valor_venda")
+	private Double valorVenda;
+
+	public Double getValorCompra() {
+		return valorCompra;
+	}
+
+	public void setValorCompra(Double valorCompra) {
+		this.valorCompra = valorCompra;
+	}
+
+	public Double getValorVenda() {
+		return valorVenda;
+	}
+
+	public void setValorVenda(Double valorVenda) {
+		this.valorVenda = valorVenda;
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -20,7 +20,7 @@ public class FornecedorService {
 	@EJB
 	FornecedorDao fornecedorDao;
 
-	public void cadastraFornecedor(Fornecedor fornecedor) {
+	public void cadastraFornecedor(Fornecedor fornecedor) throws Exception {
 		try {
 			fornecedorDao.gravarOuAtualizar(fornecedor);
 		} catch (Exception e) {

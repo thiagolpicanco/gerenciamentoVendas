@@ -34,15 +34,7 @@
 				style="width: 920px; margin: auto;">
 				<p:messages></p:messages>
 				<h:panelGrid columns="2">
-					<h:panelGrid style="border: 2px;">
-						<p:graphicImage value="resources/images/dog.jpg" width="200px"
-							height="200px" />
 
-						<p:fileUpload mode="simple" skinSimple="true" sizeLimit="10"
-							style="width: 200px; margin:auto;" label="Enviar Imagem"></p:fileUpload>
-
-
-					</h:panelGrid>
 
 
 
@@ -57,11 +49,12 @@
 						<p:inputText value="#{manterProdutoMB.produto.id}" />
 
 						<p:outputLabel value="Fornecedor" />
-						<h:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}"
+						<p:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}"
 							converter="omnifaces.SelectItemsConverter">
-								<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-							<f:selectItems value="#{manterProdutoMB.listaFornecedores}"  var="forn" itemLabel="#{forn.nome}"></f:selectItems>
-						</h:selectOneMenu>
+							<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+							<f:selectItems value="#{manterProdutoMB.listaFornecedores}"
+								var="forn" itemLabel="#{forn.nome}"></f:selectItems>
+						</p:selectOneMenu>
 
 						<p:outputLabel value="Categoria" />
 						<p:selectOneMenu value="#{manterProdutoMB.produto.categoria}"
@@ -69,9 +62,12 @@
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
 							<f:selectItems value="#{manterProdutoMB.listaCategorias}"
 								var="categoria" itemLabel="#{categoria.noCategoria}"></f:selectItems>
-							
+
 						</p:selectOneMenu>
-					
+
+						<p:outputLabel value="Descrição" />
+						<p:inputTextarea value="#{manterProdutoMB.produto.descricao}"></p:inputTextarea>
+
 
 					</h:panelGrid>
 
@@ -80,11 +76,14 @@
 					<p:commandButton value="Cadastrar"
 						actionListener="#{manterProdutoMB.cadastraProduto()}" ajax="false"
 						style="margin-left: 40px ;margin-right: 20px;" />
-					<h:commandButton value="Limpar" />
+					<p:commandButton value="Limpar" action="#{manterProdutoMB.limpaCampos()}" ajax="true" update="@form"/>
 
 				</h:panelGrid>
 
 			</p:fieldset>
+			
+			
+			
 		</h:form>
 	</ui:define>
 

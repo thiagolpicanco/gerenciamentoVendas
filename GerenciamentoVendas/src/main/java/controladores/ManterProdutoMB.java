@@ -8,7 +8,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+
+import org.primefaces.context.RequestContext;
 
 import entidades.CategoriaProduto;
 import entidades.Fornecedor;
@@ -22,7 +26,7 @@ import servicos.ProdutoService;
 import util.MensagensUtil;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ManterProdutoMB {
 
 	final String MSG_PRODUTO_CADASTRADO = "Produto cadastrado com sucesso.";
@@ -38,16 +42,32 @@ public class ManterProdutoMB {
 	@EJB
 	CategoriaProdutoDao categoriaProdutoDao;
 
+	private List<Produto> listaProdutos;
+
 	private List<CategoriaProduto> listaCategorias;
 
 	private List<Fornecedor> listaFornecedores;
 	private Produto produto;
 
+	private Produto produtoSelecionado;
+
 	@PostConstruct
 	public void init() {
 		produto = new Produto();
+		
+		produtoSelecionado = new Produto();
 		this.inicializaCombos();
+		listarProdutos();
+	}
 
+	public void limpaCampos() {
+		produto = new Produto();
+
+	}
+
+	public void buscar() {
+		listaProdutos = produtoService.listaPorFiltro(produto);
+		produto = new Produto();
 	}
 
 	public void inicializaCombos() {
@@ -55,17 +75,26 @@ public class ManterProdutoMB {
 		listaCategorias = categoriaProdutoDao.listarTudo();
 	}
 
+	public void listarProdutos() {
+		listaProdutos = produtoService.listarTodos();
+	}
+
+	public void visualizarProduto(Produto produto) {
+
+		this.produtoSelecionado = produto;
+	}
+
 	public void cadastraProduto() {
 		try {
 			produtoService.cadastraProduto(this.produto);
 			MensagensUtil.adicionaMensagemSucesso(MSG_PRODUTO_CADASTRADO);
+			produto = new Produto();
 		} catch (Exception e) {
 			MensagensUtil.adicionaMensagemErro(MSG_PRODUTO_ERRO + e.getMessage());
 		}
 
 	}
 
-	
 	public Produto getProduto() {
 		return produto;
 	}
@@ -113,6 +142,21 @@ public class ManterProdutoMB {
 	public void setListaCategorias(List<CategoriaProduto> listaCategorias) {
 		this.listaCategorias = listaCategorias;
 	}
-	
+
+	public List<Produto> getListaProdutos() {
+		return listaProdutos;
+	}
+
+	public void setListaProdutos(List<Produto> listaProdutos) {
+		this.listaProdutos = listaProdutos;
+	}
+
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
+	}
 
 }

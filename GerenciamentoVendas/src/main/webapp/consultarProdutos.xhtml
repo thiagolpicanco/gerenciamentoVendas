@@ -9,93 +9,113 @@
 
 
 	<ui:define name="body">
-		<p:fieldset legend="Pesquisa de Produtos"
-			style="width: 920px; margin: auto;">
+		<h:form>
+		<p:messages></p:messages>
+			<p:fieldset legend="Pesquisa de Produtos"
+				style="width: 920px; margin: auto;">
+				<h:panelGrid columns="4" cellpadding="10" cellspacing="10">
+					<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" />
+					<p:inputText value="#{manterProdutoMB.produto.nome}" />
+
+					<p:outputLabel value="Palavra-chave" />
+					<p:inputText value="#{manterProdutoMB.produto.palavrasChaves}" />
+
+					<p:outputLabel value="Código" />
+					<p:inputText value="#{manterProdutoMB.produto.id}" />
+
+					<p:outputLabel value="Fornecedor" />
+					<p:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}" converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+						<f:selectItems value="#{manterProdutoMB.listaFornecedores}" var="for" itemLabel="#{for.nome}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Categoria" />
+					<p:inputText />
+
+					<p:commandButton value="Buscar"
+						action="#{manterProdutoMB.buscar()}" update="@form" />
+					<p:commandButton value="Limpar" />
+
+				</h:panelGrid>
+			</p:fieldset>
+
+			<p:fieldset style="width: 920px; margin: auto;">
+
+				<p:dataTable style="margin-top: 20px;"
+					value="#{manterProdutoMB.listaProdutos}" var="produto">
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Visualizar" />
+						</f:facet>
+
+						<p:commandButton icon="ui-icon-search"
+							action="#{manterProdutoMB.visualizarProduto(produto)}"
+							oncomplete="PF('dialog').show()">
+						</p:commandButton>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Nome" />
+						</f:facet>
+						<h:outputText value="#{produto.nome}">
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Marca" />
+						</f:facet>
+						<h:outputText value="#{produto.fornecedor.nome}">
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Categoria" />
+						</f:facet>
+						<h:outputText value="#{produto.categoria.noCategoria}">
+						</h:outputText>
+					</p:column>
+
+
+
+
+
+
+				</p:dataTable>
+			</p:fieldset>
+
+
+		</h:form>
+
+		<p:dialog widgetVar="dialog" id="dialog" header="Visualizar Produto">
+
 			<h:panelGrid columns="4" cellpadding="10" cellspacing="10">
 				<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" />
-				<p:inputText />
+				<p:inputText value="#{manterProdutoMB.produtoSelecionado.nome}" />
 
 				<p:outputLabel value="Palavra-chave" />
-				<p:inputText />
+				<p:inputText
+					value="#{manterProdutoMB.produtoSelecionado.palavrasChaves}" />
 
 				<p:outputLabel value="Código" />
-				<p:inputText />
+				<p:inputText value="#{manterProdutoMB.produtoSelecionado.id}" />
 
 				<p:outputLabel value="Fornecedor" />
-				<p:selectOneMenu>
-					<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-				</p:selectOneMenu>
+				<p:inputText
+					value="#{manterProdutoMB.produtoSelecionado.fornecedor.nome}" />
 
 				<p:outputLabel value="Categoria" />
-				<p:inputText />
+				<p:inputText
+					value="#{manterProdutoMB.produtoSelecionado.categoria.noCategoria}" />
 
+				<p:outputLabel value="Descrição" />
+				<p:inputTextarea
+					value="#{manterProdutoMB.produtoSelecionado.descricao}">
+				</p:inputTextarea>
 			</h:panelGrid>
-		</p:fieldset>
-
-		<p:fieldset style="width: 920px; margin: auto;">
-
-			<p:dataTable style="margin-top: 20px;">
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Visualizar" />
-					</f:facet>
-
-					<p:commandButton icon="ui-icon-search" />
-				</p:column>
-
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Nome" />
-					</f:facet>
-					<h:outputText>
-					</h:outputText>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Marca" />
-					</f:facet>
-					<h:outputText>
-					</h:outputText>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Categoria" />
-					</f:facet>
-					<h:outputText>
-					</h:outputText>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Descrição" />
-					</f:facet>
-					<h:outputText>
-					</h:outputText>
-				</p:column>
-
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Tamanho" />
-					</f:facet>
-					<h:outputText>
-					</h:outputText>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Quantidade disponivel" />
-					</f:facet>
-					<h:outputText>
-					</h:outputText>
-				</p:column>
-			</p:dataTable>
-		</p:fieldset>
-
+		</p:dialog>
 	</ui:define>
 
 </ui:composition>

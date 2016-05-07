@@ -24,7 +24,7 @@ public class ProdutoService {
 	public void cadastraProduto(Produto produto) {
 		try {
 			produtoDao.gravarOuAtualizar(produto);
-		} catch (Exception 	e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -49,6 +49,10 @@ public class ProdutoService {
 
 	public List<Produto> listarTodos() {
 		return produtoDao.listarTudo();
+	}
+
+	public List<Produto> listaPorFiltro(Produto filtro) {
+		return produtoDao.filtrarProdutos(filtro);
 	}
 
 }

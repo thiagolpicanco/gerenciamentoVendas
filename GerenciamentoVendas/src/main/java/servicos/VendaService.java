@@ -28,7 +28,7 @@ public class VendaService {
 	public Double getValorTotalVenda(Venda venda) {
 		Double total = 0d;
 		for (Produto produto : venda.getListaProdutos()) {
-			total += produto.getValorVenda();
+//			total += produto.getValorVenda();
 		}
 
 		return total;

@@ -37,8 +37,6 @@ public class Fornecedor extends Entidade implements Serializable {
 	private String email;
 	@Column(name = "endereco")
 	private String endereco;
-	@Column(name = "tipo")
-	private Integer tipo;
 
 	public Fornecedor() {
 		// TODO Auto-generated constructor stub
@@ -100,12 +98,8 @@ public class Fornecedor extends Entidade implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }
