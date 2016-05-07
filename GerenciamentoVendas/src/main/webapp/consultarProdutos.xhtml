@@ -10,7 +10,7 @@
 
 	<ui:define name="body">
 		<h:form>
-		<p:messages></p:messages>
+			<p:messages></p:messages>
 			<p:fieldset legend="Pesquisa de Produtos"
 				style="width: 920px; margin: auto;">
 				<h:panelGrid columns="4" cellpadding="10" cellspacing="10">
@@ -24,9 +24,11 @@
 					<p:inputText value="#{manterProdutoMB.produto.id}" />
 
 					<p:outputLabel value="Fornecedor" />
-					<p:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}" converter="omnifaces.SelectItemsConverter">
+					<p:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}"
+						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-						<f:selectItems value="#{manterProdutoMB.listaFornecedores}" var="for" itemLabel="#{for.nome}" />
+						<f:selectItems value="#{manterProdutoMB.listaFornecedores}"
+							var="for" itemLabel="#{for.nome}" />
 					</p:selectOneMenu>
 					<p:outputLabel value="Categoria" />
 					<p:inputText />
@@ -87,35 +89,37 @@
 			</p:fieldset>
 
 
+
+<!-- 			<p:dialog widgetVar="dialog" id="dialog" header="Visualizar Produto"> -->
+
+<!-- 				<h:panelGrid columns="4" cellpadding="10" cellspacing="10"> -->
+<!-- 					<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" /> -->
+<!-- 					<p:inputText value="#{manterProdutoMB.produtoSelecionado.nome}" /> -->
+
+<!-- 					<p:outputLabel value="Palavra-chave" /> -->
+<!-- 					<p:inputText -->
+<!-- 						value="#{manterProdutoMB.produtoSelecionado.palavrasChaves}" /> -->
+
+<!-- 					<p:outputLabel value="Código" /> -->
+<!-- 					<p:inputText value="#{manterProdutoMB.produtoSelecionado.id}" /> -->
+
+<!-- 					<p:outputLabel value="Fornecedor" /> -->
+<!-- 					<p:inputText -->
+<!-- 						value="#{manterProdutoMB.produtoSelecionado.fornecedor.nome}" /> -->
+
+<!-- 					<p:outputLabel value="Categoria" /> -->
+<!-- 					<p:inputText -->
+<!-- 						value="#{manterProdutoMB.produtoSelecionado.categoria.noCategoria}" /> -->
+
+<!-- 					<p:outputLabel value="Descrição" /> -->
+<!-- 					<p:inputTextarea -->
+<!-- 						value="#{manterProdutoMB.produtoSelecionado.descricao}"> -->
+<!-- 					</p:inputTextarea> -->
+<!-- 				</h:panelGrid> -->
+<!-- 			</p:dialog> -->
 		</h:form>
 
-		<p:dialog widgetVar="dialog" id="dialog" header="Visualizar Produto">
 
-			<h:panelGrid columns="4" cellpadding="10" cellspacing="10">
-				<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" />
-				<p:inputText value="#{manterProdutoMB.produtoSelecionado.nome}" />
-
-				<p:outputLabel value="Palavra-chave" />
-				<p:inputText
-					value="#{manterProdutoMB.produtoSelecionado.palavrasChaves}" />
-
-				<p:outputLabel value="Código" />
-				<p:inputText value="#{manterProdutoMB.produtoSelecionado.id}" />
-
-				<p:outputLabel value="Fornecedor" />
-				<p:inputText
-					value="#{manterProdutoMB.produtoSelecionado.fornecedor.nome}" />
-
-				<p:outputLabel value="Categoria" />
-				<p:inputText
-					value="#{manterProdutoMB.produtoSelecionado.categoria.noCategoria}" />
-
-				<p:outputLabel value="Descrição" />
-				<p:inputTextarea
-					value="#{manterProdutoMB.produtoSelecionado.descricao}">
-				</p:inputTextarea>
-			</h:panelGrid>
-		</p:dialog>
 	</ui:define>
 
 </ui:composition>

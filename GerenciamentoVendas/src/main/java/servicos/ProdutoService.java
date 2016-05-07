@@ -21,12 +21,10 @@ public class ProdutoService {
 	@EJB
 	ProdutoDao produtoDao;
 
-	public void cadastraProduto(Produto produto) {
-		try {
+	public void cadastraProduto(Produto produto) throws Exception {
+	
 			produtoDao.gravarOuAtualizar(produto);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
 	}
 
 	public void deletaProduto(Produto produto) {

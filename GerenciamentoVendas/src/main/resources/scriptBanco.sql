@@ -234,34 +234,6 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 
 
 
-	--CRIACAO TABELA E SEQUENCE - ESTOQUE
-	CREATE SEQUENCE sq_estoque
-	  INCREMENT 1
-	  MINVALUE 1
-	  MAXVALUE 9223372036854775807
-	  START 1
-	  CACHE 1;
-
-	ALTER TABLE sq_estoque OWNER TO postgres;
-
-	CREATE TABLE ESTOQUE
-	(
-	  id integer NOT NULL DEFAULT nextval('sq_estoque'::regclass),
-	  no_estoque text NOT NULL,
-	  id_gerenciamento_produto integer,
-	  id_funcionario integer,
-	  CONSTRAINT pk_estoque PRIMARY KEY (id),
-	  CONSTRAINT fk_estoque_gerenciamento_produto FOREIGN KEY (id_gerenciamento_produto)
-		  REFERENCES GERENCIAMENTO_PRODUTO (id) MATCH SIMPLE
-		  ON UPDATE RESTRICT ON DELETE RESTRICT,
-	  CONSTRAINT fk_estoque_funcionario FOREIGN KEY (id_funcionario)
-		  REFERENCES FUNCIONARIO (id) MATCH SIMPLE
-		  ON UPDATE RESTRICT ON DELETE RESTRICT
-	  )
-	WITH (
-	  OIDS=FALSE
-	);
-	ALTER TABLE ESTOQUE OWNER TO postgres;
 
 
 
@@ -316,34 +288,35 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	
 	
 	
-	--CRIACAO TABELA E SEQUENCE - ESTOQUE_PRODUTO
-	CREATE SEQUENCE sq_estoque_produto
+	
+	--CRIACAO TABELA E SEQUENCE - ESTOQUE
+	CREATE SEQUENCE sq_estoque
 	  INCREMENT 1
 	  MINVALUE 1
 	  MAXVALUE 9223372036854775807
 	  START 1
 	  CACHE 1;
-	  
-	  
-	CREATE TABLE Estoque_Produto
+
+	ALTER TABLE sq_estoque OWNER TO postgres;
+
+	CREATE TABLE ESTOQUE
 	(
-	  id integer NOT NULL DEFAULT nextval('sq_estoque_produto'::regclass),
-	  	  id_estoque integer NOT NULL,
-	  id_produto integer NOT NULL,
+	  id integer NOT NULL DEFAULT nextval('sq_estoque'::regclass),
+	   id_produto integer NOT NULL,
 		tamanho text,
+			valor_compra numeric,
+	  valor_venda numeric,
+	    qtd_minima integer,
 	  qtd_atual integer,
-	  qtd_minima integer,
-	  CONSTRAINT pk_estoque_produto PRIMARY KEY (id),
-	  CONSTRAINT fk_estoque FOREIGN KEY (id_estoque)
-		  REFERENCES estoque (id) MATCH SIMPLE
-		  ON UPDATE RESTRICT ON DELETE RESTRICT,
+	
 	  CONSTRAINT fk_produto_estoque FOREIGN KEY (id_produto)
-		  REFERENCES produto (id) MATCH SIMPLE
-		  ON UPDATE RESTRICT ON DELETE RESTRICT
+		  REFERENCES produto (id)
+	 
 	  )
 	WITH (
 	  OIDS=FALSE
 	);
+	ALTER TABLE ESTOQUE OWNER TO postgres;
 	
 	
 	
@@ -361,5 +334,5 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	ALTER TABLE tipo_funcionario OWNER TO postgres;
 		ALTER TABLE compra_produto OWNER TO postgres;
 		ALTER TABLE venda_produto OWNER TO postgres;
-	ALTER TABLE Estoque_produto OWNER TO postgres;
+	
 	

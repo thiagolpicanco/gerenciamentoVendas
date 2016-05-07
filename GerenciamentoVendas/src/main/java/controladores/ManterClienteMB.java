@@ -2,14 +2,16 @@ package controladores;
 
 import java.util.List;
 
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import entidades.Cliente;
-import persistence.ClienteDao;
 import servicos.ClienteService;
+
+
+
 
 @ManagedBean
 @SessionScoped

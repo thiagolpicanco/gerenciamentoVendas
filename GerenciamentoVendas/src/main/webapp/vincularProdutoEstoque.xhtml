@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form id="formVincular">
+			<p:fieldset legend="Vincular produtos ao estoque"
+				style="width: 920px; margin: auto;">
+				<p:messages></p:messages>
+				<h:panelGrid columns="1">
+
+
+					<h:outputLabel value="Produto" />
+					<p:selectOneMenu style="width: 250px;" required="true"
+						value="#{manterEstoqueMB.estoque.produto}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Selecione" naoSelectionOption="true"></f:selectItem>
+						<f:selectItems value="#{manterEstoqueMB.listaProdutos}" var="prod"
+							itemLabel="#{prod.nome}"></f:selectItems>
+						<p:ajax event="change" update="tamanho" partialSubmit="true"
+							listener="#{manterEstoqueMB.listaTamanhosPorCategoria()}">
+						</p:ajax>
+					</p:selectOneMenu>
+
+					<h:outputLabel value="Valor de Compra" />
+					<pe:inputNumber id="valorCompra"
+						value="#{manterEstoqueMB.estoque.valorCompra}" symbol="R$ "
+						required="true"></pe:inputNumber>
+
+					<h:outputLabel value="Valor de Venda" />
+					<pe:inputNumber id="valorVenda"
+						value="#{manterEstoqueMB.estoque.valorVenda}" symbol="R$ "
+						required="true"></pe:inputNumber>
+					<h:outputLabel value="Quantidade Minima" />
+					<p:inputText size="6" maxlength="6" value="#{manterEstoqueMB.estoque.qtdMinima}" />
+
+					<h:outputLabel value="Tamanho" />
+					<p:selectOneMenu id="tamanho" required="true"
+						value="#{manterEstoqueMB.estoque.tamanho}">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+						<f:selectItems value="#{manterEstoqueMB.listaTamanhos}"></f:selectItems>
+					</p:selectOneMenu>
+
+
+
+				</h:panelGrid>
+				<h:panelGrid columns="2" style="float: right;">
+					<p:commandButton value="Vincular"
+						action="#{manterEstoqueMB.vincularProduto()}"></p:commandButton>
+					<p:commandButton value="Limpar"
+						action="#{manterEstoqueMB.limparCampos()}" ajax="true"></p:commandButton>
+
+				</h:panelGrid>
+			</p:fieldset>
+
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

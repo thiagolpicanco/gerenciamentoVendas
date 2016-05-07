@@ -1,28 +1,46 @@
 package servicos;
 
-import entidades.Produto;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+
+import entidades.Estoque;
+import persistence.EstoqueDao;
 
 /**
  * 
  * @author thiago.picanco
  *
  */
+
+@Stateless
 public class EstoqueService {
 
-	public void cadastraProdutoEstoque() {
-		
+	@EJB
+	EstoqueDao estoqueDao;
+
+	public void vinculaProdutoEstoque(Estoque estoque) throws Exception {
+		if (!isDuplicado(estoque)) {
+			estoqueDao.cadastrarProdutoEstoque(estoque);
+		} else {
+			throw new Exception("Produto ja está vinculado ao estoque");
+		}
+
 	}
 
-	public void removeProdutoEstoque() {
+	public void entradaEstoque(Estoque estoque) {
 
 	}
 
-	public void entradaProduto(Produto produto, Integer qtd) {
+	public void saidaEstoque(Estoque estoque) {
 
 	}
 
-	public void saidaProduto(Produto produto, Integer qtd) {
-
+	public Boolean isDuplicado(Estoque estoque) {
+		if (null != estoqueDao.buscaPorTamanhoEProduto(estoque)) {
+			return Boolean.TRUE;
+		} else {
+			return Boolean.FALSE;
+		}
 	}
 
 }

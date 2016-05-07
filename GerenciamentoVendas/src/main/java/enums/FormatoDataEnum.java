@@ -2,7 +2,7 @@ package enums;
 
 public enum FormatoDataEnum {
 
-	DIA_MES_ANO("Dia, Mês e Ano", "dd/MM/YYYY");
+	DIA_MES_ANO("Dia, Mes e Ano", "dd/MM/YYYY");
 
 	private String desc;
 	private String formato;

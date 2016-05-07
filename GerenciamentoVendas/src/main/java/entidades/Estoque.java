@@ -27,21 +27,30 @@ public class Estoque extends Entidade implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 4326679135747328007L;
-	@Id
-	@GeneratedValue(generator="sq_estoque")
-	@Column(name="id")
-	private Integer id;
-	@Column(name="no_estoque")
-	private String noEstoque;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "estoque")
-	private List<EstoqueProduto> listaProdutos;
-	@ManyToOne
-	@JoinColumn(name = "id_funcionario")
-	private Funcionario funcionarioResponsavel;
 
-	public Estoque() {
-		// TODO Auto-generated constructor stub
-	}
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(generator = "sq_estoque")
+	private Integer id;
+
+	@ManyToOne
+	@JoinColumn(name = "id_produto")
+	private Produto produto;
+
+	@Column(name = "tamanho")
+	private String tamanho;
+
+	@Column(name = "valor_compra")
+	private Double valorCompra;
+
+	@Column(name = "valor_venda")
+	private Double valorVenda;
+
+	@Column(name = "qtd_atual")
+	private Integer qtdAtual;
+
+	@Column(name = "qtd_minima")
+	private Integer qtdMinima;
 
 	public Integer getId() {
 		return id;
@@ -51,32 +60,52 @@ public class Estoque extends Entidade implements Serializable {
 		this.id = id;
 	}
 
-	public String getNoEstoque() {
-		return noEstoque;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setNoEstoque(String noEstoque) {
-		this.noEstoque = noEstoque;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
-	public List<EstoqueProduto> getListaProdutos() {
-		return listaProdutos;
+	public String getTamanho() {
+		return tamanho;
 	}
 
-	public void setListaProdutos(List<EstoqueProduto> listaProdutos) {
-		this.listaProdutos = listaProdutos;
+	public void setTamanho(String tamanho) {
+		this.tamanho = tamanho;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Double getValorCompra() {
+		return valorCompra;
 	}
 
-	public Funcionario getFuncionarioResponsavel() {
-		return funcionarioResponsavel;
+	public void setValorCompra(Double valorCompra) {
+		this.valorCompra = valorCompra;
 	}
 
-	public void setFuncionarioResponsavel(Funcionario funcionarioResponsavel) {
-		this.funcionarioResponsavel = funcionarioResponsavel;
+	public Double getValorVenda() {
+		return valorVenda;
+	}
+
+	public void setValorVenda(Double valorVenda) {
+		this.valorVenda = valorVenda;
+	}
+
+	public Integer getQtdAtual() {
+		return qtdAtual;
+	}
+
+	public void setQtdAtual(Integer qtdAtual) {
+		this.qtdAtual = qtdAtual;
+	}
+
+	public Integer getQtdMinima() {
+		return qtdMinima;
+	}
+
+	public void setQtdMinima(Integer qtdMinima) {
+		this.qtdMinima = qtdMinima;
 	}
 
 }
