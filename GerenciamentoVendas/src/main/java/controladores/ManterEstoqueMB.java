@@ -69,7 +69,24 @@ public class ManterEstoqueMB {
 			MensagensUtil.adicionaMensagemErro(MSG_PRODUTO_ESTOQUE_ERRO + e.getMessage());
 		}
 	}
+	
+	public void removerVinculoProduto(){
+		
+		try {
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		
+	}
 
+	
+	
+	
+	
 	public void limparCampos() {
 		this.inicializaCombos();
 		estoque = new Estoque();
