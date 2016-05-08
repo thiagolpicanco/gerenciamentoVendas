@@ -4,7 +4,9 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import entidades.Estoque;
+import exceptions.GerencialException;
 import persistence.EstoqueDao;
+import util.MensagensUtil;
 
 /**
  * 
@@ -18,11 +20,17 @@ public class EstoqueService {
 	@EJB
 	EstoqueDao estoqueDao;
 
-	public void vinculaProdutoEstoque(Estoque estoque) throws Exception {
+	public void vinculaProdutoEstoque(Estoque estoque) throws GerencialException, Exception {
 		if (!isDuplicado(estoque)) {
-			estoqueDao.cadastrarProdutoEstoque(estoque);
+			try {
+
+				estoqueDao.cadastrarProdutoEstoque(estoque);
+			} catch (Exception e) {
+				throw e;
+			}
+
 		} else {
-			throw new Exception("Produto ja está vinculado ao estoque");
+		
 		}
 
 	}

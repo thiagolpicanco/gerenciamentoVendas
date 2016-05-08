@@ -30,7 +30,6 @@ public class EstoqueDao extends GerencialDao<Estoque> {
 			estoque = (Estoque) query.getSingleResult();
 			return estoque;
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 
