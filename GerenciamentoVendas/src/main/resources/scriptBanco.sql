@@ -73,31 +73,7 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 
 
 
-	--CRIACAO TABELA E SEQUENCE - COMISSAO
-	CREATE SEQUENCE sq_comissao
-	  INCREMENT 1
-	  MINVALUE 1
-	  MAXVALUE 9223372036854775807
-	  START 1
-	  CACHE 1;
-
-	ALTER TABLE sq_comissao OWNER TO postgres;
-
-	CREATE TABLE COMISSAO
-	(
-	  id integer NOT NULL DEFAULT nextval('sq_comissao'::regclass),
-	  id_funcionario integer NOT NULL,
-	  mes text,
-	  situacao integer,
-	  CONSTRAINT pk_comissao PRIMARY KEY (id),
-	  CONSTRAINT fk_comissao_funcionario FOREIGN KEY (id_funcionario)
-		  REFERENCES FUNCIONARIO (id) MATCH SIMPLE
-		  ON UPDATE RESTRICT ON DELETE RESTRICT
-	  )
-	WITH (
-	  OIDS=FALSE
-	);
-	ALTER TABLE COMISSAO OWNER TO postgres;
+	
 
 
 
@@ -119,9 +95,8 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	  telefone text,
 	  celular text,
 	  email text,
-	  endereco text,
-	  tipo integer,
-	  CONSTRAINT pk_fornecedor PRIMARY KEY (id)
+	  endereco text
+		  CONSTRAINT pk_fornecedor PRIMARY KEY (id)
 	  )
 	WITH (
 	  OIDS=FALSE
@@ -204,33 +179,6 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 
 
 
-	--CRIACAO TABELA E SEQUENCE - GERENCIAMENTO_PRODUTO
-	CREATE SEQUENCE sq_gerenciamento_produto
-	  INCREMENT 1
-	  MINVALUE 1
-	  MAXVALUE 9223372036854775807
-	  START 1
-	  CACHE 1;
-
-	ALTER TABLE sq_gerenciamento_produto OWNER TO postgres;
-
-	CREATE TABLE GERENCIAMENTO_PRODUTO
-	(
-	  id integer NOT NULL DEFAULT nextval('sq_gerenciamento_produto'::regclass),
-	  id_produto integer NOT NULL,
-	  qtd_Atual integer,
-	  qtd_Minima integer,
-	   valor_compra numeric,
-	  valor_venda numeric,
-	  CONSTRAINT pk_gerenciamento_produto PRIMARY KEY (id),
-	  CONSTRAINT fk_gerenciamento_produto_produto FOREIGN KEY (id_produto)
-		  REFERENCES PRODUTO (id) MATCH SIMPLE
-		  ON UPDATE RESTRICT ON DELETE RESTRICT
-	 )
-	WITH (
-	  OIDS=FALSE
-	);
-	ALTER TABLE GERENCIAMENTO_PRODUTO OWNER TO postgres;
 
 
 
