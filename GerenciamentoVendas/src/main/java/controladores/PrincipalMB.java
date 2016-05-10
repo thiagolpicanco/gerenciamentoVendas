@@ -10,10 +10,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import org.jboss.security.auth.spi.Users.User;
 import org.primefaces.context.RequestContext;
 
 import entidades.Login;

@@ -12,9 +12,8 @@ import javax.persistence.Table;
 import arquitetura.Entidade;
 
 @Entity
-@Table(name = "FORNECEDOR")
+@Table(name = "fornecedor")
 @SequenceGenerator(name = "sq_fornecedor", sequenceName = "sq_fornecedor", allocationSize = 1, initialValue = 1)
-
 public class Fornecedor extends Entidade implements Serializable {
 
 	/**
