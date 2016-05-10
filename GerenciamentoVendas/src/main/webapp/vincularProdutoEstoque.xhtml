@@ -10,7 +10,7 @@
 		<h:form id="formVincular">
 			<p:fieldset legend="Vincular produtos ao estoque"
 				style="width: 920px; margin: auto;">
-				<p:messages></p:messages>
+				<p:messages/>
 				<h:panelGrid columns="1">
 
 
@@ -50,9 +50,9 @@
 				</h:panelGrid>
 				<h:panelGrid columns="2" style="float: right;">
 					<p:commandButton value="Vincular"
-						action="#{manterEstoqueMB.vincularProduto()}"></p:commandButton>
+						action="#{manterEstoqueMB.vincularProduto()}" update="@form"></p:commandButton>
 					<p:commandButton value="Limpar"
-						action="#{manterEstoqueMB.limparCampos()}" ajax="true"></p:commandButton>
+						action="#{manterEstoqueMB.limparCampos()}" ajax="true" update="@form"></p:commandButton>
 
 				</h:panelGrid>
 			</p:fieldset>

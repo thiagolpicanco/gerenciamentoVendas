@@ -18,15 +18,13 @@ public class ManterFornecedorMB {
 	final String MSG_FORNECEDOR_CADASTRADO = "Fornecedor cadastrado com sucesso.";
 	final String MSG_FORNECEDOR_ERRO = "Fornecedor ao cadastrar produto: ";
 	final String MSG_FORNECEDOR_REMOVIDO = "Fornecedor removido com sucesso";
-	
+
 	@EJB
 	FornecedorService fornecedorService;
 
 	private List<Fornecedor> listaFornecedores;
 
 	private Fornecedor fornecedor;
-
-	
 
 	public Fornecedor getFornecedor() {
 		return fornecedor;
@@ -41,29 +39,21 @@ public class ManterFornecedorMB {
 		listaFornecedores = fornecedorService.listarTodos();
 	}
 
-	
-	
-	
-	
-	
-	
-	public void cadastrarFornecedor(){
-		
+	public void limparCampos() {
+		fornecedor = new Fornecedor();
+	}
+
+	public void cadastrarFornecedor() {
+
 		try {
 			fornecedorService.cadastraFornecedor(this.fornecedor);
 			MensagensUtil.adicionaMensagemSucesso(MSG_FORNECEDOR_CADASTRADO);
+			this.limparCampos();
 		} catch (Exception e) {
-			MensagensUtil.adicionaMensagemErro(MSG_FORNECEDOR_ERRO + e.getMessage()); 
+			MensagensUtil.adicionaMensagemErro(MSG_FORNECEDOR_ERRO + e.getMessage());
 		}
-		
-		
+
 	}
-	
-	
-	
-	
-	
-	
 
 	public List<Fornecedor> getListaFornecedores() {
 		return listaFornecedores;
@@ -72,8 +62,6 @@ public class ManterFornecedorMB {
 	public void setListaFornecedores(List<Fornecedor> listaFornecedores) {
 		this.listaFornecedores = listaFornecedores;
 	}
-
-	
 
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;

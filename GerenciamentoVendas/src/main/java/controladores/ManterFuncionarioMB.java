@@ -6,20 +6,28 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import persistence.FuncionarioDao;
+import persistence.TipoFuncionarioDao;
+import servicos.FuncionarioService;
 import util.MensagensUtil;
 import entidades.Funcionario;
+import entidades.TipoFuncionario;
 import enums.TipoFuncionarioEnum;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ManterFuncionarioMB {
 
 	final String MSG_CADASTRO_SUCESSO = "Funcionário Cadastrado com Sucesso.";
+	final String MSG_CADASTRO_ERRO = "Erro ao cadastrar usuario: ";
 
 	@EJB
-	private FuncionarioDao funcionarioDao;
+	private FuncionarioService funcionarioService;
+
+	@EJB
+	private TipoFuncionarioDao tipoFuncionarioDao;
 
 	/**
 	 * VARIAVEIS
@@ -33,20 +41,48 @@ public class ManterFuncionarioMB {
 
 	private List<Funcionario> listaFuncionarios;
 
+	private List<TipoFuncionario> listaCargos;
+
 	@PostConstruct
 	public void init() {
 		try {
-			listaFuncionarios = funcionarioDao.listarTudo();
+			funcionario = new Funcionario();
+			listaFuncionarios = funcionarioService.listarTodos();
+			this.inicializaCombos();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-	
-	
+
+	public void limpaCampos() {
+		funcionario = new Funcionario();
+		inicializaCombos();
+	}
+
+	public void inicializaCombos() {
+		listaCargos = tipoFuncionarioDao.listarTudo();
+		
+	}
+
+	public void filtrarFuncionarios() {
+		listaFuncionarios = funcionarioService.filtaFuncionarios(funcionario);
+	}
 
 	public void salvarOuAtualizar() {
+
+	}
+
+	public void cadastrarFuncionario() {
+
+		try {
+			funcionarioService.cadastraFuncionario(funcionario);
+			MensagensUtil.adicionaMensagemSucesso(MSG_CADASTRO_SUCESSO);
+			this.limpaCampos();
+		} catch (Exception e) {
+			MensagensUtil.adicionaMensagemErro(MSG_CADASTRO_ERRO + e.getMessage());
+		}
+
 	}
 
 	public String getTeste() {
@@ -71,6 +107,14 @@ public class ManterFuncionarioMB {
 
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
+	}
+
+	public List<TipoFuncionario> getListaCargos() {
+		return listaCargos;
+	}
+
+	public void setListaCargos(List<TipoFuncionario> listaCargos) {
+		this.listaCargos = listaCargos;
 	}
 
 }

@@ -53,7 +53,7 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	(
 	  id integer NOT NULL DEFAULT nextval('sq_funcionario'::regclass),
 	  nome text NOT NULL,
-	  cpf_Cnpj text,
+	  cpf_Cnpj text unique not null,
 	  telefone text,
 	  celular text,
 	  email text,
@@ -95,7 +95,7 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	  telefone text,
 	  celular text,
 	  email text,
-	  endereco text
+	  endereco text,
 		  CONSTRAINT pk_fornecedor PRIMARY KEY (id)
 	  )
 	WITH (
@@ -247,9 +247,9 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 
 	ALTER TABLE sq_estoque OWNER TO postgres;
 
-	CREATE TABLE ESTOQUE
+	CREATE TABLE PRODUTO_ESTOQUE
 	(
-	  id integer NOT NULL DEFAULT nextval('sq_estoque'::regclass),
+	  id integer NOT NULL DEFAULT nextval('sq_estoque'::regclass) PRIMARY KEY,
 	   id_produto integer NOT NULL,
 		tamanho text,
 			valor_compra numeric,
@@ -264,7 +264,7 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	WITH (
 	  OIDS=FALSE
 	);
-	ALTER TABLE ESTOQUE OWNER TO postgres;
+	ALTER TABLE PRODUTO_ESTOQUE OWNER TO postgres;
 	
 	
 	
@@ -284,3 +284,27 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 		ALTER TABLE venda_produto OWNER TO postgres;
 	
 	
+			--CRIACAO TABELA E SEQUENCE - FORNECEDOR
+	CREATE SEQUENCE sq_login
+	  INCREMENT 1
+	  MINVALUE 1
+	  MAXVALUE 9223372036854775807
+	  START 1
+	  CACHE 1;
+
+	ALTER TABLE sq_login OWNER TO postgres;
+
+	CREATE TABLE LOGIN
+	(
+	  id integer NOT NULL DEFAULT nextval('sq_login'::regclass),
+	  usuario text not null,
+	  senha text not null,
+	  id_funcionario integer not null,
+		  CONSTRAINT pk_login PRIMARY KEY (id),
+		  CONSTRAINT fk_func FOREIGN KEY (id_funcionario) references FUNCIONARIO (id)
+	  )
+	WITH (
+	  OIDS=FALSE
+	);
+
+	ALTER TABLE LOGIN OWNER TO postgres;

@@ -9,95 +9,115 @@
 
 
 
+	<style type="text/css">
+#letra {
+	font-size: 15px;
+}
+</style>
+
+
 	<ui:define name="body">
-		<p:outputLabel value="#{manterFuncionarioMB.teste}"></p:outputLabel>
-		<p:fieldset legend="Pesquisa de Funcionarios"
-			style="width: 920px; margin: auto;">
-			<h:panelGrid columns="4" cellpadding="10" cellspacing="10">
-				<p:outputLabel value="Nome" style="margin-right: 10px;" />
-				<p:inputText />
+		<h:form>
+			<p:fieldset legend="Pesquisa de Funcionarios"
+				style="width: 920px; margin: auto;">
+				<h:panelGrid columns="4" cellpadding="10" cellspacing="10">
+					<p:outputLabel value="Nome" style="margin-right: 10px;" />
+					<p:inputText value="#{manterFuncionarioMB.funcionario.nome}" />
 
-				<p:outputLabel value="CPF" />
-				<p:inputText />
+					<p:outputLabel value="CPF" />
+					<p:inputText value="#{manterFuncionarioMB.funcionario.cpfCnpj}" />
 
-				<p:outputLabel value="Código" />
-				<p:inputText />
+					<p:outputLabel value="Código" />
+					<p:inputText value="#{manterFuncionarioMB.funcionario.id}" />
 
-				<p:outputLabel value="Cargo" />
-				<p:selectOneMenu>
-					<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-				</p:selectOneMenu>
+					<p:outputLabel value="Cargo" />
+					<p:selectOneMenu converter="omnifaces.SelectItemsConverter"
+						value="#{manterFuncionarioMB.funcionario.tipoFuncionario}">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+						<f:selectItems value="#{manterFuncionarioMB.listaCargos}"
+							var="cargo" itemLabel="#{cargo.noTipoFuncionario}">
+						</f:selectItems>
+					</p:selectOneMenu>
 
-				<p:outputLabel value="E-mail" />
-				<p:inputText />
+					<p:outputLabel value="E-mail" />
+					<p:inputText value="#{manterFuncionarioMB.funcionario.email}" />
 
-			</h:panelGrid>
-		</p:fieldset>
+				</h:panelGrid>
+				<p:commandButton value="Buscar"
+					action="#{manterFuncionarioMB.filtrarFuncionarios()}"
+					update="@form" />
+				<p:commandButton value="Limpar"
+					action="#{manterFuncionarioMB.limpaCampos()}" ajax="true"
+					update="@form" />
+			</p:fieldset>
 
-		<p:fieldset style="width: 920px; margin: auto;" styleClass="container">
+			<p:fieldset style="width: 920px; margin: auto;"
+				styleClass="container">
 
-			<p:dataTable var="func" value="#{manterFuncionarioMB.listaFuncionarios}">
+				<p:dataTable var="func"
+					value="#{manterFuncionarioMB.listaFuncionarios}">
 
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Nome" />
-					</f:facet>
-				
-					<h:outputText value="#{func.nome}">
-					</h:outputText>
-				</p:column>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Nome" />
+						</f:facet>
 
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="CPF" />
-					</f:facet>
-					<h:outputText value="#{func.cpfCnpj}">
-					</h:outputText>
-				</p:column>
+						<h:outputText value="#{func.nome}" style="font-size: 15px;">
+						</h:outputText>
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Telefone" />
-					</f:facet>
-					<h:outputText value="#{func.telefone}">
-					</h:outputText>
-				</p:column>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="CPF" />
+						</f:facet>
+						<h:outputText value="#{func.cpfCnpj}" style="font-size: 15px;">
+						</h:outputText>
+					</p:column>
 
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Celular" />
-					</f:facet>
-					<h:outputText value="#{func.celular}">
-					</h:outputText>
-				</p:column>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Telefone" />
+						</f:facet>
+						<h:outputText value="#{func.telefone}" style="font-size: 15px;">
+						</h:outputText>
+					</p:column>
 
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="E-mail" />
-					</f:facet>
-					<h:outputText value="#{func.email}">
-					</h:outputText>
-				</p:column>
-
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Cargo" />
-					</f:facet>
-					<h:outputText value="#{func.tipo}">
-					</h:outputText >
-				</p:column>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Celular" />
+						</f:facet>
+						<h:outputText value="#{func.celular}" style="font-size: 15px;">
+						</h:outputText>
+					</p:column>
 
 
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="E-mail" />
+						</f:facet>
+						<h:outputText value="#{func.email}" style="font-size: 12px;">
+						</h:outputText>
+					</p:column>
 
-			</p:dataTable>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Cargo" />
+						</f:facet>
+						<h:outputText value="#{func.tipoFuncionario.noTipoFuncionario}"
+							style="font-size: 15px;">
+						</h:outputText>
+					</p:column>
 
 
-		</p:fieldset>
+
+				</p:dataTable>
 
 
+			</p:fieldset>
 
+
+		</h:form>
 	</ui:define>
 
 </ui:composition>

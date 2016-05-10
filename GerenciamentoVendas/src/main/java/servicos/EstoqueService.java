@@ -1,12 +1,14 @@
 package servicos;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import entidades.Estoque;
+import entidades.ProdutoEstoque;
+import entidades.Produto;
 import exceptions.GerencialException;
 import persistence.EstoqueDao;
-import util.MensagensUtil;
 
 /**
  * 
@@ -20,7 +22,19 @@ public class EstoqueService {
 	@EJB
 	EstoqueDao estoqueDao;
 
-	public void vinculaProdutoEstoque(Estoque estoque) throws GerencialException, Exception {
+	public void atualizarProdutoEstoque(ProdutoEstoque estoque) throws Exception {
+		estoqueDao.atualizar(estoque);
+	}
+
+	public List<ProdutoEstoque> listarTodosProdutosVinculados() {
+		return estoqueDao.listarTudo();
+	}
+
+	public List<String> listaTamanhosPorProduto(Produto produto) {
+		return estoqueDao.listaTamanhosPorProduto(produto);
+	}
+
+	public void vinculaProdutoEstoque(ProdutoEstoque estoque) throws GerencialException, Exception {
 		if (!isDuplicado(estoque)) {
 			try {
 				estoqueDao.cadastrarProdutoEstoque(estoque);
@@ -32,7 +46,7 @@ public class EstoqueService {
 		}
 	}
 
-	public void removerVinculoProduto(Estoque estoque) throws Exception {
+	public void removerVinculoProduto(ProdutoEstoque estoque) throws Exception {
 		if (estoque.getQtdAtual() > 0) {
 			throw new GerencialException("Produto não pode ser removido pois contem quantidade em estoque");
 		} else {
@@ -41,7 +55,7 @@ public class EstoqueService {
 
 	}
 
-	public void entradaEstoque(Estoque estoque) {
+	public void entradaEstoque(ProdutoEstoque estoque) {
 		try {
 			estoqueDao.atualizar(estoque);
 		} catch (Exception e) {
@@ -49,15 +63,15 @@ public class EstoqueService {
 		}
 	}
 
-	public void saidaEstoque(Estoque estoque) {
+	public void saidaEstoque(ProdutoEstoque estoque) {
 		try {
 
 		} catch (Exception e) {
-			
+
 		}
 	}
 
-	public Boolean isDuplicado(Estoque estoque) {
+	public Boolean isDuplicado(ProdutoEstoque estoque) {
 		if (null != estoqueDao.buscaPorTamanhoEProduto(estoque)) {
 			return Boolean.TRUE;
 		} else {

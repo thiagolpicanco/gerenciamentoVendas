@@ -11,31 +11,52 @@
 	<title>Gerenciamentos de Lojas v0.1</title>
 
 
-	<link rel="stylesheet" type="text/css"
-		href="resources/semantic/dist/semantic.min.css"></link>
-	<script src="resources/semantic/dist/semantic.min.js"></script>
+	<!-- 	<link rel="stylesheet" type="text/css" -->
+	<!-- 		href="resources/semantic/semantic.min.css"></link> -->
+	<script src="resources/semantic/semantic.min.js"></script>
 
-	<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
+	<style>
+#header {
+	width: 100%;
+	background-color: rgba(55, 71, 79, 0.1);
+	border-bottom: solid 1px rgba(55, 71, 79, 0.1);
+	position: fixed;
+	z-index: 999;
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+.menubar {
+	background-color: lightblue;
+}
+
+.ui-menu .ui-separator {
+	background: #A8A8A8;
+	border: none;
+	width: 1px;
+	clear: none;
+	height: 22px;
+	margin: 4px 6px 0;
+	box-shadow: none;
+}
+
+</style>
+
 
 
 </h:head>
 
+
+
 <h:body style="background-color:#f1f1f1;">
 	<table style="width: 100%;">
 
-		<!-- HEADER -->
-		<tr>
-			<td>
-				<div
-					style="background-color: #708090; width: 100%; height: 115px; text-align: center">
-					<h:outputText value="SISTEMA GERENCIAL DE LOJAS"
-						style="font-size: 50px; margin:auto; color: #E0E0DE; font-family: sans-serif;"></h:outputText>
-					<br />
-					<h:outputText value="Versao 0.1 Alpha"
-						style="font-size: 20px; margin:auto;color: #E0E0DE;  font-family: sans-serif; "></h:outputText>
-				</div>
-			</td>
-		</tr>
+
 		<tr>
 
 			<td height="30" style="margin-top: -5px;"><ui:include
@@ -49,18 +70,11 @@
 		<!-- FOOTER -->
 		<tr align="center">
 			<td>
-				<div
-					style="background-color: #708090; width: 100%; height: 50px; text-align: center; bottom: 0px; left: 0px;">
-
-					<h:outputText value="Trabalho de Conclusao de Curso"
-						style="font-size: 20px; margin:auto;color: #E0E0DE; margin-top: 50px; font-family: sans-serif; " />
-
-				</div>
+			
 			</td>
 		</tr>
 	</table>
 
-	<p:growl id="messages" globalOnly="true" />
 
 	<p:ajaxStatus style="width:16px;height:16px;">
 		<f:facet name="start">

@@ -19,10 +19,10 @@ import javax.persistence.Table;
 import arquitetura.Entidade;
 
 @Entity
-@Table(name = "ESTOQUE")
+@Table(name = "PRODUTO_ESTOQUE")
 @SequenceGenerator(name = "sq_estoque", sequenceName = "sq_estoque", allocationSize = 1, initialValue = 1)
 
-public class Estoque extends Entidade implements Serializable {
+public class ProdutoEstoque extends Entidade implements Serializable {
 	/**
 	 * 
 	 */

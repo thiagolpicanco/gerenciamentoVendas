@@ -17,17 +17,19 @@ import persistence.FuncionarioDao;
 @Stateless
 public class FuncionarioService {
 
-	
-	
 	@EJB
 	FuncionarioDao funcionarioDao;
 
-	public void cadastraFuncionario(Funcionario funcionario) {
+	public void cadastraFuncionario(Funcionario funcionario) throws Exception {
 		try {
 			funcionarioDao.gravarOuAtualizar(funcionario);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
+	}
+
+	public List<Funcionario> filtaFuncionarios(Funcionario filtro) {
+		return funcionarioDao.filtrarFuncionarios(filtro);
 	}
 
 	public void deletaFuncionario(Funcionario funcionario) {
@@ -51,7 +53,5 @@ public class FuncionarioService {
 	public List<Funcionario> listarTodos() {
 		return funcionarioDao.listarTudo();
 	}
-	
-	
-	
+
 }

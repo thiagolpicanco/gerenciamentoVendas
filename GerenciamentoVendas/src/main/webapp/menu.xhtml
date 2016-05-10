@@ -7,28 +7,22 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<style>
-.menubar {
-	background-color: lightblue;
-}
-
-.ui-menu .ui-separator {
-	background: #A8A8A8;
-	border: none;
-	width: 1px;
-	clear: none;
-	height: 22px;
-	margin: 4px 6px 0;
-	box-shadow: none;
-}
 </style>
 
 	<h:form>
+
 		<p:menubar
-			style="background-color: #FFF; height: 100%; margin-top: -5px; text-align:center; margin-bottom: 20px;">
+			style="background-color: #303030 ; height: 50px; margin-top: -5px; text-align:center; margin-bottom: 20px;">
 
 
 
-			<p:submenu label="Vendas" style="margin-left: 20%;"
+			<p:menuitem>
+				<h:link outcome="/login.jsf">
+					<h:outputText value="BENDITA" />
+				</h:link>
+			</p:menuitem>
+
+			<p:submenu label="Vendas" style="margin-left: 25%;"
 				styleClass="dropdown-submenu">
 				<p:menuitem value="Cadastrar" url="cadastroFuncionarios.jsf" />
 				<p:menuitem value="Listar" url="listarFuncionarios.jsf" />
@@ -48,13 +42,22 @@
 
 			<p:separator />
 			<p:submenu label="Produtos" styleClass="dropdown-submenu">
-				<p:menuitem value="Cadastrar" url="cadastroProdutos.jsf" />
-				<p:menuitem value="Listar" url="consultarProdutos.jsf" />
+				<p:menuitem value="Cadastrar" url="cadastroProdutos.jsf"
+					action="#{manterProdutoMB.init()}" />
+				<p:menuitem value="Listar" url="consultarProdutos.jsf"
+					action="#{manterProdutoMB.init()}" />
 			</p:submenu>
 
 			<p:separator />
 			<p:submenu label="Estoque" styleClass="dropdown-submenu">
-				<p:menuitem value="Vincular Produto ao Estoque" url="vincularProdutoEstoque.jsf" />
+				<p:menuitem value="Vincular Produto"
+					url="vincularProdutoEstoque.jsf" action="#{manterEstoqueMB.init()}" />
+				<p:menuitem value="Entrada de Produto"
+					url="entradaProdutoEstoque.jsf" action="#{manterEstoqueMB.init()}" />
+				<p:menuitem value="Remoção de Produto" url="saidaProdutoEstoque.jsf"
+					action="#{manterEstoqueMB.init()}" />
+				<p:menuitem value="Gerenciar Estoque" url="ControleEstoque.jsf"
+					action="#{manterEstoqueMB.init()}" />
 
 			</p:submenu>
 
@@ -75,7 +78,6 @@
 			<p:submenu label="Fornecedor" styleClass="dropdown-submenu">
 				<p:menuitem value="Cadastrar Fornecedor"
 					url="cadastrarFornecedores.jsf" />
-
 
 			</p:submenu>
 
