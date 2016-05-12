@@ -230,7 +230,7 @@ CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria 
 	, produto_id integer NOT NULL, 
 	CONSTRAINT fk_venda_id FOREIGN KEY (venda_id) REFERENCES venda (id) 
 	MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION, 
-	CONSTRAINT produto_id_fk_venda FOREIGN KEY (venda_id) REFERENCES venda (id) 
+	CONSTRAINT produto_id_fk_venda FOREIGN KEY (produto_id) REFERENCES ProdutoEstoque (id) 
 	MATCH SIMPLE ON UPDATE NO ACTION ON DELETE NO ACTION)
 	WITH ( OIDS=FALSE );
 	

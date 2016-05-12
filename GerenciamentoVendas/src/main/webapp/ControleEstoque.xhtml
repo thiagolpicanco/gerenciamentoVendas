@@ -4,8 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/template/main.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml">
 
 	<style type="text/css">
 #tabela_data {
@@ -15,87 +14,93 @@
 
 
 	<ui:define name="body">
-		<p:fieldset legend="Gerenciamento de Estoque"
-			style="width: 920px; margin: auto;">
-			<p:spacer height="50px"></p:spacer>
-			<h:panelGrid columns="3"
-				style="margin-top 50px;width: 100%; margin: 0 auto; ">
-				<p:commandButton value="Vincular Produto ao Estoque"></p:commandButton>
-				<p:commandButton value="Entrada de Produtos" />
-				<p:commandButton value="Saida Manual" />
+		<div class="box box-primary">
+			<div class="box-header with-border" style="border-bottom: 30px;">
+				<h2 class="box-title">Gerenciamento de Estoque</h2>
+			</div>
+			<div class="box-body">
+				<p:spacer height="50px"></p:spacer>
+				<h:panelGrid columns="3"
+					style="margin-top 50px;width: 100%; margin: 0 auto; ">
 
-			</h:panelGrid>
-			<p:spacer height="50px"></p:spacer>
+					<p:commandButton value="Vincular Produto ao Estoque"
+						action="/vincularProdutoEstoque.jsf"></p:commandButton>
+					<p:commandButton value="Entrada de Produtos"
+						onclick="PF('dialog').show();" />
+					<p:commandButton value="Saida Manual" />
 
-
-			<p:dataTable id="tabela"
-				value="#{manterEstoqueMB.produtosVinculados}" var="estoque">
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Nome" />
-					</f:facet>
-					<h:outputText value="#{estoque.produto.nome}"
-						style="text-align: center;">
-					</h:outputText>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Categoria" />
-					</f:facet>
-					<h:outputText value="#{estoque.produto.categoria.noCategoria}"
-						style="text-align: center;">
-					</h:outputText>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Tamanho" />
-					</f:facet>
-					<h:outputText value="#{estoque.tamanho}"
-						style="text-align: center;">
-					</h:outputText>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Quantidade atual" />
-					</f:facet>
-					<h:outputText value="#{estoque.qtdAtual}"
-						style="text-align: center;">
-					</h:outputText>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Quantidade Minima" />
-					</f:facet>
-					<h:outputText value="#{estoque.qtdMinima}"
-						style="text-align: center;">
-					</h:outputText>
-				</p:column>
-
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Quantidade Pendente" />
-					</f:facet>
-					<h:outputText value="#{manterEstoqueMB.getQtdPendente(estoque)}"
-						style="text-align: center;">
-					</h:outputText>
-				</p:column>
+				</h:panelGrid>
+				<p:spacer height="50px"></p:spacer>
 
 
-				<p:column>
-					<f:facet name="header">
-						<p:outputLabel value="Quantidade Atual" />
-					</f:facet>
-					<h:outputText value="#{estoque.qtdAtual}"
-						style="text-align: center;">
-					</h:outputText>
-				</p:column>
+				<p:dataTable id="tabela"
+					value="#{manterEstoqueMB.produtosVinculados}" var="estoque">
 
-			</p:dataTable>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Nome" />
+						</f:facet>
+						<h:outputText value="#{estoque.produto.nome}"
+							style="text-align: center;">
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Categoria" />
+						</f:facet>
+						<h:outputText value="#{estoque.produto.categoria.noCategoria}"
+							style="text-align: center;">
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Tamanho" />
+						</f:facet>
+						<h:outputText value="#{estoque.tamanho}"
+							style="text-align: center;">
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Quantidade atual" />
+						</f:facet>
+						<h:outputText value="#{estoque.qtdAtual}"
+							style="text-align: center;">
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Quantidade Minima" />
+						</f:facet>
+						<h:outputText value="#{estoque.qtdMinima}"
+							style="text-align: center;">
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Quantidade Pendente" />
+						</f:facet>
+						<h:outputText value="#{manterEstoqueMB.getQtdPendente(estoque)}"
+							style="text-align: center;">
+						</h:outputText>
+					</p:column>
+
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Quantidade Atual" />
+						</f:facet>
+						<h:outputText value="#{estoque.qtdAtual}"
+							style="text-align: center;">
+						</h:outputText>
+					</p:column>
+
+				</p:dataTable>
 
 
 
@@ -105,7 +110,14 @@
 
 
 
-		</p:fieldset>
+			</div>
+		</div>
+
+		<p:dialog widgetVar="dialog" id="dialog">
+			<ui:include src="/entradaProdutoEstoque.xhtml" />
+		</p:dialog>
+
+
 	</ui:define>
 
 </ui:composition>

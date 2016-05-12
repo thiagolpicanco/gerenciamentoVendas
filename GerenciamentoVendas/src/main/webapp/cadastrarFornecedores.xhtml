@@ -4,8 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="/template/main.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml">
 
 
 
@@ -14,74 +13,74 @@
 		<h:form>
 
 
-			<p:fieldset legend="Cadastro de Fornecedores"
-				style="margin-top: 20px; width: 920px; margin: auto; height: 50%; "
-				styleClass="container">
-				<p:messages></p:messages>
+			<div class="box box-primary">
+				<div class="box-header with-border" style="border-bottom: 30px;">
+					<h2 class="box-title">Cadastro de Fornecedores</h2>
+				</div>
+				<div class="box-body">
+					<p:messages></p:messages>
+					<div class="form-group" style="width: 200px;">
 
 
+						<h:panelGrid style=" margin-bottom: 10px;">
+							<p:outputLabel value="Nome" />
+							<h:inputText value="#{manterFornecedorMB.fornecedor.nome}"
+								styleClass="form-control" />
+						</h:panelGrid>
+
+						<h:panelGrid>
+							<p:outputLabel value="CNPJ" />
+							<h:inputText value="#{manterFornecedorMB.fornecedor.cpfCnpj}"
+								styleClass="form-control" />
+
+						</h:panelGrid>
 
 
-				<h:panelGrid id="panel" columns="2"
-					style="margin-top:50px; margin: auto; cellpadding: 10;"
-					width="100%" styleClass="my-panel-grid" columnClasses="col1, col2">
+						<h:panelGrid style=" margin-bottom: 10px;">
+							<p:outputLabel value="Telefone" />
+							<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
+								value="#{manterFornecedorMB.fornecedor.telefone}" />
 
-					<h:panelGrid style=" margin-bottom: 10px;">
-						<p:outputLabel value="Nome" />
-						<p:inputText value="#{manterFornecedorMB.fornecedor.nome}" />
+						</h:panelGrid>
+
+
+						<h:panelGrid>
+							<p:outputLabel value="Celular" />
+							<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
+								value="#{manterFornecedorMB.fornecedor.celular}" />
+
+						</h:panelGrid>
+
+
+						<h:panelGrid style="margin-bottom: 10px;">
+							<p:outputLabel value="E-Mail" />
+							<p:inputText value="#{manterFornecedorMB.fornecedor.email}"
+								styleClass="form-control" />
+						</h:panelGrid>
+
+
+						<h:panelGrid>
+							<p:outputLabel value="Endereço" />
+							<p:inputText value="#{manterFornecedorMB.fornecedor.endereco}"
+								styleClass="form-control" />
+						</h:panelGrid>
+
+					</div>
+
+					<h:panelGrid columns="2" style="float:right">
+						<p:commandButton value="Cadastrar"
+							action="#{manterFornecedorMB.cadastrarFornecedor()}"
+							update="@form" ajax="false"
+							style="margin-left: 40px ;margin-right: 20px;">
+							<p:ajax update="@form" resetValues="true" />
+						</p:commandButton>
+						<p:commandButton value="Limpar">
+							<p:ajax update="@form" resetValues="true" />
+						</p:commandButton>
 					</h:panelGrid>
 
-					<h:panelGrid>
-						<p:outputLabel value="CNPJ" />
-						<p:inputText value="#{manterFornecedorMB.fornecedor.cpfCnpj}" />
-
-					</h:panelGrid>
-
-
-					<h:panelGrid style=" margin-bottom: 10px;">
-						<p:outputLabel value="Telefone" />
-						<p:inputMask mask="(99) 9999-9999"
-							value="#{manterFornecedorMB.fornecedor.telefone}" />
-
-					</h:panelGrid>
-
-
-					<h:panelGrid>
-						<p:outputLabel value="Celular" />
-						<p:inputMask mask="(99) 9999-9999"
-							value="#{manterFornecedorMB.fornecedor.celular}" />
-
-					</h:panelGrid>
-
-
-					<h:panelGrid style="margin-bottom: 10px;">
-						<p:outputLabel value="E-Mail" />
-						<p:inputText value="#{manterFornecedorMB.fornecedor.email}" />
-					</h:panelGrid>
-
-
-					<h:panelGrid>
-						<p:outputLabel value="Endereço" />
-						<p:inputText value="#{manterFornecedorMB.fornecedor.endereco}" />
-					</h:panelGrid>
-
-				</h:panelGrid>
-
-				<h:panelGrid columns="2" style="float:right">
-					<p:commandButton value="Cadastrar"
-						action="#{manterFornecedorMB.cadastrarFornecedor()}"
-						update="@form" ajax="false"
-						style="margin-left: 40px ;margin-right: 20px;">
-						<p:ajax update="@form" resetValues="true" />
-					</p:commandButton>
-					<p:commandButton value="Limpar">
-						<p:ajax update="@form" resetValues="true" />
-					</p:commandButton>
-				</h:panelGrid>
-
-			</p:fieldset>
-
-
+				</div>
+			</div>
 
 		</h:form>
 	</ui:define>

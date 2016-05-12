@@ -36,7 +36,7 @@ public class Compra extends Entidade implements Serializable {
 	@JoinTable(name = "compra_produto", joinColumns = {
 			@JoinColumn(name = "compra_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "produto_id", referencedColumnName = "id") })
-	private List<Produto> listaProdutos;
+	private List<ProdutoEstoque> listaProdutos;
 	@ManyToOne
 	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
@@ -56,13 +56,19 @@ public class Compra extends Entidade implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<Produto> getListaProdutos() {
+	
+
+	public List<ProdutoEstoque> getListaProdutos() {
 		return listaProdutos;
 	}
 
-	public void setListaProdutos(List<Produto> listaProdutos) {
+
+
+	public void setListaProdutos(List<ProdutoEstoque> listaProdutos) {
 		this.listaProdutos = listaProdutos;
 	}
+
+
 
 	public Fornecedor getFornecedor() {
 		return fornecedor;

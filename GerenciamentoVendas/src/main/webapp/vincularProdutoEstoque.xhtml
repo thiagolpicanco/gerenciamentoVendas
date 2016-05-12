@@ -3,61 +3,71 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	template="/template/main.xhtml">
+	xmlns:pe="http://primefaces.org/ui/extensions" template="starter.xhtml">
 
 	<ui:define name="body">
 		<h:form id="formVincular">
-			<p:fieldset legend="Vincular produtos ao estoque"
-				style="width: 920px; margin: auto;">
-				<p:messages/>
-				<h:panelGrid columns="1">
 
+			<p:messages />
+			<!-- 				<h:panelGrid columns="1"> -->
+			<div class="box box-primary">
+				<div class="box-body">
+					<div class="form-group" style="width: 200px;">
+						<h:outputLabel value="Produto" />
+						<h:selectOneMenu required="true"
+							class="form-control" value="#{manterEstoqueMB.estoque.produto}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemLabel="Selecione" naoSelectionOption="true"></f:selectItem>
+							<f:selectItems value="#{manterEstoqueMB.listaProdutos}"
+								var="prod" itemLabel="#{prod.nome}"></f:selectItems>
+							<p:ajax event="change" update="tamanho" partialSubmit="true"
+								listener="#{manterEstoqueMB.listaTamanhosPorCategoria()}">
+							</p:ajax>
+						</h:selectOneMenu>
+					</div>
+					<div class="form-group" style="width: 200px;">
+						<h:outputLabel value="Valor de Compra" />
+						<h:inputText value="#{manterEstoqueMB.estoque.valorCompra}" 
+							class="form-control" required="true" />
+						<!-- 					<pe:inputNumber id="valorCompra"  -->
+						<!-- 						value="#{manterEstoqueMB.estoque.valorCompra}" symbol="R$ " -->
+						<!-- 						required="true"></pe:inputNumber> -->
+					</div>
+					<div class="form-group" style="width: 200px;">
+						<h:outputLabel value="Valor de Venda" />
+						<h:inputText value="#{manterEstoqueMB.estoque.valorVenda}"
+							class="form-control" required="true" />
+						<!-- 					<pe:inputNumber id="valorVenda"  -->
+						<!-- 						value="#{manterEstoqueMB.estoque.valorVenda}" symbol="R$ " -->
+						<!-- 						required="true"></pe:inputNumber> -->
+					</div>
+					<div class="form-group" style="width: 200px;">
+						<h:outputLabel value="Quantidade Minima" />
+						<h:inputText size="6" maxlength="6" class="form-control"
+							value="#{manterEstoqueMB.estoque.qtdMinima}" />
+					</div>
+					<div class="form-group" style="width: 100px;">
+						<h:outputLabel value="Tamanho" />
+						<h:selectOneMenu id="tamanho" required="true" class="form-control"
+							value="#{manterEstoqueMB.estoque.tamanho}">
+							<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+							<f:selectItems value="#{manterEstoqueMB.listaTamanhos}"></f:selectItems>
+						</h:selectOneMenu>
+					</div>
 
-					<h:outputLabel value="Produto" />
-					<p:selectOneMenu style="width: 250px;" required="true"
-						value="#{manterEstoqueMB.estoque.produto}"
-						converter="omnifaces.SelectItemsConverter">
-						<f:selectItem itemLabel="Selecione" naoSelectionOption="true"></f:selectItem>
-						<f:selectItems value="#{manterEstoqueMB.listaProdutos}" var="prod"
-							itemLabel="#{prod.nome}"></f:selectItems>
-						<p:ajax event="change" update="tamanho" partialSubmit="true"
-							listener="#{manterEstoqueMB.listaTamanhosPorCategoria()}">
-						</p:ajax>
-					</p:selectOneMenu>
+				</div>
 
-					<h:outputLabel value="Valor de Compra" />
-					<pe:inputNumber id="valorCompra"
-						value="#{manterEstoqueMB.estoque.valorCompra}" symbol="R$ "
-						required="true"></pe:inputNumber>
-
-					<h:outputLabel value="Valor de Venda" />
-					<pe:inputNumber id="valorVenda"
-						value="#{manterEstoqueMB.estoque.valorVenda}" symbol="R$ "
-						required="true"></pe:inputNumber>
-					<h:outputLabel value="Quantidade Minima" />
-					<p:inputText size="6" maxlength="6" value="#{manterEstoqueMB.estoque.qtdMinima}" />
-
-					<h:outputLabel value="Tamanho" />
-					<p:selectOneMenu id="tamanho" required="true"
-						value="#{manterEstoqueMB.estoque.tamanho}">
-						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-						<f:selectItems value="#{manterEstoqueMB.listaTamanhos}"></f:selectItems>
-					</p:selectOneMenu>
-
-
-
-				</h:panelGrid>
-				<h:panelGrid columns="2" style="float: right;">
+				<div class="box-footer" style="width: 300px;">
 					<p:commandButton value="Vincular"
 						action="#{manterEstoqueMB.vincularProduto()}" update="@form"></p:commandButton>
 					<p:commandButton value="Limpar"
-						action="#{manterEstoqueMB.limparCampos()}" ajax="true" update="@form"></p:commandButton>
+						action="#{manterEstoqueMB.limparCampos()}" ajax="true"
+						update="@form"></p:commandButton>
 
-				</h:panelGrid>
-			</p:fieldset>
+				</div>
 
 
+			</div>
 		</h:form>
 	</ui:define>
 
