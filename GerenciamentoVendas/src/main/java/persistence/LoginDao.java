@@ -12,7 +12,7 @@ import entidades.ProdutoEstoque;
 @Stateless
 public class LoginDao extends GerencialDao<Login> {
 
-	public Login buscaLogin(Login login) {
+	public Login buscaLogin(String usuario, String senha) {
 		Login loginRetorno;
 		StringBuilder sb = new StringBuilder();
 
@@ -22,8 +22,8 @@ public class LoginDao extends GerencialDao<Login> {
 
 		Query query = getEntityManager().createQuery(sb.toString());
 
-		query.setParameter("usuario", login.getUsuario());
-		query.setParameter("senha", login.getSenha());
+		query.setParameter("usuario", usuario);
+		query.setParameter("senha", senha);
 
 		try {
 			loginRetorno = (Login) query.getSingleResult();

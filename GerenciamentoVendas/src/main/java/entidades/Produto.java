@@ -32,15 +32,26 @@ public class Produto extends Entidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
-
 	@Column(name = "descricao")
 	private String descricao;
 	@ManyToOne
 	@JoinColumn(name = "categoria")
 	private CategoriaProduto categoria;
+	
 
-	@Column(name = "palavras_chaves")
-	private String palavrasChaves;
+	private Double valorVenda;
+
+	public Double getValorVenda() {
+		return valorVenda;
+	}
+
+	public void setValorVenda(Double valorVenda) {
+		this.valorVenda = valorVenda;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public Produto() {
 		// TODO Auto-generated constructor stub
@@ -70,14 +81,6 @@ public class Produto extends Entidade implements Serializable {
 		this.fornecedor = fornecedor;
 	}
 
-	public String getPalavrasChaves() {
-		return palavrasChaves;
-	}
-
-	public void setPalavrasChaves(String palavrasChaves) {
-		this.palavrasChaves = palavrasChaves;
-	}
-
 	
 
 	public String getDescricao() {
@@ -88,8 +91,6 @@ public class Produto extends Entidade implements Serializable {
 		this.descricao = descricao;
 	}
 
-	
-
 	public void setCategoria(CategoriaProduto categoria) {
 		this.categoria = categoria;
 	}
@@ -98,12 +99,6 @@ public class Produto extends Entidade implements Serializable {
 		return categoria;
 	}
 
-	public String getDescricaoExtra() {
-		return palavrasChaves;
-	}
 
-	public void setDescricaoExtra(String descricaoExtra) {
-		this.palavrasChaves = descricaoExtra;
-	}
 
 }

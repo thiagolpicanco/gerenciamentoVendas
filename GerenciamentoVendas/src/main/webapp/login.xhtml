@@ -4,66 +4,112 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="starter.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+	<h:form>
+	<p:messages></p:messages>
+
+		<!-- CSS -->
+		<link rel="stylesheet"
+			href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500" />
+		<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet"
+			href="assets/font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/form-elements.css" />
+		<link rel="stylesheet" href="assets/css/style.css" />
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+		<!-- Favicon and touch icons -->
+		<link rel="shortcut icon" href="assets/ico/favicon.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="144x144"
+			href="assets/ico/apple-touch-icon-144-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114"
+			href="assets/ico/apple-touch-icon-114-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72"
+			href="assets/ico/apple-touch-icon-72-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed"
+			href="assets/ico/apple-touch-icon-57-precomposed.png" />
 
 
 
-	<ui:define name="body">
-		<h:form>
-			<f:metadata>
-				<f:event listener="#{principalMB.init()}" type="preRenderView"></f:event>
-			</f:metadata>
+		<!-- Top content -->
+		<div class="top-content">
 
-			<p:outputLabel value="#{principalMB.init()}" rendered="false"></p:outputLabel>
-
-			<p:dialog header="Login" widgetVar="dlg" resizable="false" width="500px" height="200px;">
-				<h:panelGrid columns="2" cellpadding="5">
-					<h:outputLabel for="username" value="Usuario: " />
-					<p:inputText id="username" value="#{principalMB.login.usuario}"
-						required="true" requiredMessage="O campo usuario é obrigatorio."
-						label="username" />
-
-					<h:outputLabel for="password" value="Senha: " />
-					<p:password id="password" value="#{principalMB.login.senha}"
-						required="true" label="password"
-						requiredMessage="O campo senha é obrigatorio." />
-
-					<f:facet name="footer">
-						<p:commandButton value="Login" update="growl"
-							actionListener="#{principalMB.login()}" ajax="false"
-							oncomplete="handleLoginRequest(xhr, status, args)" />
-					</f:facet>
-
-
-				</h:panelGrid>
-				<p:messages />
-			</p:dialog>
-
-		</h:form>
-
-		<script type="text/javascript">
-    function handleLoginRequest(xhr, status, args) {
-        if(args.validationFailed || !args.loggedIn) {
-            PF('dlg').jq.effect("shake", {times:5}, 100);
-        }
-        else {
-            PF('dlg').hide();
-            $('#loginLink').fadeOut();
-        }
-    }
-</script>
-
-
-
-
-
-
-
+			<div class="inner-bg" style="opacity: 2;">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-8 col-sm-offset-2 text">
+							<h1>
+								<strong>BENDITA</strong> Sistema de Gerenciamento
+							</h1>
+							<div class="description">
+								<p></p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-3 form-box">
+							<div class="form-top">
+								<div class="form-top-left">
+									<h3>Logar no Sistema</h3>
+									<p>Digite seu Usuario e Senha para entrar:</p>
+								</div>
+								<div class="form-top-right">
+									<i class="fa fa-lock"></i>
+								</div>
+							</div>
+							<div class="form-bottom">
+								<div class="form-group">
+									<h:inputText value="#{usuarioSessaoMB.usuario}" id="form-username" 
+										styleClass="form-control" />
+								</div>
+								<div class="form-group">
+									<h:inputText value="#{usuarioSessaoMB.senha}"  
+										styleClass="form-control" id="form-password" />
+								</div> 
+								<h:commandButton actionListener="#{usuarioSessaoMB.doLogin()}"
+									styleClass="btn" value="Entrar" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 col-sm-offset-3 social-login">
+							<h3>Em caso de problemas contate o gerente da Loja:</h3>
+							<p>gerente@bendita.com.br</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
 
-	</ui:define>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- Javascript -->
+		<script src="assets/js/jquery-1.11.1.min.js"></script>
+		<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+		<script src="assets/js/jquery.backstretch.min.js"></script>
+		<script src="assets/js/scripts.js"></script>
+	</h:form>
 
 </ui:composition>
 

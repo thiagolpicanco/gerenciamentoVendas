@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.SessionContext;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -28,8 +29,11 @@ public class ManterClienteMB {
 
 	@PostConstruct
 	public void init() {
+		
 
 	}
+	
+	
 
 	public void cadastrarCliente() {
 		clienteService.cadastraCliente(this.cliente);
