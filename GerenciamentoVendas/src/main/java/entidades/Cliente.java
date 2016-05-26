@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,6 +39,11 @@ public class Cliente extends Entidade implements Serializable {
 	private String email;
 	@Column(name = "endereco")
 	private String endereco;
+
+	@Column(name = "cidade")
+	private String cidade;
+	@Column(name = "bairro")
+	private String bairro;
 
 	public Cliente() {
 		// TODO Auto-generated constructor stub

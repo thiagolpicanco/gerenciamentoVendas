@@ -11,9 +11,6 @@ import javax.faces.bean.SessionScoped;
 import entidades.Cliente;
 import servicos.ClienteService;
 
-
-
-
 @ManagedBean
 @SessionScoped
 public class ManterClienteMB {
@@ -29,11 +26,8 @@ public class ManterClienteMB {
 
 	@PostConstruct
 	public void init() {
-		
 
 	}
-	
-	
 
 	public void cadastrarCliente() {
 		clienteService.cadastraCliente(this.cliente);
@@ -45,6 +39,14 @@ public class ManterClienteMB {
 
 	public void listarClientes() {
 		clienteService.listarTodos();
+	}
+
+	public List<Cliente> getListaClientes() {
+		return listaClientes;
+	}
+
+	public void setListaClientes(List<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
 	}
 
 }
