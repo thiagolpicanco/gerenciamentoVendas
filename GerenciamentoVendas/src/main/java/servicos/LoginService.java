@@ -26,7 +26,7 @@ public class LoginService {
 		try {
 			return loginDao.buscaLogin(usuario, senhaMD5);
 
-		} catch (NoResultException e) {
+		} catch (Exception e) {
 			return null;
 		}
 

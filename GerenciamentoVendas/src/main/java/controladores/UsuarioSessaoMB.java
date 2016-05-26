@@ -26,6 +26,12 @@ public class UsuarioSessaoMB {
 	/**
 	 * Retorna usuario logado
 	 */
+	
+	public void limpaCampos(){
+		usuario = null;
+		senha = null;
+	}
+	
 	public Login getUser() {
 		return (Login) SessionContext.getInstance().getUsuarioLogado();
 	}
@@ -37,14 +43,16 @@ public class UsuarioSessaoMB {
 			login = loginService.buscarLogin(usuario, senha);
 
 			if (login == null) {
+				limpaCampos();
 				MensagensUtil.adicionaMensagemErro("Login ou Senha errado, tente novamente !");
 				FacesContext.getCurrentInstance().validationFailed();
 
-			}
+			} else {
 
-			System.out.println("Login efetuado com sucesso");
-			SessionContext.getInstance().setAttribute("usuarioLogado", login);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsp");
+				System.out.println("Login efetuado com sucesso");
+				SessionContext.getInstance().setAttribute("usuarioLogado", login);
+				FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsp");
+			}
 
 		} catch (Exception e) {
 			MensagensUtil.adicionaMensagemErro(e.getMessage());

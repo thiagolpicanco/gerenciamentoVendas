@@ -4,11 +4,12 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:x="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
 	<h:form>
-	<p:messages></p:messages>
+
 
 		<!-- CSS -->
 		<link rel="stylesheet"
@@ -67,15 +68,22 @@
 							</div>
 							<div class="form-bottom">
 								<div class="form-group">
+								<h:outputText value="Usuário: " />
 									<h:inputText value="#{usuarioSessaoMB.usuario}" id="form-username" 
-										styleClass="form-control" />
+										styleClass="form-control" placeholder="Username..." title="Usuario"/>
+										
 								</div>
 								<div class="form-group">
-									<h:inputText value="#{usuarioSessaoMB.senha}"  
-										styleClass="form-control" id="form-password" />
+								<h:outputText value="Senha: " />
+									<h:inputSecret value="#{usuarioSessaoMB.senha}"  
+										styleClass="form-control"  id="form-password" title="Senha" />
+										
 								</div> 
+								
+									<p:messages></p:messages>
+								
 								<h:commandButton actionListener="#{usuarioSessaoMB.doLogin()}"
-									styleClass="btn" value="Entrar" />
+									styleClass="btn" style="width: 150px;" value="Entrar" />
 							</div>
 						</div>
 					</div>

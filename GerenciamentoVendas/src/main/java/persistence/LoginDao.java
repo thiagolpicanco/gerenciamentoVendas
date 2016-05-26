@@ -29,7 +29,7 @@ public class LoginDao extends GerencialDao<Login> {
 			loginRetorno = (Login) query.getSingleResult();
 			return loginRetorno;
 		} catch (Exception e) {
-			throw e;
+			return null;
 		}
 
 	}
