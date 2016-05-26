@@ -90,16 +90,13 @@
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <!-- The user image in the navbar--> <img
-						src="resources/img/user2-160x160.jpg" class="user-image"
-						alt="User Image" /> <!-- hidden-xs hides the username on small devices so only the image appears. -->
+					data-toggle="dropdown">
 						<span class="hidden-xs">#{usuarioSessaoMB.user.funcionario.nome}</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
-						<li class="user-header"><img
-							src="resources/img/user2-160x160.jpg" class="img-circle"
-							alt="User Image" />
+						<li class="user-header">
+							
 							<p>
 								#{usuarioSessaoMB.user.funcionario.nome}<small>Cargo :
 									#{usuarioSessaoMB.user.funcionario.tipoFuncionario.noTipoFuncionario}
@@ -138,59 +135,52 @@
 
 		<ul class="sidebar-menu">
 			<li class="header">MENU</li>
-			<!-- Optionally, you can add icons to the links -->
-			<li><a href="#"><i class="fa fa-link"
-					style="border-botom: 40px;"></i> <span>Gerenciamento de
-						Usuarios</span></a></li>
-
 
 
 			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-					<span>Vendas</span> <i class="fa fa-angle-left pull-right"></i></a>
-				<ul class="treeview-menu">
-					<li><a href="EfetuarVenda.jsf">Cadastrar</a></li>
-					<li><a href="ListarVendas.jsf">Listar</a></li>
-				</ul></li>
-
-			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-					<span>Clientes</span> <i class="fa fa-angle-left pull-right"></i></a>
-				<ul class="treeview-menu">
-					<li><a href="cadastroCliente.jsf">Cadastrar</a></li>
-					<li><a href="consultarCliente.jsf">Listar</a></li>
-				</ul></li>
+					<span>Gerenciamento de Estoque</span> </a></li>
 
 
 			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-					<span>Produtos</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<span>Cadastrar</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="cadastroProdutos.jsf">Cadastrar</a></li>
-					<li><a href="consultarProdutos.jsf">Listar</a></li>
-				</ul></li>
+					<li><a href="cadastroUsuario.jsf">Usuarios</a></li>
+					<li><a href="cadastroCliente.jsf">Clientes</a></li>
+					<li><a href="cadastroProdutos.jsf">Produtos</a></li>
+					<li><a href="cadastrarFornecedores.jsf">Fornecedores</a></li>
+					<li><a href="cadastroFuncionarios.jsf">Funcionarios</a></li>
 
-			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-					<span>Estoque</span> <i class="fa fa-angle-left pull-right"></i></a>
-				<ul class="treeview-menu">
-					<li><a href="ControleEstoque.jsf">Gerenciar</a></li>
-				</ul></li>
-
-			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-					<span>Fornecedores</span> <i class="fa fa-angle-left pull-right"></i></a>
-				<ul class="treeview-menu">
-					<li><a href="cadastrarFornecedores.jsf">Cadastrar</a></li>
 				</ul></li>
 
 
 
 			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-					<span>Funcionarios</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<span>Listar</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
-					<li><a href="cadastroFuncionarios.jsf">Cadastrar</a></li>
-					<li><a href="listarFuncionarios.jsf">Listar</a></li>
+
+					<li><a href="consultarCliente.jsf">Clientes</a></li>
+					<li><a href="consultarProdutos.jsf">Produtos</a></li>
+					<li><a href="consultarFornecedores.jsf">Fornecedores</a></li>
+					<li><a href="ListarVendas.jsf">Vendas</a></li>
+
+
 				</ul></li>
 
 
 			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-					<span>Compras</span> <i class="fa fa-angle-left pull-right"></i></a>
+					<span>Venda</span> <i class="fa fa-angle-left pull-right"></i></a>
+				<ul class="treeview-menu">
+					<li><a href="emitirConta.jsf">Emitir Conta</a></li>
+					<li><a href="gerarContasPagar.jsf">Gerar Conta a pagar</a></li>
+					<li><a href="gerarContasPagar.jsf">Gerar Conta a receber</a></li>
+				</ul></li>
+
+
+
+
+
+			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
+					<span>Compra</span> <i class="fa fa-angle-left pull-right"></i></a>
 				<ul class="treeview-menu">
 					<li><a href="emitirConta.jsf">Emitir Conta</a></li>
 					<li><a href="gerarContasPagar.jsf">Gerar Conta a pagar</a></li>
