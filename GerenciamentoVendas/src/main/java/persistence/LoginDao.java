@@ -7,7 +7,6 @@ import javax.persistence.Query;
 
 import entidades.Login;
 import entidades.Produto;
-import entidades.ProdutoEstoque;
 
 @Stateless
 public class LoginDao extends GerencialDao<Login> {

@@ -29,14 +29,14 @@ public class Compra extends Entidade implements Serializable {
 	 */
 	private static final long serialVersionUID = -2597489331441641825L;
 	@Id
-	@GeneratedValue(generator="sq_compra")
+	@GeneratedValue(generator = "sq_compra")
 	@Column
 	private Integer id;
 	@OneToMany
 	@JoinTable(name = "compra_produto", joinColumns = {
 			@JoinColumn(name = "compra_id", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "produto_id", referencedColumnName = "id") })
-	private List<ProdutoEstoque> listaProdutos;
+	private List<ItemProduto> listaProdutos;
 	@ManyToOne
 	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
@@ -56,19 +56,34 @@ public class Compra extends Entidade implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	public Compra(Integer id, List<ItemProduto> listaProdutos, Fornecedor fornecedor,
+			Funcionario funcionarioResponsavel, String notaFiscal, Date dataCompra, String status, Double valorTotal) {
+		super();
+		this.id = id;
+		this.listaProdutos = listaProdutos;
+		this.fornecedor = fornecedor;
+		this.funcionarioResponsavel = funcionarioResponsavel;
+		this.notaFiscal = notaFiscal;
+		this.dataCompra = dataCompra;
+		this.status = status;
+		this.valorTotal = valorTotal;
+	}
 
-	public List<ProdutoEstoque> getListaProdutos() {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<ItemProduto> getListaProdutos() {
 		return listaProdutos;
 	}
 
-
-
-	public void setListaProdutos(List<ProdutoEstoque> listaProdutos) {
+	public void setListaProdutos(List<ItemProduto> listaProdutos) {
 		this.listaProdutos = listaProdutos;
 	}
-
-
 
 	public Fornecedor getFornecedor() {
 		return fornecedor;
@@ -118,12 +133,8 @@ public class Compra extends Entidade implements Serializable {
 		this.valorTotal = valorTotal;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

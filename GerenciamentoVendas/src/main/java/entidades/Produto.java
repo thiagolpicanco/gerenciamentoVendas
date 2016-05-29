@@ -37,7 +37,6 @@ public class Produto extends Entidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "categoria")
 	private CategoriaProduto categoria;
-	
 
 	private Double valorVenda;
 
@@ -81,8 +80,6 @@ public class Produto extends Entidade implements Serializable {
 		this.fornecedor = fornecedor;
 	}
 
-	
-
 	public String getDescricao() {
 		return descricao;
 	}
@@ -91,14 +88,12 @@ public class Produto extends Entidade implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public void setCategoria(CategoriaProduto categoria) {
-		this.categoria = categoria;
-	}
-
 	public CategoriaProduto getCategoria() {
 		return categoria;
 	}
 
-
+	public void setCategoria(CategoriaProduto categoria) {
+		this.categoria = categoria;
+	}
 
 }
