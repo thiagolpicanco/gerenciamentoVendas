@@ -3,6 +3,7 @@ package entidades;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,10 +24,10 @@ public class Produto extends Entidade implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -542059481551882370L;
-	@Id
-	@GeneratedValue(generator = "sq_produto")
-	@Column(name = "id")
-	private Integer id;
+
+	@EmbeddedId
+	ProdutoPK id;
+
 	@Column(name = "nome")
 	private String nome;
 	@ManyToOne
@@ -37,7 +38,7 @@ public class Produto extends Entidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "categoria")
 	private CategoriaProduto categoria;
-
+	@Column(name = "valor_venda")
 	private Double valorVenda;
 
 	public Double getValorVenda() {
@@ -56,11 +57,11 @@ public class Produto extends Entidade implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getId() {
+	public ProdutoPK getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(ProdutoPK id) {
 		this.id = id;
 	}
 

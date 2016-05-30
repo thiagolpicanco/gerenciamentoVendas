@@ -11,7 +11,6 @@ import javax.ejb.Stateless;
 
 import entidades.Venda;
 import entidades.Produto;
-import entidades.ProdutoEstoque;
 import entidades.Venda;
 import exceptions.PersistenciaException;
 import persistence.VendaDao;
@@ -21,19 +20,19 @@ public class VendaService {
 
 	private VendaDao vendaDao;
 
-	public void efetuarVenda(Venda venda) {
-		venda.setValorTotal(this.getValorTotalVenda(venda));
-
-	}
-
-	public Double getValorTotalVenda(Venda venda) {
-		Double total = 0d;
-		for (ProdutoEstoque produtoEstoque : venda.getListaProdutos()) {
-			total += produtoEstoque.getValorVenda();
-		}
-
-		return total;
-	}
+//	public void efetuarVenda(Venda venda) {
+//		venda.setValorTotal(this.getValorTotalVenda(venda));
+//
+//	}
+//
+//	public Double getValorTotalVenda(Venda venda) {
+//		Double total = 0d;
+//		for (ProdutoEstoque produtoEstoque : venda.getListaProdutos()) {
+//			total += produtoEstoque.getValorVenda();
+//		}
+//
+//		return total;
+//	}
 
 	public void geraComissao() {
 

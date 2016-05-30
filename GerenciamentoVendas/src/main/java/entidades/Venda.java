@@ -31,13 +31,10 @@ public class Venda extends Entidade implements Serializable {
 	private static final long serialVersionUID = 3601125323849678360L;
 	@Id
 	@GeneratedValue(generator = "sq_venda")
-	@Column(name = "id")
-	private Integer id;
-	@OneToMany
-	@JoinTable(name = "venda_produto", joinColumns = {
-			@JoinColumn(name = "venda_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "produto_id", referencedColumnName = "id") })
-	private List<ItemProduto> listaProdutos;
+	@Column(name = "nu_venda")
+	private Integer nuVenda;
+	@OneToMany(mappedBy="venda")
+	private List<SaidaProduto> listaProdutos;
 	@ManyToOne
 	@JoinColumn(name = "id_funcionario")
 	private Funcionario funcionarioResponsavel;
@@ -49,18 +46,25 @@ public class Venda extends Entidade implements Serializable {
 	private String status;
 	@Column(name = "valor_total")
 	private Double valorTotal;
-
 	private TipoPagamento tipoPagamento;
 
 	public Venda() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<ItemProduto> getListaProdutos() {
+	public Integer getNuVenda() {
+		return nuVenda;
+	}
+
+	public void setNuVenda(Integer nuVenda) {
+		this.nuVenda = nuVenda;
+	}
+
+	public List<SaidaProduto> getListaProdutos() {
 		return listaProdutos;
 	}
 
-	public void setListaProdutos(List<ItemProduto> listaProdutos) {
+	public void setListaProdutos(List<SaidaProduto> listaProdutos) {
 		this.listaProdutos = listaProdutos;
 	}
 
@@ -80,12 +84,12 @@ public class Venda extends Entidade implements Serializable {
 		this.notaFiscal = notaFiscal;
 	}
 
-	public Date getDataCompra() {
+	public Date getDataVenda() {
 		return dataVenda;
 	}
 
-	public void setDataCompra(Date dataCompra) {
-		this.dataVenda = dataCompra;
+	public void setDataVenda(Date dataVenda) {
+		this.dataVenda = dataVenda;
 	}
 
 	public String getStatus() {
@@ -104,26 +108,6 @@ public class Venda extends Entidade implements Serializable {
 		this.valorTotal = valorTotal;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Date getDataVenda() {
-		return dataVenda;
-	}
-
-	public void setDataVenda(Date dataVenda) {
-		this.dataVenda = dataVenda;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public TipoPagamento getTipoPagamento() {
 		return tipoPagamento;
 	}
@@ -131,5 +115,10 @@ public class Venda extends Entidade implements Serializable {
 	public void setTipoPagamento(TipoPagamento tipoPagamento) {
 		this.tipoPagamento = tipoPagamento;
 	}
+	
+	
+	
 
+	
+	
 }

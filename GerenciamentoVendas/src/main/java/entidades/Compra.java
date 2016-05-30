@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import arquitetura.Entidade;
 
@@ -31,12 +33,9 @@ public class Compra extends Entidade implements Serializable {
 	@Id
 	@GeneratedValue(generator = "sq_compra")
 	@Column
-	private Integer id;
-	@OneToMany
-	@JoinTable(name = "compra_produto", joinColumns = {
-			@JoinColumn(name = "compra_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "produto_id", referencedColumnName = "id") })
-	private List<ItemProduto> listaProdutos;
+	private Integer nu_compra;
+	@OneToMany(mappedBy = "compra")
+	private List<EntradaProduto> listaProdutos;
 	@ManyToOne
 	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
@@ -46,9 +45,8 @@ public class Compra extends Entidade implements Serializable {
 	@Column(name = "nota_fiscal")
 	private String notaFiscal;
 	@Column(name = "data_compra")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCompra;
-	@Column(name = "status")
-	private String status;
 	@Column(name = "valor_total")
 	private Double valorTotal;
 
@@ -56,32 +54,19 @@ public class Compra extends Entidade implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Compra(Integer id, List<ItemProduto> listaProdutos, Fornecedor fornecedor,
-			Funcionario funcionarioResponsavel, String notaFiscal, Date dataCompra, String status, Double valorTotal) {
-		super();
-		this.id = id;
-		this.listaProdutos = listaProdutos;
-		this.fornecedor = fornecedor;
-		this.funcionarioResponsavel = funcionarioResponsavel;
-		this.notaFiscal = notaFiscal;
-		this.dataCompra = dataCompra;
-		this.status = status;
-		this.valorTotal = valorTotal;
+	public Integer getNu_compra() {
+		return nu_compra;
 	}
 
-	public Integer getId() {
-		return id;
+	public void setNu_compra(Integer nu_compra) {
+		this.nu_compra = nu_compra;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public List<ItemProduto> getListaProdutos() {
+	public List<EntradaProduto> getListaProdutos() {
 		return listaProdutos;
 	}
 
-	public void setListaProdutos(List<ItemProduto> listaProdutos) {
+	public void setListaProdutos(List<EntradaProduto> listaProdutos) {
 		this.listaProdutos = listaProdutos;
 	}
 
@@ -117,13 +102,7 @@ public class Compra extends Entidade implements Serializable {
 		this.dataCompra = dataCompra;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 
 	public Double getValorTotal() {
 		return valorTotal;
