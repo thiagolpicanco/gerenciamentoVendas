@@ -48,13 +48,24 @@ public class ManterVendaMB {
 	private Cliente cliente;
 	private Produto produto;
 	private SaidaProduto saidaProduto;
+	private List<SaidaProduto> listaProdutosCarrinho;
 
 	@PostConstruct
 	public void init() {
 		venda = new Venda();
+		listaProdutosCarrinho = new ArrayList<>();
 		produto = new Produto();
 		saidaProduto = new SaidaProduto();
 		inicializaCombos();
+	}
+
+	public List<String> completeText(String query) {
+		List<String> results = new ArrayList<String>();
+		for (int i = 0; i < 10; i++) {
+			results.add(query + i);
+		}
+
+		return results;
 	}
 
 	public void inicializaCombos() {
@@ -197,6 +208,14 @@ public class ManterVendaMB {
 
 	public void setSaidaProduto(SaidaProduto saidaProduto) {
 		this.saidaProduto = saidaProduto;
+	}
+
+	public List<SaidaProduto> getListaProdutosCarrinho() {
+		return listaProdutosCarrinho;
+	}
+
+	public void setListaProdutosCarrinho(List<SaidaProduto> listaProdutosCarrinho) {
+		this.listaProdutosCarrinho = listaProdutosCarrinho;
 	}
 
 }

@@ -45,8 +45,6 @@ public class Funcionario extends Entidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "tipo_funcionario")
 	private TipoFuncionario tipoFuncionario;
-	@Column(name = "salario")
-	private Double salario;
 	// @Column
 	// private String percentualComissao;
 	//
@@ -125,13 +123,7 @@ public class Funcionario extends Entidade implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Double getSalario() {
-		return salario;
-	}
-
-	public void setSalario(Double salario) {
-		this.salario = salario;
-	}
+	
 
 	// public String getPercentualComissao() {
 	// return percentualComissao;
