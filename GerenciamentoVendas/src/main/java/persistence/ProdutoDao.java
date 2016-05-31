@@ -81,6 +81,24 @@ public class ProdutoDao extends GerencialDao<Produto> {
 
 	}
 
+	public List<Produto> listaProdutosPendentes() {
+		List<Produto> listaProdutos;
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("select e from Produto e ");
+		sb.append(" where e.qtdAtual < e.qtdMinima ");
+
+		Query query = getEntityManager().createQuery(sb.toString());
+
+		try {
+			listaProdutos = query.getResultList();
+			return listaProdutos;
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
 	public List<String> listaTamanhosPorProduto(Produto produto) {
 		List<String> listaTamanhos = null;
 		StringBuilder sb = new StringBuilder();

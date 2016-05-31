@@ -30,8 +30,8 @@
 							<f:selectItems value="#{manterUsuarioMB.listaFuncionarios}"
 								var="func" itemLabel="#{func.nome} - #{func.cpfCnpj} "></f:selectItems>
 						</h:selectOneMenu>
-						
-							<h:outputLabel value="Cliente" />
+
+						<h:outputLabel value="Cliente" />
 						<h:selectOneMenu required="true" styleClass="form-control"
 							label="Funcionario" value="#{manterUsuarioMB.login.funcionario}"
 							converter="omnifaces.SelectItemsConverter">
@@ -39,16 +39,16 @@
 							<f:selectItems value="#{manterUsuarioMB.listaFuncionarios}"
 								var="func" itemLabel="#{func.nome} - #{func.cpfCnpj} "></f:selectItems>
 						</h:selectOneMenu>
-						
-						
-						
-						
-						
+
+
+
+
+
 						<h:dataTable>
-						
-						
+
+
 						</h:dataTable>
-						
+
 
 
 
@@ -67,19 +67,8 @@
 							<f:selectItems value="#{manterUsuarioMB.listaFuncionarios}"
 								var="func" itemLabel="#{func.nome} - #{func.cpfCnpj} "></f:selectItems>
 						</h:selectOneMenu>
-
-
-
-
-
-
-
-
-
-
 						<h:outputLabel value="Valor Total: " />
-						<h:inputText value="1233" label="valor" styleClass="form-control"
-							value="#{manterUsuarioMB.login.senha}" />
+						<h:inputText value="1233" label="valor" styleClass="form-control" />
 
 
 						<div class="box-footer">

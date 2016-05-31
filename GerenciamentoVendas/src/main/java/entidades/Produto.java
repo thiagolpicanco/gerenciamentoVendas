@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import arquitetura.Entidade;
 
@@ -46,6 +47,17 @@ public class Produto extends Entidade implements Serializable {
 	@Column(name = "qtd_atual")
 	private Integer qtdAtual;
 
+	@Transient
+	private Integer qtdPendente;
+
+	public Integer getQtdPendente() {
+		return qtdPendente;
+	}
+
+	public void setQtdPendente(Integer qtdPendente) {
+		this.qtdPendente = qtdPendente;
+	}
+
 	public Double getValorVenda() {
 		return valorVenda;
 	}
@@ -60,7 +72,7 @@ public class Produto extends Entidade implements Serializable {
 
 	public Produto() {
 		this.id = new ProdutoPK();
-		
+
 	}
 
 	public ProdutoPK getId() {

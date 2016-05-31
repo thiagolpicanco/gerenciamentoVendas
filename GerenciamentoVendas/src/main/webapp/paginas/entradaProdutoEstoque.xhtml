@@ -25,6 +25,15 @@
 						itemLabel="Nome: #{prod.nome} | Código: #{prod.id.codigo} |  Tamanho : #{prod.id.tamanho} "></f:selectItems>
 
 				</h:selectOneMenu>
+				
+				
+				<h:outputLabel value="Motivo da Entrada: " />
+				<h:selectOneMenu required="true" styleClass="form-control" style="width: 350px;" 
+					label="Motivo" value="#{manterProdutoMB.entradaProduto.observacao}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem noSelectionOption="true" itemLabel="Selecione"></f:selectItem>
+					<f:selectItems value="#{manterProdutoMB.listaMotivos}"></f:selectItems>
+				</h:selectOneMenu>
 
 				<h:outputLabel value="Quantidade a entrar: " />
 				<BR />
@@ -34,12 +43,6 @@
 					min="1" />
 
 
-				<h:selectOneMenu required="true" styleClass="form-control"
-					label="Motivo" value="#{manterProdutoMB.entradaProduto.observacao}"
-					converter="omnifaces.SelectItemsConverter">
-					<f:selectItem noSelectionOption="true" itemLabel="Selecione"></f:selectItem>
-					<f:selectItems value="#{manterProdutoMB.listaMotivos}"></f:selectItems>
-				</h:selectOneMenu>
 
 
 				<h:panelGrid columns="2" style="float: right;">

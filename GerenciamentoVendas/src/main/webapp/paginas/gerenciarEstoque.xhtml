@@ -59,22 +59,25 @@ div.menu>ul.ui-menu-list>li {
 				<p:menubar styleClass="menu" style="text-align: center">
 
 					<p:menuitem value="Consultar Estoque" icon="icon-up-big"
-						action="#{manterProdutoMB.renderizaConsulta()}" update="principal">
+						action="#{manterProdutoMB.renderizaConsulta()}" update="principal"
+						immediate="true">
 					</p:menuitem>
 
 					<p:menuitem value="Entrada Manual" icon="icon-up-big"
-						action="#{manterProdutoMB.renderizaEntrada()}" update="principal">
+						action="#{manterProdutoMB.renderizaEntrada()}" update="principal"
+						immediate="true">
 					</p:menuitem>
 
 
 					<p:menuitem value="Saida Manual" icon="icon-down-big"
-						action="#{manterProdutoMB.renderizaSaida()}" update="principal">
+						action="#{manterProdutoMB.renderizaSaida()}" update="principal"
+						immediate="true">
 
 					</p:menuitem>
 
 					<p:menuitem value="Relatorio de Reposição" icon="icon-down-big"
 						action="#{manterProdutoMB.renderizaRelatorio()}"
-						update="principal">
+						update="principal" immediate="true">
 					</p:menuitem>
 
 
@@ -103,8 +106,8 @@ div.menu>ul.ui-menu-list>li {
 					</h:panelGroup>
 
 					<h:panelGroup
-						rendered="#{manterProdutoMB.render.equalsIgnoreCase('e')}">
-						<ui:include src="" />
+						rendered="#{manterProdutoMB.render.equalsIgnoreCase('r')}">
+						<ui:include src="/paginas/relatorioReposicao.xhtml" />
 					</h:panelGroup>
 
 

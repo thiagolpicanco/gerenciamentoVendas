@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
@@ -27,7 +28,7 @@ import servicos.ProdutoService;
 import util.MensagensUtil;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ManterProdutoMB {
 
 	final String MSG_PRODUTO_CADASTRADO = "Produto cadastrado com sucesso.";
@@ -57,13 +58,14 @@ public class ManterProdutoMB {
 	private List<String> listaMotivos;
 	private SaidaProduto saidaProduto;
 	private EntradaProduto entradaProduto;
+	private List<Produto> listaProdutosPendentes;
 
 	@PostConstruct
 	public void init() {
 		produto = new Produto();
 		saidaProduto = new SaidaProduto();
 		entradaProduto = new EntradaProduto();
-
+		this.inicializaCombos();
 		produtoSelecionado = new Produto();
 		this.listarProdutos();
 	}
@@ -73,11 +75,12 @@ public class ManterProdutoMB {
 		saidaProduto = new SaidaProduto();
 		entradaProduto = new EntradaProduto();
 		qtdEntrada = 0;
-		qtdSaida = null;
+		qtdSaida = 0;
 		RequestContext.getCurrentInstance().update("principal");
 	}
 
 	public void renderizaConsulta() {
+		this.listarProdutos();
 		render = "c";
 		this.limpaCampos();
 	}
@@ -149,6 +152,20 @@ public class ManterProdutoMB {
 
 	}
 
+	public List<Produto> listaProdutosPendentes() {
+
+		listaProdutosPendentes = produtoService.listaProdutosPendentes();
+		for (Produto p : listaProdutosPendentes) {
+			p.setQtdPendente(retornaQtdPendente(p));
+		}
+		return listaProdutosPendentes;
+
+	}
+
+	public int retornaQtdPendente(Produto produto) {
+		return produto.getQtdMinima() - produto.getQtdAtual();
+	}
+
 	public void listaTamanhosPorCategoria() {
 		if (produto.getCategoria() != null) {
 			listaTamanhos = new ArrayList<>();
@@ -173,18 +190,18 @@ public class ManterProdutoMB {
 		try {
 			produtoService.entradaProduto(entradaProduto);
 			MensagensUtil.adicionaMensagemSucesso("Entrada de produto efetuada com sucesso");
-			this.limpaCampos();
-			this.renderizaConsulta();
+
 		} catch (Exception e) {
 			MensagensUtil.adicionaMensagemErro("Erro ao dar entrada de produto" + e.getMessage());
 		}
-
+		this.limpaCampos();
 	}
 
 	public void efetuarSaidaEstoque() {
 		Integer qtdAtual = produto.getQtdAtual();
 		Integer qtdFinal = qtdAtual - this.qtdSaida;
 		produto.setQtdAtual(qtdFinal);
+		saidaProduto.setProduto(produto);
 		saidaProduto.setDataSaida(new Date());
 		saidaProduto.setQuantidade(this.qtdSaida);
 
@@ -195,7 +212,7 @@ public class ManterProdutoMB {
 		} catch (Exception e) {
 			MensagensUtil.adicionaMensagemErro("Erro ao dar remover de produto" + e.getMessage());
 		}
-
+		this.limpaCampos();
 	}
 
 	public Produto getProduto() {
@@ -316,6 +333,14 @@ public class ManterProdutoMB {
 
 	public void setEntradaProduto(EntradaProduto entradaProduto) {
 		this.entradaProduto = entradaProduto;
+	}
+
+	public List<Produto> getListaProdutosPendentes() {
+		return listaProdutosPendentes;
+	}
+
+	public void setListaProdutosPendentes(List<Produto> listaProdutosPendentes) {
+		this.listaProdutosPendentes = listaProdutosPendentes;
 	}
 
 }

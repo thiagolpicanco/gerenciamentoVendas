@@ -32,6 +32,10 @@ public class ProdutoService {
 	@EJB
 	SaidaProdutoDao saidaProdutoDao;
 
+	public List<Produto> listaProdutosPendentes() {
+		return produtoDao.listaProdutosPendentes();
+	}
+
 	public void entradaProduto(EntradaProduto entradaProduto) throws PersistenciaException {
 
 		entradaProdutoDao.gravar(entradaProduto);
