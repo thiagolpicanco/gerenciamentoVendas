@@ -36,7 +36,7 @@ public class SaidaProduto extends Entidade {
 	private Produto produto;
 	@ManyToOne
 	@JoinColumn(name = "nu_venda")
-	private Compra venda;
+	private Venda venda;
 	@Column(name = "data_saida")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date dataSaida;
@@ -66,11 +66,11 @@ public class SaidaProduto extends Entidade {
 		this.produto = produto;
 	}
 
-	public Compra getVenda() {
+	public Venda getVenda() {
 		return venda;
 	}
 
-	public void setVenda(Compra venda) {
+	public void setVenda(Venda venda) {
 		this.venda = venda;
 	}
 

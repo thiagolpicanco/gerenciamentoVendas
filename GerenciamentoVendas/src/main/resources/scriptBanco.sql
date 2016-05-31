@@ -97,6 +97,8 @@
 	  celular text,
 	  email text,
 	  endereco text,
+	  bairro text,
+	  cidade text,
 	  CONSTRAINT pk_cliente PRIMARY KEY (id)
 	  )
 	WITH (
@@ -117,8 +119,6 @@
 	  email text,
 	  endereco text,
 	  tipo_funcionario integer,
-	  salario numeric,
-	  percentualComissao text,
 	  CONSTRAINT pf_funcionario PRIMARY KEY (id),
 	  CONSTRAINT fk_tipo_funcionario FOREIGN KEY (tipo_funcionario)
 	  REFERENCES tipo_funcionario (id) MATCH SIMPLE

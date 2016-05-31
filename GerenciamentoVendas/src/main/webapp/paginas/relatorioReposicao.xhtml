@@ -77,7 +77,8 @@
 
 			</p:dataTable>
 			<p:panelGrid columns="2"
-				style="text-align: center; text-align: center; margin-top: 30px;" title="Exportar">
+				style="text-align: center; text-align: center; margin-top: 30px;"
+				title="Exportar">
 				<f:facet name="header">
 					<h:outputText value="Exportar para Arquivo " />
 				</f:facet>
@@ -97,8 +98,8 @@
 					<h:panelGrid columns="1">
 						<h:commandLink>
 							<img src="resources/img/excel.png" alt="User Image" />
-							<pe:exporter type="xlsx" target="pendentes" fileName="pendentes"
-								tableTitle="Relatorio de Produtos Pendentes"></pe:exporter>
+							<p:dataExporter type="xls" target="pendentes"
+								fileName="pendentes"></p:dataExporter>
 						</h:commandLink>
 						<h:outputText value="XLS" />
 					</h:panelGrid>

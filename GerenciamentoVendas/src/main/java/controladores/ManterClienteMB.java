@@ -26,7 +26,11 @@ public class ManterClienteMB {
 
 	@PostConstruct
 	public void init() {
+		cliente = new Cliente();
+	}
 
+	public void limparCampos() {
+		cliente = new Cliente();
 	}
 
 	public void cadastrarCliente() {

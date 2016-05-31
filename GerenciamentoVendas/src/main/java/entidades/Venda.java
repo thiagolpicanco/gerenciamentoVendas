@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class Venda extends Entidade implements Serializable {
 	@GeneratedValue(generator = "sq_venda")
 	@Column(name = "nu_venda")
 	private Integer nuVenda;
-	@OneToMany(mappedBy="venda")
+	@OneToMany(mappedBy = "venda")
 	private List<SaidaProduto> listaProdutos;
 	@ManyToOne
 	@JoinColumn(name = "id_funcionario")
@@ -46,11 +47,12 @@ public class Venda extends Entidade implements Serializable {
 	private String status;
 	@Column(name = "valor_total")
 	private Double valorTotal;
-	@Column(name="tipo_pagamento")
+	@Column(name = "tipo_pagamento")
 	private TipoPagamento tipoPagamento;
 
 	public Venda() {
-		// TODO Auto-generated constructor stub
+		this.listaProdutos = new ArrayList<>();
+		this.nuVenda = null;
 	}
 
 	public Integer getNuVenda() {
@@ -116,10 +118,5 @@ public class Venda extends Entidade implements Serializable {
 	public void setTipoPagamento(TipoPagamento tipoPagamento) {
 		this.tipoPagamento = tipoPagamento;
 	}
-	
-	
-	
 
-	
-	
 }

@@ -82,12 +82,10 @@ $(function() {
 
 						<div class="box-footer">
 							<div class="form-group">
-								<h:commandButton value="Cadastrar"
-									styleClass="btn btn-info pull-right"
-									action="#{manterUsuarioMB.cadastrarUsuario()}" ajax="true" />
-								<h:commandButton value="Limpar"
-									styleClass="btn btn-info pull-right"
-									action="#{manterUsuarioMB.limpaCampos()}" immediate="true"
+								<p:commandButton value="Cadastrar"
+									action="#{manterClienteMB.cadastrarCliente()}" ajax="true" />
+								<p:commandButton value="Limpar"
+									action="#{manterClienteMB.limparCampos()}" immediate="true"
 									ajax="true" update="@form" />
 							</div>
 						</div>
