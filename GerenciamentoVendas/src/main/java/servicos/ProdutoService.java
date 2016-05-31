@@ -5,10 +5,15 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import entidades.EntradaProduto;
 import entidades.Produto;
+import entidades.SaidaProduto;
 import exceptions.PersistenciaException;
+import persistence.EntradaProdutoDao;
 import persistence.GerencialDao;
 import persistence.ProdutoDao;
+import persistence.SaidaProdutoDao;
+import util.MensagensUtil;
 
 /**
  * 
@@ -21,10 +26,35 @@ public class ProdutoService {
 	@EJB
 	ProdutoDao produtoDao;
 
+	@EJB
+	EntradaProdutoDao entradaProdutoDao;
+
+	@EJB
+	SaidaProdutoDao saidaProdutoDao;
+
+	public void entradaProduto(EntradaProduto entradaProduto) throws PersistenciaException {
+
+		entradaProdutoDao.gravar(entradaProduto);
+		this.atualizaProduto(entradaProduto.getProduto());
+
+	}
+
+	public void saidaProduto(SaidaProduto saidaProduto) throws PersistenciaException {
+
+		saidaProdutoDao.gravar(saidaProduto);
+		this.atualizaProduto(saidaProduto.getProduto());
+
+	}
+
 	public void cadastraProduto(Produto produto) throws Exception {
-	
-			produtoDao.gravarOuAtualizar(produto);
-	
+
+		Produto produtoExistente = produtoDao.buscaPorTamanhoEProduto(produto);
+		if (null != produtoExistente) {
+			throw new Exception("Produto ja cadastrado.");
+		} else {
+			produtoDao.gravar(produto);
+		}
+
 	}
 
 	public void deletaProduto(Produto produto) {
@@ -45,6 +75,14 @@ public class ProdutoService {
 		}
 	}
 
+	public void atualizarProduto(Produto produto) {
+		try {
+			produtoDao.atualizar(produto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public List<Produto> listarTodos() {
 		return produtoDao.listarTudo();
 	}
@@ -53,4 +91,7 @@ public class ProdutoService {
 		return produtoDao.filtrarProdutos(filtro);
 	}
 
+	public List<String> listaTamanhosPorProduto(Produto produto) {
+		return produtoDao.listaTamanhosPorProduto(produto);
+	}
 }

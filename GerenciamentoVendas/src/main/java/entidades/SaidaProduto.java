@@ -47,7 +47,7 @@ public class SaidaProduto extends Entidade {
 	private String observacao;
 
 	public SaidaProduto() {
-		// TODO Auto-generated constructor stub
+		this.setId(null);
 	}
 
 	public Integer getId() {
@@ -101,7 +101,5 @@ public class SaidaProduto extends Entidade {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
 
 }

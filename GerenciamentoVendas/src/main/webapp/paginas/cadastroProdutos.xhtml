@@ -45,14 +45,23 @@
 									styleClass="form-control" />
 							</div>
 							<div class="form-group" style="width: 200px;">
-								<p:outputLabel value="Palavra-chave" />
-								<h:inputText value="#{manterProdutoMB.produto.palavrasChaves}" styleClass="form-control"/>
+								<p:outputLabel value="Quantidade Minima" />
+								<h:inputText value="#{manterProdutoMB.produto.qtdMinima}"
+									styleClass="form-control" />
 							</div>
 							<div class="form-group" style="width: 200px;">
 								<p:outputLabel value="Código" />
-								<h:inputText value="#{manterProdutoMB.produto.id}"
+								<h:inputText value="#{manterProdutoMB.produto.id.codigo}"
 									styleClass="form-control" />
 							</div>
+							<div class="form-group" style="width: 200px;">
+								<p:outputLabel value="Valor de Venda" />
+								<h:inputText value="#{manterProdutoMB.produto.valorVenda}"
+									styleClass="form-control" />
+							</div>
+
+
+
 						</div>
 						<div class="col-md-6">
 							<div class="form-group" style="width: 200px;">
@@ -75,13 +84,24 @@
 									<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
 									<f:selectItems value="#{manterProdutoMB.listaCategorias}"
 										var="categoria" itemLabel="#{categoria.noCategoria}"></f:selectItems>
-
+									<p:ajax event="change" update="tamanho" partialSubmit="true"
+										listener="#{manterProdutoMB.listaTamanhosPorCategoria()}">
+									</p:ajax>
 								</h:selectOneMenu>
 							</div>
 							<div class="form-group" style="width: 200px;">
 								<p:outputLabel value="Descrição" />
 								<h:inputTextarea value="#{manterProdutoMB.produto.descricao}"
 									styleClass="form-control"></h:inputTextarea>
+							</div>
+							<div class="form-group" style="width: 200px;">
+								<h:outputLabel value="Tamanho" />
+								<h:selectOneMenu id="tamanho" required="true"
+									class="form-control"
+									value="#{manterProdutoMB.produto.id.tamanho}">
+									<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+									<f:selectItems value="#{manterProdutoMB.listaTamanhos}"></f:selectItems>
+								</h:selectOneMenu>
 							</div>
 						</div>
 

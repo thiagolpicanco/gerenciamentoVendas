@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml">
+	<ui:define name="body">
+		<style type="text/css">
+#tabela_data {
+	text-align: center !important;
+}
+
+div.menu {
+	text-align: center;
+}
+
+.menu div.ui-menubar {
+	text-align: center;
+}
+
+.menu .ui-menu-list {
+	width: 100%;
+	display: inline-flex;
+}
+
+div.menu>ul.ui-menu-list>li>a {
+	width: 100%;
+}
+
+div.menu>ul.ui-menu-list>li {
+	width: 100%;
+}
+
+.ui-menuitem-text {
+	float: none !important;
+}
+
+.ui-menubar {
+	mouseover: #1A2226;
+	background-color: #222D32 !important;
+	background: grey;
+}
+
+.ui-menuitem-text {
+	color: #B8BDB5;
+}
+</style>
+
+
+		<h:form>
+
+			<div class="box box-primary" style="min-height: 1000px">
+				<div class="box-header with-border" style="border-bottom: 30px;">
+					<h2 class="box-title">Gerenciamento de Estoque</h2>
+
+				</div>
+				<p:spacer height="50px"></p:spacer>
+				<p:menubar styleClass="menu" style="text-align: center">
+
+					<p:menuitem value="Consultar Estoque" icon="icon-up-big"
+						action="#{manterProdutoMB.renderizaConsulta()}" update="principal">
+					</p:menuitem>
+
+					<p:menuitem value="Entrada Manual" icon="icon-up-big"
+						action="#{manterProdutoMB.renderizaEntrada()}" update="principal">
+					</p:menuitem>
+
+
+					<p:menuitem value="Saida Manual" icon="icon-down-big"
+						action="#{manterProdutoMB.renderizaSaida()}" update="principal">
+
+					</p:menuitem>
+
+					<p:menuitem value="Relatorio de Reposição" icon="icon-down-big"
+						action="#{manterProdutoMB.renderizaRelatorio()}"
+						update="principal">
+					</p:menuitem>
+
+
+
+				</p:menubar>
+
+				<h:panelGroup id="principal">
+					<p:messages />
+
+					<h:panelGroup
+						rendered="#{manterProdutoMB.render.equalsIgnoreCase('c')}">
+						<ui:include src="/paginas/consultarProdutos.xhtml" />
+					</h:panelGroup>
+
+
+
+					<h:panelGroup
+						rendered="#{manterProdutoMB.render.equalsIgnoreCase('e')}">
+						<ui:include src="/paginas/entradaProdutoEstoque.xhtml" />
+					</h:panelGroup>
+
+
+					<h:panelGroup
+						rendered="#{manterProdutoMB.render.equalsIgnoreCase('s')}">
+						<ui:include src="/paginas/saidaProdutoEstoque.xhtml" />
+					</h:panelGroup>
+
+					<h:panelGroup
+						rendered="#{manterProdutoMB.render.equalsIgnoreCase('e')}">
+						<ui:include src="" />
+					</h:panelGroup>
+
+
+
+
+
+				</h:panelGroup>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+
+
+

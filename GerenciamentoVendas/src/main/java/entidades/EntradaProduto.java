@@ -37,7 +37,7 @@ public class EntradaProduto extends Entidade {
 	@ManyToOne
 	@JoinColumn(name = "nu_compra")
 	private Compra compra;
-	@Column(name = "data_saida")
+	@Column(name = "data_entrada")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date data;
 	@Column(name = "quantidade")
@@ -47,7 +47,7 @@ public class EntradaProduto extends Entidade {
 	private String observacao;
 
 	public EntradaProduto() {
-		// TODO Auto-generated constructor stub
+		this.setId(null);
 	}
 
 	public Integer getId() {
@@ -97,7 +97,5 @@ public class EntradaProduto extends Entidade {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-
-	
 
 }

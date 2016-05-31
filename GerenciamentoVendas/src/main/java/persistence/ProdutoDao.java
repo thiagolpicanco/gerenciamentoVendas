@@ -15,15 +15,14 @@ public class ProdutoDao extends GerencialDao<Produto> {
 
 		StringBuilder hql = new StringBuilder();
 		hql.append("select p from Produto p ");
-		hql.append("where p.id is not null ");
+		hql.append("where p.id.codigo is not null ");
 
 		if (null != filtro.getNome() && !filtro.getNome().isEmpty()) {
 			hql.append(" and p.nome = :nome");
 		}
-		
 
-		if (null != filtro.getId() && !filtro.getId().equals(0)) {
-			hql.append(" and p.id = :id ");
+		if (null != filtro.getId().getCodigo() && !filtro.getId().getCodigo().equals(0)) {
+			hql.append(" and p.id.codigo = :id ");
 		}
 
 		if (null != filtro.getFornecedor()) {
@@ -38,9 +37,8 @@ public class ProdutoDao extends GerencialDao<Produto> {
 		if (null != filtro.getNome() && !filtro.getNome().isEmpty()) {
 			query.setParameter("nome", filtro.getNome());
 		}
-		
 
-		if (null != filtro.getId() && !filtro.getId().equals(0)) {
+		if (null != filtro.getId().getCodigo() && !filtro.getId().getCodigo().equals(0)) {
 			query.setParameter("id", filtro.getId());
 		}
 
@@ -59,6 +57,48 @@ public class ProdutoDao extends GerencialDao<Produto> {
 			return null;
 		}
 
+	}
+
+	public Produto buscaPorTamanhoEProduto(Produto produto) {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("select e from Produto e ");
+		sb.append("where e.id.codigo = :produto ");
+		sb.append(" and e.id.tamanho = :tamanho ");
+
+		Query query = getEntityManager().createQuery(sb.toString());
+
+		query.setParameter("produto", produto.getId().getCodigo());
+		query.setParameter("tamanho", produto.getId().getTamanho());
+
+		try {
+			produto = (Produto) query.getSingleResult();
+			return produto;
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
+	public List<String> listaTamanhosPorProduto(Produto produto) {
+		List<String> listaTamanhos = null;
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("select e.tamanho from ProdutoEstoque e ");
+		sb.append("where e.produto = :produto");
+		sb.append("select e from Estoque e ");
+		Query query = getEntityManager().createQuery(sb.toString());
+
+		query.setParameter("produto", produto);
+
+		try {
+			listaTamanhos = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return listaTamanhos;
 	}
 
 }

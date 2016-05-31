@@ -1,25 +1,26 @@
 package controladores;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
 
 import org.primefaces.context.RequestContext;
 
 import entidades.CategoriaProduto;
+import entidades.EntradaProduto;
 import entidades.Fornecedor;
 import entidades.Produto;
+import entidades.SaidaProduto;
+import enums.EnumMotivoEntrada;
+import enums.EnumMotivoSaida;
 import enums.TamanhoCalcadosEnum;
 import enums.TamanhoRoupasLetrasEnum;
-import enums.TamanhoRoupasNumeralEnum;
 import persistence.CategoriaProdutoDao;
 import servicos.FornecedorService;
 import servicos.ProdutoService;
@@ -48,21 +49,54 @@ public class ManterProdutoMB {
 
 	private List<Fornecedor> listaFornecedores;
 	private Produto produto;
-
+	private List<String> listaTamanhos;
 	private Produto produtoSelecionado;
+	private Integer qtdEntrada;
+	private String render;
+	private Integer qtdSaida;
+	private List<String> listaMotivos;
+	private SaidaProduto saidaProduto;
+	private EntradaProduto entradaProduto;
 
 	@PostConstruct
 	public void init() {
 		produto = new Produto();
-		
+		saidaProduto = new SaidaProduto();
+		entradaProduto = new EntradaProduto();
+
 		produtoSelecionado = new Produto();
-		this.inicializaCombos();
-		listarProdutos();
+		this.listarProdutos();
 	}
 
 	public void limpaCampos() {
 		produto = new Produto();
+		saidaProduto = new SaidaProduto();
+		entradaProduto = new EntradaProduto();
+		qtdEntrada = 0;
+		qtdSaida = null;
+		RequestContext.getCurrentInstance().update("principal");
+	}
 
+	public void renderizaConsulta() {
+		render = "c";
+		this.limpaCampos();
+	}
+
+	public void renderizaEntrada() {
+		render = "e";
+		this.limpaCampos();
+		this.listaMotivosEntrada();
+	}
+
+	public void renderizaSaida() {
+		render = "s";
+		this.limpaCampos();
+		this.listaMotivosSaida();
+	}
+
+	public void renderizaRelatorio() {
+		render = "r";
+		this.limpaCampos();
 	}
 
 	public void buscar() {
@@ -86,11 +120,80 @@ public class ManterProdutoMB {
 
 	public void cadastraProduto() {
 		try {
+			this.produto.setQtdAtual(0);
 			produtoService.cadastraProduto(this.produto);
 			MensagensUtil.adicionaMensagemSucesso(MSG_PRODUTO_CADASTRADO);
 			produto = new Produto();
+
 		} catch (Exception e) {
 			MensagensUtil.adicionaMensagemErro(MSG_PRODUTO_ERRO + e.getMessage());
+		}
+
+	}
+
+	public void listaMotivosEntrada() {
+		listaMotivos = new ArrayList<String>();
+
+		for (EnumMotivoEntrada motivo : EnumMotivoEntrada.values()) {
+			listaMotivos.add(motivo.getDescricao());
+		}
+
+	}
+
+	public void listaMotivosSaida() {
+		listaMotivos = new ArrayList<String>();
+
+		for (EnumMotivoSaida motivo : EnumMotivoSaida.values()) {
+			listaMotivos.add(motivo.getDescricao());
+		}
+
+	}
+
+	public void listaTamanhosPorCategoria() {
+		if (produto.getCategoria() != null) {
+			listaTamanhos = new ArrayList<>();
+			if (produto.getCategoria().getNoCategoria().equalsIgnoreCase("Calçados")) {
+				for (TamanhoCalcadosEnum enumCalcado : TamanhoCalcadosEnum.values()) {
+					listaTamanhos.add(enumCalcado.getLetra());
+				}
+			} else {
+				for (TamanhoRoupasLetrasEnum enumRoupa : TamanhoRoupasLetrasEnum.values()) {
+					listaTamanhos.add(enumRoupa.getLetra());
+				}
+			}
+		}
+	}
+
+	public void efetuarEntradaEstoque() {
+		entradaProduto.setData(new Date());
+		entradaProduto.setProduto(produto);
+		entradaProduto.setQuantidade(qtdEntrada);
+		Integer qtdFinal = produto.getQtdAtual() + this.qtdEntrada;
+		produto.setQtdAtual(qtdFinal);
+		try {
+			produtoService.entradaProduto(entradaProduto);
+			MensagensUtil.adicionaMensagemSucesso("Entrada de produto efetuada com sucesso");
+			this.limpaCampos();
+			this.renderizaConsulta();
+		} catch (Exception e) {
+			MensagensUtil.adicionaMensagemErro("Erro ao dar entrada de produto" + e.getMessage());
+		}
+
+	}
+
+	public void efetuarSaidaEstoque() {
+		Integer qtdAtual = produto.getQtdAtual();
+		Integer qtdFinal = qtdAtual - this.qtdSaida;
+		produto.setQtdAtual(qtdFinal);
+		saidaProduto.setDataSaida(new Date());
+		saidaProduto.setQuantidade(this.qtdSaida);
+
+		try {
+			produtoService.saidaProduto(saidaProduto);
+			MensagensUtil.adicionaMensagemSucesso("Remoção de produto efetuada com sucesso");
+
+		} catch (Exception e) {
+			MensagensUtil.adicionaMensagemErro("Erro ao dar remover de produto" + e.getMessage());
 		}
 
 	}
@@ -157,6 +260,62 @@ public class ManterProdutoMB {
 
 	public void setProdutoSelecionado(Produto produtoSelecionado) {
 		this.produtoSelecionado = produtoSelecionado;
+	}
+
+	public List<String> getListaTamanhos() {
+		return listaTamanhos;
+	}
+
+	public void setListaTamanhos(List<String> listaTamanhos) {
+		this.listaTamanhos = listaTamanhos;
+	}
+
+	public String getRender() {
+		return render;
+	}
+
+	public void setRender(String render) {
+		this.render = render;
+	}
+
+	public Integer getQtdEntrada() {
+		return qtdEntrada;
+	}
+
+	public void setQtdEntrada(Integer qtdEntrada) {
+		this.qtdEntrada = qtdEntrada;
+	}
+
+	public Integer getQtdSaida() {
+		return qtdSaida;
+	}
+
+	public void setQtdSaida(Integer qtdSaida) {
+		this.qtdSaida = qtdSaida;
+	}
+
+	public List<String> getListaMotivos() {
+		return listaMotivos;
+	}
+
+	public void setListaMotivos(List<String> listaMotivos) {
+		this.listaMotivos = listaMotivos;
+	}
+
+	public SaidaProduto getSaidaProduto() {
+		return saidaProduto;
+	}
+
+	public void setSaidaProduto(SaidaProduto saidaProduto) {
+		this.saidaProduto = saidaProduto;
+	}
+
+	public EntradaProduto getEntradaProduto() {
+		return entradaProduto;
+	}
+
+	public void setEntradaProduto(EntradaProduto entradaProduto) {
+		this.entradaProduto = entradaProduto;
 	}
 
 }

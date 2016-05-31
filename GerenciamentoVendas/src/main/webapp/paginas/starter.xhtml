@@ -65,7 +65,7 @@
   -->
 <h:body class="hold-transition skin-black	
  layout-boxed">
-
+	
 	<div class="wrapper">
 
 		<!-- Main Header -->
@@ -90,18 +90,18 @@
 				<!-- User Account Menu -->
 				<li class="dropdown user user-menu">
 					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">
-						<span class="hidden-xs">#{usuarioSessaoMB.user.funcionario.nome}</span>
+					data-toggle="dropdown"> <span class="hidden-xs">#{usuarioSessaoMB.user.funcionario.nome}</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- The user image in the menu -->
 						<li class="user-header">
-							
+
 							<p>
 								#{usuarioSessaoMB.user.funcionario.nome}<small>Cargo :
 									#{usuarioSessaoMB.user.funcionario.tipoFuncionario.noTipoFuncionario}
 								</small>
-							</p></li>
+							</p>
+						</li>
 
 						<!-- Menu Footer-->
 						<li class="user-footer"><h:form>
@@ -137,8 +137,8 @@
 			<li class="header">MENU</li>
 
 
-			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
-					<span>Gerenciamento de Estoque</span> </a></li>
+			<li class="treeview"><a href="gerenciarEstoque.jsf"><i
+					class="fa fa-link"></i> <span>Gerenciamento de Estoque</span> </a></li>
 
 
 			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
@@ -200,15 +200,14 @@
 			<h1>
 				Sistema de Gerenciamento <small>Loja Bendita</small>
 			</h1>
-<!-- 			<ol class="breadcrumb"> -->
-<!-- 				<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li> -->
-<!-- 				<li class="active">Here</li> -->
-<!-- 			</ol> -->
-			</section>
+			<!-- 			<ol class="breadcrumb"> --> <!-- 				<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li> -->
+			<!-- 				<li class="active">Here</li> --> <!-- 			</ol> --> </section>
 
 			<!-- Main content -->
 			<section class="content"> <!-- Your Page Content Here --> <ui:insert
-				name="body" /> </section>
+				name="body" >
+				
+				</ui:insert>> </section>
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->

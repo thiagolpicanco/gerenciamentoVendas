@@ -41,6 +41,11 @@ public class Produto extends Entidade implements Serializable {
 	@Column(name = "valor_venda")
 	private Double valorVenda;
 
+	@Column(name = "qtd_minima")
+	private Integer qtdMinima;
+	@Column(name = "qtd_atual")
+	private Integer qtdAtual;
+
 	public Double getValorVenda() {
 		return valorVenda;
 	}
@@ -54,7 +59,8 @@ public class Produto extends Entidade implements Serializable {
 	}
 
 	public Produto() {
-		// TODO Auto-generated constructor stub
+		this.id = new ProdutoPK();
+		
 	}
 
 	public ProdutoPK getId() {
@@ -95,6 +101,22 @@ public class Produto extends Entidade implements Serializable {
 
 	public void setCategoria(CategoriaProduto categoria) {
 		this.categoria = categoria;
+	}
+
+	public Integer getQtdMinima() {
+		return qtdMinima;
+	}
+
+	public void setQtdMinima(Integer qtdMinima) {
+		this.qtdMinima = qtdMinima;
+	}
+
+	public Integer getQtdAtual() {
+		return qtdAtual;
+	}
+
+	public void setQtdAtual(Integer qtdAtual) {
+		this.qtdAtual = qtdAtual;
 	}
 
 }

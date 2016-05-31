@@ -46,6 +46,7 @@ public class Venda extends Entidade implements Serializable {
 	private String status;
 	@Column(name = "valor_total")
 	private Double valorTotal;
+	@Column(name="tipo_pagamento")
 	private TipoPagamento tipoPagamento;
 
 	public Venda() {
