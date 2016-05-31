@@ -69,6 +69,16 @@ public class ManterVendaMB {
 		venda.getListaProdutos().add(saidaProduto);
 	}
 
+	public void alteraValorTotal() {
+		Double valorTotal = 0.0;
+
+		for (SaidaProduto saidaProduto : venda.getListaProdutos()) {
+			valorTotal += saidaProduto.getProduto().getValorVenda();
+		}
+
+		venda.setValorTotal(valorTotal);
+	}
+
 	public void listarProdutos() {
 		listaProdutos = produtoService.listarTodos();
 	}
