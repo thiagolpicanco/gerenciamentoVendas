@@ -16,24 +16,80 @@
 			<div class="box box-primary">
 				<div class="box-header with-border"
 					style="border-bottom: 15px; margin-top: 15px; text-align: center">
-					<h:outputText value="Registrar Compra de Produtos"
+					<h:outputText value="Registrar compra de Produtos"
 						style="font-size: 25px; font-weight: 800; margin: 0 auto; width: 50%;" />
 				</div>
-				<div class="box-body">
-					<p:messages></p:messages>
-					<div class="form-group" style="max-width: 400px;">
-
-
-						<h:outputLabel value="Usuário" />
-						<h:inputText required="true" label="Nome"
-							styleClass="form-control"
-							value="#{manterUsuarioMB.login.usuario}" />
-
-					</div>
-				</div>
 			</div>
+			<p:messages></p:messages>
+			<h:panelGrid columns="2">
 
 
+				<p:outputLabel value="Nota Fiscal: " for="dd" />
+				<p:autoComplete id="dd" value="#{manterVendaMB.cliente}"
+					completeMethod="#{manterVendaMB.completeText}" />
+
+
+
+
+				<p:commandButton value="Adicionar Produto" style="margin-top: 40px;" />
+				<p:outputLabel value=""></p:outputLabel>
+				<p:outputLabel value="Lista de Produtos: " style="margin-top: 20px;" />
+			</h:panelGrid>
+			<p:dataTable id="listaProdutos" var="saida"
+				value="#{manterVendaMB.listaProdutosCarrinho}">
+
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Nome" />
+					</f:facet>
+					<h:outputText value="#{saida.produto.nome}">
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Código" />
+					</f:facet>
+					<h:outputText value="#{saida.produto.id.codigo}">
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Tamanho" />
+					</f:facet>
+					<h:outputText value="#{saida.produto.id.tamanho}">
+					</h:outputText>
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<p:outputLabel value="Qtd" />
+					</f:facet>
+					<h:outputText value="#{saida.quantidade}">
+					</h:outputText>
+				</p:column>
+
+
+			</p:dataTable>
+			<p:outputLabel value="Total Compra: "
+				style="margin-top: 80px;margin-right: 10px;" for="total" />
+			<p:inputText value="#{manterVendaMB.venda.valorTotal}"
+				disabled="true" id="total"></p:inputText>
+
+
+
+			<h:panelGrid style="margin-top: 80px; float: right;" columns="2">
+				<p:commandButton value="Registrar Compra" />
+				<p:commandButton value="Limpar Campos" />
+			</h:panelGrid>
+			
+			
+			
+			
+			
+			
 		</h:form>
 	</ui:define>
 

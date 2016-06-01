@@ -10,9 +10,148 @@
 </style>
 
 	<ui:define name="body">
+		<p:dialog widgetVar="dialogProduto" header="Inserir Produto"
+			id="dialogProduto" minHeight="600" minWidth="800" height="400"
+			width="800">
+
+			<h:panelGrid columns="4">
+				<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" />
+				<h:inputText value="#{manterProdutoMB.produto.nome}"
+					class="form-control" />
+
+
+				<p:outputLabel value="Código" style="margin-left: 20px;" />
+				<h:inputText value="#{manterProdutoMB.produto.id.codigo}"
+					class="form-control" />
+
+				<p:outputLabel value="Fornecedor" />
+				<h:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}"
+					converter="omnifaces.SelectItemsConverter" class="form-control">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+					<f:selectItems value="#{manterProdutoMB.listaFornecedores}"
+						var="for" itemLabel="#{for.nome}" />
+				</h:selectOneMenu>
+
+				<p:outputLabel value="Categoria" style="margin-left: 20px;" />
+				<h:selectOneMenu value="#{manterProdutoMB.produto.categoria}"
+					class="form-control" converter="omnifaces.SelectItemsConverter">
+					<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+					<f:selectItems value="#{manterProdutoMB.listaCategorias}"
+						var="categoria" itemLabel="#{categoria.noCategoria}"></f:selectItems>
+
+				</h:selectOneMenu>
+			</h:panelGrid>
+			<p:commandButton value="Buscar Produto"
+				style="border-top: 40px; position: relative;" />
+			<p:separator></p:separator>
+
+			<h:panelGrid columns="2" style="margin-top: 30px;">
+
+				<p:outputLabel value="Produto: " style="margin-right: 20px;" />
+				<h:selectOneMenu style="width: 600px; " class="form-control">
+				</h:selectOneMenu>
+			</h:panelGrid>
+			<p:separator></p:separator>
+
+			<h:panelGrid columns="4">
+
+				<p:outputLabel value="Nome: " style="margin-right: 10px;" />
+				<h:inputText disabled="true" />
+				<p:outputLabel value="Código: " />
+				<h:inputText disabled="true" />
+
+				<p:outputLabel value="Tamanho: " />
+				<h:inputText disabled="true" />
+
+				<p:outputLabel value="Fornecedor: " />
+				<h:inputText disabled="true" />
+
+				<p:outputLabel value="Categoria: " />
+				<h:inputText disabled="true" />
+
+				<p:outputLabel value="Valor: " />
+				<h:inputText disabled="true" />
+
+
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Descricao: " />
+				<h:inputText disabled="true" style="width: 520px;" />
+			</h:panelGrid>
+
+
+
+
+			<h:panelGrid columns="2" style="margin-top: 30px;">
+				<p:column>
+					<h:panelGrid columns="2" style="margin-right: 356px;">
+						<p:outputLabel value="Quantidade: " />
+						<p:spinner id="basic" value="#{manterProdutoMB.qtdEntrada}"
+							maxlength="4" size="2" requiredMessage="Campo Obrigatório"
+							style="text-align: center;" min="1" />
+					</h:panelGrid>
+				</p:column>
+				<p:column>
+					<h:panelGrid columns="4" style=" float: right;">
+						<p:commandButton value="Inserir Produto"></p:commandButton>
+						<p:commandButton value="Voltar"
+							onclick="PF('dialogProduto').hide();"></p:commandButton>
+					</h:panelGrid>
+				</p:column>
+			</h:panelGrid>
+		</p:dialog>
+
+
+
+
+		<p:dialog widgetVar="dialogCliente" header="Buscar Cliente"
+			id="dialogCliente" minHeight="600" minWidth="800" height="400"
+			width="800">
+
+			<h:panelGrid columns="4">
+				<p:outputLabel value="Nome do Cliente" style="margin-right: 10px;" />
+				<h:inputText value="#{manterProdutoMB.produto.nome}"
+					class="form-control" />
+
+				<p:outputLabel value="CPF" style="margin-right: 10px;" />
+				<h:inputText value="#{manterProdutoMB.produto.nome}"
+					class="form-control" />
+
+			</h:panelGrid>
+			<p:commandButton value="Buscar Cliente"
+				style="border-top: 40px; position: relative;" />
+			<p:separator></p:separator>
+
+			<h:panelGrid columns="2" style="margin-top: 30px;">
+
+				<p:outputLabel value="Cliente: " style="margin-right: 20px;" />
+				<h:selectOneMenu style="width: 600px; " class="form-control">
+				</h:selectOneMenu>
+			</h:panelGrid>
+			<p:separator></p:separator>
+
+			<h:panelGrid columns="4">
+				<p:outputLabel value="Nome: " style="margin-right: 10px;" />
+				<h:inputText disabled="true" />
+				<p:outputLabel value="CPF " />
+				<h:inputText disabled="true" />
+
+				<p:outputLabel value="Email: " />
+				<h:inputText disabled="true" />
+
+				<p:outputLabel value="Telefone: " />
+				<h:inputText disabled="true" />
+
+
+			</h:panelGrid>
+
+
+
+
+
+		</p:dialog>
 
 		<h:form>
-
 			<div class="box box-primary">
 				<div class="box-header with-border"
 					style="border-bottom: 15px; margin-top: 15px; text-align: center">
@@ -22,16 +161,26 @@
 			</div>
 			<p:messages></p:messages>
 			<h:panelGrid columns="2">
+				<p:commandButton value="Buscar Cliente"
+					onclick="PF('dialogCliente').show()"
+					style="margin-top: 10px; margin-bottom: 20px;" />
+			</h:panelGrid>
 
+			<h:panelGrid columns="4">
+				<p:outputLabel value="Nome " style="margin-right: 15px;" />
+				<p:inputText disabled="true" />
 
-				<p:outputLabel value="Cliente" for="dd" />
-				<p:autoComplete id="dd" value="#{manterVendaMB.cliente}"
-					completeMethod="#{manterVendaMB.completeText}" />
+				<p:outputLabel value="CPF "
+					style="margin-left: 250px;margin-right: 15px;" />
+				<p:inputText disabled="true" />
 
+			</h:panelGrid>
 
-
+			<p:separator />
+			<h:panelGrid>
+				<p:commandButton value="Adicionar produto à lista"
+					onclick="PF('dialogProduto').show()" />
 				<p:outputLabel value=""></p:outputLabel>
-				<p:commandButton value="Adicionar Produto" />
 				<p:outputLabel value="Lista de Produtos: " style="margin-top: 20px;" />
 			</h:panelGrid>
 			<p:dataTable id="listaProdutos" var="saida"
@@ -72,17 +221,20 @@
 
 
 			</p:dataTable>
-
-			<p:outputLabel value="Valor Total Venda: " style="margin-top: 50px;"
-				for="total" />
+			<p:outputLabel value="Total Venda:  "
+				style="margin-top: 80px;margin-right: 10px;" for="total" />
 			<p:inputText value="#{manterVendaMB.venda.valorTotal}"
 				disabled="true" id="total"></p:inputText>
 
 
-			<h:panelGrid style="margin-top: 20px;" columns="2">
+
+			<h:panelGrid style="margin-top: 80px; float: right;" columns="2">
 				<p:commandButton value="Efetuar Venda" />
 				<p:commandButton value="Limpar Campos" />
 			</h:panelGrid>
+
+
+
 		</h:form>
 	</ui:define>
 

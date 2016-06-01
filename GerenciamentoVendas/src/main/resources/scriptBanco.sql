@@ -269,6 +269,7 @@
 	data_entrada timestamp not null,
 	quantidade integer not null,
 	observacao text,
+	valor_untario numeric,
 	
 	constraint fk_produto_entrada foreign key (cod_produto, tamanho) references
 	PRODUTO (cod_produto, tamanho) MATCH SIMPLE ON update restrict on DELETE restrict,
@@ -308,7 +309,9 @@ CREATE TABLE  TIPO_PAGAMENTO(
 	
 	ALTER TABLE categoria_produto OWNER TO postgres;
 	ALTER TABLE tipo_funcionario OWNER TO postgres;
-		
+	
+	insert into funcionario values (0, 'Thiago Picanço', '05782955716', '21970014018','21970014018', 'thiagolpicanco@gmail.com', 'RUa danta tal', 1);
+	insert into login values ('admin', '21232f297a57a5a743894a0e4a801fc3', 0)
 	
 	
 	
