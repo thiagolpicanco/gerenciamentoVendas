@@ -47,11 +47,9 @@
 
 						<div class="box-footer">
 							<div class="form-group">
-								<h:commandButton value="Cadastrar"
-									styleClass="btn btn-info pull-right"
+								<p:commandButton value="Cadastrar"
 									action="#{manterUsuarioMB.cadastrarUsuario()}" ajax="true" />
-								<h:commandButton value="Limpar"
-									styleClass="btn btn-info pull-right"
+								<p:commandButton value="Limpar"
 									action="#{manterUsuarioMB.limpaCampos()}" immediate="true"
 									ajax="true" update="@form" />
 							</div>

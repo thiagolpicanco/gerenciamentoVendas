@@ -16,26 +16,26 @@
 			<h:form>
 				<h:panelGrid columns="4">
 					<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" />
-					<p:autoComplete value="#{manterVendaMB.produto.nome}"
+					<p:autoComplete value="#{manterVendaMB.filtroProduto.nome}"
 						completeMethod="#{manterVendaMB.completaNomeProduto}"></p:autoComplete>
 
 					<p:outputLabel value="Código" style="margin-left: 20px;" />
-					<h:inputText value="#{manterProdutoMB.produto.id.codigo}"
+					<h:inputText value="#{manterVendaMB.filtroProduto.id.codigo}"
 						class="form-control" />
 
 					<p:outputLabel value="Fornecedor" />
-					<h:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}"
+					<h:selectOneMenu value="#{manterVendaMB.filtroProduto.fornecedor}"
 						converter="omnifaces.SelectItemsConverter" class="form-control">
 						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-						<f:selectItems value="#{manterProdutoMB.listaFornecedores}"
+						<f:selectItems value="#{manterVendaMB.listaFornecedores}"
 							var="for" itemLabel="#{for.nome}" />
 					</h:selectOneMenu>
 
 					<p:outputLabel value="Categoria" style="margin-left: 20px;" />
-					<h:selectOneMenu value="#{manterProdutoMB.produto.categoria}"
+					<h:selectOneMenu value="#{manterVendaMB.filtroProduto.categoria}"
 						class="form-control" converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-						<f:selectItems value="#{manterProdutoMB.listaCategorias}"
+						<f:selectItems value="#{manterVendaMB.listaCategorias}"
 							var="categoria" itemLabel="#{categoria.noCategoria}"></f:selectItems>
 
 					</h:selectOneMenu>
@@ -50,7 +50,10 @@
 
 					<p:outputLabel value="Produto: " style="margin-right: 20px;" />
 					<h:selectOneMenu style="width: 600px; " id="produtoSelecionar"
-						class="form-control" converter="omnifaces.SelectItemsConverter">
+						class="form-control" converter="omnifaces.SelectItemsConverter"
+						value="#{manterVendaMB.produto}">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione o Produto" />
 						<f:selectItems value="#{manterVendaMB.listaProdutos}" var="prod"
 							itemLabel="Nome: #{prod.nome} | Codigo: #{prod.id.codigo} | Tamanho #{prod.id.tamanho}"></f:selectItems>
 						<p:ajax update="dadosProduto" event="change" partialSubmit="true"></p:ajax>
@@ -97,14 +100,17 @@
 					<p:column>
 						<h:panelGrid columns="2" style="margin-right: 356px;">
 							<p:outputLabel value="Quantidade: " />
-							<p:spinner id="basic" value="#{manterProdutoMB.qtdEntrada}"
+							<p:spinner id="basic" value="#{manterVendaMB.qtdSaida}"
 								maxlength="4" size="2" requiredMessage="Campo Obrigatório"
 								style="text-align: center;" min="1" />
 						</h:panelGrid>
 					</p:column>
 					<p:column>
 						<h:panelGrid columns="4" style=" float: right;">
-							<p:commandButton value="Inserir Produto"></p:commandButton>
+							<p:commandButton value="Inserir Produto"
+								action="#{manterVendaMB.adicionaProdutoVenda()}"
+								oncomplete="PF('dialogProduto').hide();"
+								update=":principalVenda"></p:commandButton>
 							<p:commandButton value="Voltar"
 								onclick="PF('dialogProduto').hide();"></p:commandButton>
 						</h:panelGrid>
@@ -122,11 +128,11 @@
 			<h:form>
 				<h:panelGrid columns="4">
 					<p:outputLabel value="Nome do Cliente" style="margin-right: 10px;" />
-					<h:inputText value="#{manterProdutoMB.produto.nome}"
+					<h:inputText value="#{manterVendaMB.filtroCliente.nome}"
 						class="form-control" />
 
 					<p:outputLabel value="CPF" style="margin-right: 10px;" />
-					<h:inputText value="#{manterProdutoMB.produto.nome}"
+					<h:inputText value="#{manterVendaMB.filtroCliente.cpfCnpj}"
 						class="form-control" />
 
 				</h:panelGrid>
@@ -137,29 +143,42 @@
 				<h:panelGrid columns="2" style="margin-top: 30px;">
 
 					<p:outputLabel value="Cliente: " style="margin-right: 20px;" />
-					<h:selectOneMenu style="width: 600px; " class="form-control">
+					<h:selectOneMenu style="width: 600px; " class="form-control"
+						converter="omnifaces.SelectItemsConverter"
+						value="#{manterVendaMB.cliente}">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+						<f:selectItems value="#{manterVendaMB.listaClientes}" var="cli"
+							itemLabel="Nome: #{cli.nome} | CPF: #{cli.cpfCnpj}"></f:selectItems>
+						<p:ajax update="dadosCliente" event="change" partialSubmit="true"></p:ajax>
 					</h:selectOneMenu>
 				</h:panelGrid>
 				<p:separator></p:separator>
 
-				<h:panelGrid columns="4">
+				<h:panelGrid columns="4" id="dadosCliente">
 					<p:outputLabel value="Nome: " style="margin-right: 10px;" />
-					<h:inputText disabled="true" />
+					<h:inputText disabled="true" value="#{manterVendaMB.cliente.nome}" />
 					<p:outputLabel value="CPF " />
-					<h:inputText disabled="true" />
+					<h:inputText disabled="true"
+						value="#{manterVendaMB.cliente.cpfCnpj}" />
 
 					<p:outputLabel value="Email: " />
-					<h:inputText disabled="true" />
+					<h:inputText disabled="true" value="#{manterVendaMB.cliente.email}" />
 
 					<p:outputLabel value="Telefone: " />
-					<h:inputText disabled="true" />
+					<h:inputText disabled="true"
+						value="#{manterVendaMB.cliente.telefone}" />
+				</h:panelGrid>
 
-
+				<h:panelGrid columns="4" style=" float: right;">
+					<p:commandButton value="Selecionar Cliente"
+						oncomplete="PF('dialogCliente').hide();" update=":principalVenda"></p:commandButton>
+					<p:commandButton value="Voltar"
+						onclick="PF('dialogCliente').hide();"></p:commandButton>
 				</h:panelGrid>
 			</h:form>
 		</p:dialog>
 
-		<h:form>
+		<h:form id="principalVenda">
 			<div class="box box-primary">
 				<div class="box-header with-border"
 					style="border-bottom: 15px; margin-top: 15px; text-align: center">
@@ -176,11 +195,12 @@
 
 			<h:panelGrid columns="4">
 				<p:outputLabel value="Nome " style="margin-right: 15px;" />
-				<p:inputText disabled="true" />
+				<p:inputText disabled="true" value="#{manterVendaMB.cliente.nome}" />
 
 				<p:outputLabel value="CPF "
 					style="margin-left: 250px;margin-right: 15px;" />
-				<p:inputText disabled="true" />
+				<p:inputText disabled="true"
+					value="#{manterVendaMB.cliente.cpfCnpj}" />
 
 			</h:panelGrid>
 
@@ -192,7 +212,7 @@
 				<p:outputLabel value="Lista de Produtos: " style="margin-top: 20px;" />
 			</h:panelGrid>
 			<p:dataTable id="listaProdutos" var="saida"
-				value="#{manterVendaMB.listaProdutosCarrinho}">
+				value="#{manterVendaMB.venda.listaProdutos}">
 
 
 				<p:column>

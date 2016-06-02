@@ -9,12 +9,16 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import entidades.CategoriaProduto;
 import entidades.Cliente;
+import entidades.Fornecedor;
 import entidades.Funcionario;
 import entidades.Produto;
 import entidades.SaidaProduto;
 import entidades.Venda;
+import persistence.CategoriaProdutoDao;
 import servicos.ClienteService;
+import servicos.FornecedorService;
 import servicos.FuncionarioService;
 import servicos.ProdutoService;
 import servicos.VendaService;
@@ -31,6 +35,13 @@ public class ManterVendaMB {
 	ProdutoService produtoService;
 	@EJB
 	FuncionarioService funcionarioService;
+
+	@EJB
+	FornecedorService fornecedorService;
+
+	@EJB
+	CategoriaProdutoDao categoriaProdutoDao;
+
 	// -------VARIAVEIS------------//
 
 	private Venda venda;
@@ -43,36 +54,46 @@ public class ManterVendaMB {
 
 	private List<Funcionario> listaFuncionarios;
 
+	private Produto filtroProduto;
+
+	private Cliente filtroCliente;
+
 	private List<Produto> listaProdutos;
 
 	private Cliente cliente;
 	private Produto produto;
 	private SaidaProduto saidaProduto;
 	private List<SaidaProduto> listaProdutosCarrinho;
+	private List<CategoriaProduto> listaCategorias;
+	private Integer qtdSaida;
+
+	private List<Fornecedor> listaFornecedores;
 
 	@PostConstruct
 	public void init() {
 		venda = new Venda();
 		listaProdutosCarrinho = new ArrayList<>();
 		produto = new Produto();
+		filtroProduto = new Produto();
+		filtroCliente = new Cliente();
 		saidaProduto = new SaidaProduto();
 		inicializaCombos();
 	}
 
 	public List<String> completaNomeProduto(String query) {
-		produto.setNome(query);
+		filtroProduto.setNome(query);
 		List<String> listaNomes = new ArrayList<>();
 
-		listaProdutos = produtoService.listarProdutoLike(produto);
+		listaProdutos = produtoService.listarProdutoLike(filtroProduto);
 		for (Produto produto : listaProdutos) {
 			listaNomes.add(produto.getNome());
 		}
 
 		return listaNomes;
 	}
-	
+
 	public void buscarProduto() {
-		listaProdutos = produtoService.listaPorFiltro(produto);
+		listaProdutos = produtoService.listaPorFiltro(filtroProduto);
 	}
 
 	public List<String> completeText(String query) {
@@ -86,22 +107,25 @@ public class ManterVendaMB {
 
 	public void inicializaCombos() {
 		this.listarClientes();
+		listaFornecedores = fornecedorService.listarTodos();
+		listaCategorias = categoriaProdutoDao.listarTudo();
 	}
 
 	public void adicionaProdutoVenda() {
+		saidaProduto = new SaidaProduto();
+		saidaProduto.setQuantidade(qtdSaida);
 		saidaProduto.setProduto(produto);
 		saidaProduto.setVenda(venda);
 		saidaProduto.setDataSaida(new Date());
 		venda.getListaProdutos().add(saidaProduto);
+		this.alteraValorTotal();
 	}
 
 	public void alteraValorTotal() {
 		Double valorTotal = 0.0;
-
 		for (SaidaProduto saidaProduto : venda.getListaProdutos()) {
-			valorTotal += saidaProduto.getProduto().getValorVenda();
+			valorTotal += saidaProduto.getProduto().getValorVenda() * saidaProduto.getQuantidade();
 		}
-
 		venda.setValorTotal(valorTotal);
 	}
 
@@ -231,6 +255,46 @@ public class ManterVendaMB {
 
 	public void setListaProdutosCarrinho(List<SaidaProduto> listaProdutosCarrinho) {
 		this.listaProdutosCarrinho = listaProdutosCarrinho;
+	}
+
+	public Produto getFiltroProduto() {
+		return filtroProduto;
+	}
+
+	public void setFiltroProduto(Produto filtroProduto) {
+		this.filtroProduto = filtroProduto;
+	}
+
+	public Cliente getFiltroCliente() {
+		return filtroCliente;
+	}
+
+	public void setFiltroCliente(Cliente filtroCliente) {
+		this.filtroCliente = filtroCliente;
+	}
+
+	public List<CategoriaProduto> getListaCategorias() {
+		return listaCategorias;
+	}
+
+	public void setListaCategorias(List<CategoriaProduto> listaCategorias) {
+		this.listaCategorias = listaCategorias;
+	}
+
+	public List<Fornecedor> getListaFornecedores() {
+		return listaFornecedores;
+	}
+
+	public void setListaFornecedores(List<Fornecedor> listaFornecedores) {
+		this.listaFornecedores = listaFornecedores;
+	}
+
+	public Integer getQtdSaida() {
+		return qtdSaida;
+	}
+
+	public void setQtdSaida(Integer qtdSaida) {
+		this.qtdSaida = qtdSaida;
 	}
 
 }
