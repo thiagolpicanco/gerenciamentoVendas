@@ -87,6 +87,10 @@ public class ProdutoService {
 		}
 	}
 
+	public List<Produto> listarProdutoLike(Produto produto) {
+		return produtoDao.listaProdutoLike(produto);
+	}
+
 	public List<Produto> listarTodos() {
 		return produtoDao.listarTudo();
 	}

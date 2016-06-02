@@ -59,6 +59,22 @@ public class ManterVendaMB {
 		inicializaCombos();
 	}
 
+	public List<String> completaNomeProduto(String query) {
+		produto.setNome(query);
+		List<String> listaNomes = new ArrayList<>();
+
+		listaProdutos = produtoService.listarProdutoLike(produto);
+		for (Produto produto : listaProdutos) {
+			listaNomes.add(produto.getNome());
+		}
+
+		return listaNomes;
+	}
+	
+	public void buscarProduto() {
+		listaProdutos = produtoService.listaPorFiltro(produto);
+	}
+
 	public List<String> completeText(String query) {
 		List<String> results = new ArrayList<String>();
 		for (int i = 0; i < 10; i++) {
@@ -69,7 +85,6 @@ public class ManterVendaMB {
 	}
 
 	public void inicializaCombos() {
-		this.listarProdutos();
 		this.listarClientes();
 	}
 

@@ -81,6 +81,34 @@ public class ProdutoDao extends GerencialDao<Produto> {
 
 	}
 
+	public List<Produto> listaProdutoLike(Produto produto) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("select e from Produto e  where e.id.codigo is not null ");
+		if (produto.getId().getCodigo() != null) {
+			sb.append(" and  e.id.codigo = :codigo ");
+		}
+
+		if (produto.getNome() != null || !produto.getNome().isEmpty()) {
+			sb.append(" and lower(e.nome) like :nome ");
+		}
+
+		Query query = getEntityManager().createQuery(sb.toString());
+		if (produto.getId().getCodigo() != null) {
+			query.setParameter("codigo", produto.getId().getCodigo());
+		}
+		if (produto.getNome() != null || !produto.getNome().isEmpty()) {
+			query.setParameter("nome", produto.getNome().toLowerCase() + "%");
+		}
+
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
 	public List<Produto> listaProdutosPendentes() {
 		List<Produto> listaProdutos;
 		StringBuilder sb = new StringBuilder();

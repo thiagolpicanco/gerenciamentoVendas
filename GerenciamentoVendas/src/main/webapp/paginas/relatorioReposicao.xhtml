@@ -23,12 +23,12 @@
 
 					<p:dataTable id="pendentes"
 						value="#{manterProdutoMB.listaProdutosPendentes()}" var="produto"
-						emptyMessage="Não existem produtos pendentes de reposição">
+						emptyMessage="Não existem produtos pendentes de reposição" style="text-align: center">
 
 
 						<p:column>
 							<f:facet name="header">
-								<p:outputLabel value="Código" />
+								<p:outputLabel value="Codigo" />
 							</f:facet>
 							<h:outputText value="#{produto.id.codigo}">
 							</h:outputText>
@@ -42,13 +42,6 @@
 							</h:outputText>
 						</p:column>
 
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Código" />
-							</f:facet>
-							<h:outputText value="#{produto.id.codigo}">
-							</h:outputText>
-						</p:column>
 
 						<p:column>
 							<f:facet name="header">

@@ -15,6 +15,7 @@
 
 				</div>
 				<div class="box-body">
+					<p:messages></p:messages>
 
 					<div class="form-group">
 
@@ -50,10 +51,10 @@
 
 						<h:panelGrid columns="2" style="float: right;">
 							<p:commandButton value="Efetuar entrada"
-								action="#{manterProdutoMB.efetuarEntradaEstoque()}"></p:commandButton>
+								action="#{manterProdutoMB.efetuarEntradaEstoque()}" update="@form"></p:commandButton>
 							<p:commandButton value="Limpar"
 								action="#{manterProdutoMB.limpaCampos()}" ajax="true"
-								immediate="true" >
+								immediate="true">
 
 							</p:commandButton>
 						</h:panelGrid>

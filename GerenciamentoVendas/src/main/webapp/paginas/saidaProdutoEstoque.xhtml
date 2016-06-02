@@ -12,6 +12,7 @@
 				<div class="box-header with-border" style="border-bottom: 30px;">
 					<h2 class="box-title">Saida Manual de Produtos em Estoque</h2>
 				</div>
+				<p:messages></p:messages>
 				<div class="box-body" style="max-width: 400px;">
 
 					<div class="form-group">
@@ -42,14 +43,18 @@
 						<p:spinner id="basicSaida" value="#{manterProdutoMB.qtdSaida}"
 							maxlength="4" size="4" required="true" label="Quantidade"
 							requiredMessage="Campo Obrigatório" style="text-align: center;"
-							min="1" max="#{manterProdutoMB.produto.qtdAtual}" />
+							min="1" max="#{manterProdutoMB.produto.qtdAtual}">
+
+							<p:ajax event="blur" update="@form:btn"></p:ajax>
+						</p:spinner>
 
 					</div>
 					<BR />
 					<div class="form-group">
-						<p:commandButton value="Efetuar remoção"
+						<p:commandButton value="Efetuar remoção" id="btn"
 							action="#{manterProdutoMB.efetuarSaidaEstoque()}"
-							></p:commandButton>
+							disabled="#{manterProdutoMB.qtdSaida == null || manterProdutoMB.qtdSaida == 0}"
+							update="@form"></p:commandButton>
 						<p:commandButton value="Limpar"
 							action="#{manterProdutoMB.limpaCampos()}" ajax="false"
 							immediate="true">

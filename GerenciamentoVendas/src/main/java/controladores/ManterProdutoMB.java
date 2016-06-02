@@ -62,12 +62,14 @@ public class ManterProdutoMB {
 
 	@PostConstruct
 	public void init() {
+		this.listarMotivos();
 		produto = new Produto();
 		saidaProduto = new SaidaProduto();
 		entradaProduto = new EntradaProduto();
 		this.inicializaCombos();
 		produtoSelecionado = new Produto();
 		this.listarProdutos();
+
 	}
 
 	public void limpaCampos() {
@@ -88,7 +90,6 @@ public class ManterProdutoMB {
 	public void renderizaEntrada() {
 		render = "e";
 		this.limpaCampos();
-		this.listaMotivosEntrada();
 	}
 
 	public void renderizaSaida() {
@@ -134,13 +135,11 @@ public class ManterProdutoMB {
 
 	}
 
-	public void listaMotivosEntrada() {
+	public void listarMotivos() {
 		listaMotivos = new ArrayList<String>();
-
 		for (EnumMotivoEntrada motivo : EnumMotivoEntrada.values()) {
 			listaMotivos.add(motivo.getDescricao());
 		}
-
 	}
 
 	public void listaMotivosSaida() {
@@ -200,6 +199,13 @@ public class ManterProdutoMB {
 	public void efetuarSaidaEstoque() {
 		Integer qtdAtual = produto.getQtdAtual();
 		Integer qtdFinal = qtdAtual - this.qtdSaida;
+
+		if (qtdFinal < 0) {
+			MensagensUtil.adicionaMensagemErro(
+					"Erro ao remover de produto, existem " + produto.getQtdAtual() + " em estoque");
+			return;
+		}
+
 		produto.setQtdAtual(qtdFinal);
 		saidaProduto.setProduto(produto);
 		saidaProduto.setDataSaida(new Date());
