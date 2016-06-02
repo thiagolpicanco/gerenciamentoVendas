@@ -3,121 +3,125 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml">
+	<ui:define name="body">
+		<h:form>
 
 
 
 
 
-		<div class="box box-primary">
-			<div class="box-header with-border" style="border-bottom: 30px;">
-				<h2 class="box-title">Consultar Produtos</h2>
-			</div>
-			<div class="box-body">
+			<div class="box box-primary">
+				<div class="box-header with-border" style="border-bottom: 30px;">
+					<h2 class="box-title">Consultar Produtos</h2>
+				</div>
+				<div class="box-body">
 
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md-6">
-							<p:outputLabel value="Nome do Produto"
-								style="margin-right: 10px;" />
-							<h:inputText value="#{manterProdutoMB.produto.nome}"
-								class="form-control" />
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-6">
+								<p:outputLabel value="Nome do Produto"
+									style="margin-right: 10px;" />
+								<h:inputText value="#{manterProdutoMB.produto.nome}"
+									class="form-control" />
 
 
-							<p:outputLabel value="Código" />
-							<h:inputText value="#{manterProdutoMB.produto.id.codigo}"
-								class="form-control" />
+								<p:outputLabel value="Código" />
+								<h:inputText value="#{manterProdutoMB.produto.id.codigo}"
+									class="form-control" />
 
-						</div>
-						<div class="col-md-6">
-							<p:outputLabel value="Fornecedor" />
-							<h:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}"
-								converter="omnifaces.SelectItemsConverter" class="form-control">
-								<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-								<f:selectItems value="#{manterProdutoMB.listaFornecedores}"
-									var="for" itemLabel="#{for.nome}" />
-							</h:selectOneMenu>
+							</div>
+							<div class="col-md-6">
+								<p:outputLabel value="Fornecedor" />
+								<h:selectOneMenu value="#{manterProdutoMB.produto.fornecedor}"
+									converter="omnifaces.SelectItemsConverter" class="form-control">
+									<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+									<f:selectItems value="#{manterProdutoMB.listaFornecedores}"
+										var="for" itemLabel="#{for.nome}" />
+								</h:selectOneMenu>
 
-							<p:outputLabel value="Categoria" />
-							<h:selectOneMenu value="#{manterProdutoMB.produto.categoria}"
-								class="form-control" converter="omnifaces.SelectItemsConverter">
-								<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-								<f:selectItems value="#{manterProdutoMB.listaCategorias}"
-									var="categoria" itemLabel="#{categoria.noCategoria}"></f:selectItems>
+								<p:outputLabel value="Categoria" />
+								<h:selectOneMenu value="#{manterProdutoMB.produto.categoria}"
+									class="form-control" converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+									<f:selectItems value="#{manterProdutoMB.listaCategorias}"
+										var="categoria" itemLabel="#{categoria.noCategoria}"></f:selectItems>
 
-							</h:selectOneMenu>
+								</h:selectOneMenu>
 
-							<p:outputLabel value="" style="height: 20px;" />
-							<div style="border-top: 20px;">
-								<p:commandButton value="Buscar"
-									action="#{manterProdutoMB.buscar()}" update="@form" />
-								<p:commandButton value="Limpar" />
+								<p:outputLabel value="" style="height: 20px;" />
+								<div style="border-top: 20px;">
+									<p:commandButton value="Buscar"
+										action="#{manterProdutoMB.buscar()}" update="@form" />
+									<p:commandButton value="Limpar" />
+								</div>
 							</div>
 						</div>
+
+
+
+						<p:dataTable style="margin-top: 20px; text-align:center"
+							value="#{manterProdutoMB.listaProdutos}" var="produto">
+
+							<p:column>
+								<f:facet name="header">
+									<p:outputLabel value="Nome" />
+								</f:facet>
+								<h:outputText value="#{produto.nome}">
+								</h:outputText>
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<p:outputLabel value="Código" />
+								</f:facet>
+								<h:outputText value="#{produto.id.codigo}">
+								</h:outputText>
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<p:outputLabel value="Tamanho" />
+								</f:facet>
+								<h:outputText value="#{produto.id.tamanho}">
+								</h:outputText>
+							</p:column>
+
+
+							<p:column>
+								<f:facet name="header">
+									<p:outputLabel value="Marca" />
+								</f:facet>
+								<h:outputText value="#{produto.fornecedor.nome}">
+								</h:outputText>
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<p:outputLabel value="Categoria" />
+								</f:facet>
+								<h:outputText value="#{produto.categoria.noCategoria}">
+								</h:outputText>
+							</p:column>
+
+							<p:column>
+								<f:facet name="header">
+									<p:outputLabel value="Quantidade em estoque" />
+								</f:facet>
+								<h:outputText value="#{produto.qtdAtual}">
+								</h:outputText>
+							</p:column>
+
+
+
+
+
+						</p:dataTable>
 					</div>
-
-
-
-					<p:dataTable style="margin-top: 20px; text-align:center"
-						value="#{manterProdutoMB.listaProdutos}" var="produto">
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Nome" />
-							</f:facet>
-							<h:outputText value="#{produto.nome}">
-							</h:outputText>
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Código" />
-							</f:facet>
-							<h:outputText value="#{produto.id.codigo}">
-							</h:outputText>
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Tamanho" />
-							</f:facet>
-							<h:outputText value="#{produto.id.tamanho}">
-							</h:outputText>
-						</p:column>
-
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Marca" />
-							</f:facet>
-							<h:outputText value="#{produto.fornecedor.nome}">
-							</h:outputText>
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Categoria" />
-							</f:facet>
-							<h:outputText value="#{produto.categoria.noCategoria}">
-							</h:outputText>
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Quantidade em estoque" />
-							</f:facet>
-							<h:outputText value="#{produto.qtdAtual}">
-							</h:outputText>
-						</p:column>
-
-
-
-
-
-					</p:dataTable>
 				</div>
 			</div>
-		</div>
+		</h:form>
+	</ui:define>
 </ui:composition>
 
 

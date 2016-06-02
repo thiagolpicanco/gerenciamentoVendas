@@ -189,7 +189,15 @@
 	);
 	ALTER TABLE COMPRA OWNER TO postgres;
 	
-	
+
+	CREATE TABLE  TIPO_PAGAMENTO(
+	id integer not null,
+	no_tipo_pagamento text not null,
+
+	constraint pk_tipo_pagamento primary key (id)
+	)WITH (
+	  OIDS=FALSE
+	);
 	
 	
 	
@@ -203,9 +211,14 @@
 	  status text,
 	  valor_total numeric not null,
 	  tipo_pagamento integer not null,
+	  id_cliente integer not null,
+	  CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) references
+	  CLIENTE (id) MATCH SIMPLE
+		  ON UPDATE RESTRICT ON DELETE RESTRICT,
 	  CONSTRAINT pk_venda PRIMARY KEY (nu_venda),
 	  CONSTRAINT fk_pagamento FOREIGN KEY (tipo_pagamento) references
-	  TIPO_PAGAMENTO (id),
+	  TIPO_PAGAMENTO (id) MATCH SIMPLE
+		  ON UPDATE RESTRICT ON DELETE RESTRICT,
 	  CONSTRAINT fk_venda_funcionario FOREIGN KEY (id_funcionario)
 		  REFERENCES FUNCIONARIO (id) MATCH SIMPLE
 		  ON UPDATE RESTRICT ON DELETE RESTRICT
@@ -284,15 +297,11 @@
 
 	ALTER TABLE ENTRADA_PRODUTO OWNER TO postgres;
 
-CREATE TABLE  TIPO_PAGAMENTO(
-	id integer not null,
-	no_tipo_pagamento text not null,
 
-	constraint pk_tipo_pagamento primary key (id)
-	)WITH (
-	  OIDS=FALSE
-	);
-
+	
+	
+	
+	insert into cliente values (0, 'Jorge Carlos Souza', '05788847116', '2126202191', '21970014019', 'joao@gmail.com', 'Rua Carlos Monteiro 90', 'Centro', 'Cabo Frio');
 
 
 
@@ -303,15 +312,21 @@ CREATE TABLE  TIPO_PAGAMENTO(
 	
 	insert into categoria_produto values(1, 'Camisas');
 	insert into categoria_produto values(2, 'Shorts');
+	insert into categoria_produto values(3, 'Saias');
+	insert into categoria_produto values(4, 'Calçados');
+	insert into categoria_produto values(5, 'Vestidos');
+	
 	
 	insert into tipo_funcionario values(1, 'Gerente');
 	insert into tipo_funcionario values(2, 'Vendedor');
+	insert into tipo_funcionario values(3, 'Estoquista');
 	
 	ALTER TABLE categoria_produto OWNER TO postgres;
 	ALTER TABLE tipo_funcionario OWNER TO postgres;
 	
+	insert into fornecedor values (0, 'Aeropostale', '212121212212', '2126212901','21970014000', 'aero@gmail.com', 'Rua Brasil 54, Centro, Rio de Janeiro');
 	insert into funcionario values (0, 'Thiago Picanço', '05782955716', '21970014018','21970014018', 'thiagolpicanco@gmail.com', 'RUa danta tal', 1);
-	insert into login values ('admin', '21232f297a57a5a743894a0e4a801fc3', 0)
+	insert into login values ('admin', '202cb962ac59075b964b07152d234b70', 0);
 	
 	
 	

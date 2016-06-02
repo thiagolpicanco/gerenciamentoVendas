@@ -4,16 +4,25 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	template="starter.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml">
 
 
 
 
 	<ui:define name="body">
 		<p:fieldset>
-	<h:outputLabel value="teste" />
+			<h:outputLabel value="Vendas no Mês" />
+
+			<p:chart type="line" model="#{manterPrincipalMB.dateModel}"
+				style="height:400px;" />
 		</p:fieldset>
+
+
+
+
+
+
+
 	</ui:define>
 
 </ui:composition>

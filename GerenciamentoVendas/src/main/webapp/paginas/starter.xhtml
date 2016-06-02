@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -69,7 +69,7 @@
 
 		<!-- Main Header -->
 		<header class="main-header"> <!-- Logo --> <a
-			href="index2.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			href="index.jsf" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 			<span class="logo-mini"><b>Bendita</b></span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg"><b>Bendita</b></span>
 		</a> <!-- Header Navbar --> <nav class="navbar navbar-static-top"
@@ -136,8 +136,19 @@
 			<li class="header">MENU</li>
 
 
-			<li class="treeview"><a href="gerenciarEstoque.jsf"><i
-					class="fa fa-link"></i> <span>Gerenciamento de Estoque</span> </a></li>
+			<li class="treeview"><a href="#"><i class="fa fa-link"></i>
+					<span>Gerenciamento de Estoque</span> <i
+					class="fa fa-angle-left pull-right"></i></a>
+				<ul class="treeview-menu">
+					<li><a href="consultarProdutos.jsf">Consulta Estoque</a></li>
+					<li><a href="entradaProdutoEstoque.jsf">Entrada Manual de
+							Produtos</a></li>
+					<li><a href="saidaProdutoEstoque.jsf">Saida Manual de
+							Produtos</a></li>
+					<li><a href="relatorioReposicao.jsf">Relatório de
+							Reposição</a></li>
+
+				</ul></li>
 
 
 
