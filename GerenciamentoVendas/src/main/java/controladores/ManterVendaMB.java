@@ -88,6 +88,12 @@ public class ManterVendaMB {
 		filtroCliente = new Cliente();
 		saidaProduto = new SaidaProduto();
 		inicializaCombos();
+		try {
+			listaVendas = vendaService.listarTodos();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public List<String> completaNomeProduto(String query) {

@@ -53,4 +53,20 @@ public class ManterClienteMB {
 		this.listaClientes = listaClientes;
 	}
 
+	public ClienteService getClienteService() {
+		return clienteService;
+	}
+
+	public void setClienteService(ClienteService clienteService) {
+		this.clienteService = clienteService;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 }

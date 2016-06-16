@@ -31,16 +31,16 @@
 						<h:panelGrid>
 							<p:outputLabel value="CNPJ" />
 							<h:inputText value="#{manterFornecedorMB.fornecedor.cpfCnpj}"
-								styleClass="form-control" />
+								label="CNPJ" styleClass="form-control"
+								onkeypress="mascara(this,cnpj)" validator="cnpjValidator" />
 
 						</h:panelGrid>
 
 
-						<h:panelGrid style=" margin-bottom: 10px;">
+						<h:panelGrid style="margin-bottom: 10px;">
 							<p:outputLabel value="Telefone" />
 							<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
 								value="#{manterFornecedorMB.fornecedor.telefone}" />
-
 						</h:panelGrid>
 
 

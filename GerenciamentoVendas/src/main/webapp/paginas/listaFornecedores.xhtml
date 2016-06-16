@@ -1,0 +1,80 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml">
+
+
+
+	<ui:define name="body">
+		<h:form>
+
+
+			<div class="box box-primary">
+				<div class="box-header with-border" style="border-bottom: 30px;">
+					<h2 class="box-title">Fornecedores</h2>
+				</div>
+				<div class="box-body">
+					<p:messages />
+
+
+
+					<p:dataTable style="margin-top: 20px;"
+						value="#{manterFornecedorMB.listaFornecedores}" var="forn"
+						emptyMessage="Não existem fornecedores cadastrados.">
+
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Nome" />
+							</f:facet>
+							<h:outputText value="#{forn.nome}">
+							</h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="CPF" />
+							</f:facet>
+							<h:outputText value="#{forn.cpfCnpj}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Telefone" />
+							</f:facet>
+							<h:outputText value="#{forn.telefone}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Celular" />
+							</f:facet>
+							<h:outputText value="#{forn.celular}">
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Email" />
+							</f:facet>
+							<h:outputText value="#{forn.email}">
+							</h:outputText>
+						</p:column>
+
+
+					</p:dataTable>
+				</div>
+			</div>
+
+
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>
+
+
+
+

@@ -1,0 +1,75 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml">
+
+
+
+	<ui:define name="body">
+		<h:form>
+
+
+			<div class="box box-primary">
+				<div class="box-header with-border" style="border-bottom: 30px;">
+					<h2 class="box-title">Compras Efetuadas</h2>
+				</div>
+				<div class="box-body">
+					<p:messages />
+
+
+
+					<p:dataTable style="margin-top: 20px;"
+						value="#{manterCompraMB.listaCompras}" var="compra"
+						emptyMessage="Não existem compras cadastradas."
+						styleClass="text-align:center">
+
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Data" />
+							</f:facet>
+							<h:outputText value="#{compra.dataCompra}">
+								<f:convertDateTime locale="pt,BR" dateStyle="long"
+									pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Nota Fiscal" />
+							</f:facet>
+							<h:outputText value="#{compra.notaFiscal}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Funcionario Resp." />
+							</f:facet>
+							<h:outputText value="#{compra.funcionarioResponsavel.nome}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Valor total" />
+							</f:facet>
+							<h:outputText value="#{compra.valorTotal}">
+							</h:outputText>
+						</p:column>
+
+
+					</p:dataTable>
+				</div>
+			</div>
+
+
+		</h:form>
+
+
+	</ui:define>
+
+</ui:composition>
+
+
+
+

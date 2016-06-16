@@ -32,58 +32,57 @@ $(function() {
 					<div class="form-group" style="max-width: 400px;">
 
 
-						<h:outputLabel value="Nome" />
-						<h:inputText required="true" label="Nome"
-							styleClass="form-control"
-							value="#{manterUsuarioMB.login.usuario}" />
+						<h:outputLabel value="Nome" for="nome" />
+						<h:inputText required="true" label="Nome" id="nome"
+							styleClass="form-control" value="#{manterClienteMB.cliente.nome}" />
 
 						<h:outputLabel value="CPF" />
-						<h:inputText required="true" label="celular"
-							styleClass="form-control"
-							value="#{manterUsuarioMB.login.usuario}" />
-
+						<h:inputText required="true" label="celular" id="cpf" onkeypress="mascara(this,cpf)"
+							styleClass="form-control" validator="cpfValidator"
+							value="#{manterClienteMB.cliente.cpfCnpj}" />
 
 						<h:outputLabel value="Email" />
 						<h:inputText required="true" label="email"
 							styleClass="form-control"
-							value="#{manterUsuarioMB.login.usuario}" />
+							value="#{manterClienteMB.cliente.email}" />
 
 						<h:outputLabel value="Telefone" />
 						<h:inputText required="true" label="telefone"
 							styleClass="form-control"
-							value="#{manterUsuarioMB.login.usuario}" />
+							value="#{manterClienteMB.cliente.telefone}" />
 
 
 						<h:outputLabel value="Celular" />
 						<h:inputText required="true" label="celular"
 							styleClass="form-control"
-							value="#{manterUsuarioMB.login.usuario}" />
+							value="#{manterClienteMB.cliente.celular}" />
 
 
 
 						<h:outputLabel value="Cidade" />
-						<h:inputText required="true" label="celular"
+						<h:inputText required="true" label="cidade"
 							styleClass="form-control"
-							value="#{manterUsuarioMB.login.usuario}" />
+							value="#{manterClienteMB.cliente.cidade}" />
 
 						<h:outputLabel value="Bairro" />
 						<h:inputText required="true" label="celular"
 							styleClass="form-control"
-							value="#{manterUsuarioMB.login.usuario}" />
+							value="#{manterClienteMB.cliente.bairro}" />
 
 
 
 						<h:outputLabel value="Endereço" />
-						<h:inputText required="true" label="celular"
+						<h:inputText required="true" label="endereco"
 							styleClass="form-control"
-							value="#{manterUsuarioMB.login.usuario}" />
+							value="#{manterClienteMB.cliente.endereco}" />
 
 
 
 						<div class="box-footer">
 							<div class="form-group">
 								<p:commandButton value="Cadastrar"
-									action="#{manterClienteMB.cadastrarCliente()}" ajax="true" />
+									action="#{manterClienteMB.cadastrarCliente()}" ajax="true"
+									update="@form" />
 								<p:commandButton value="Limpar"
 									action="#{manterClienteMB.limparCampos()}" immediate="true"
 									ajax="true" update="@form" />

@@ -26,7 +26,7 @@ public class Fornecedor extends Entidade implements Serializable {
 	private Integer id;
 	@Column(name = "nome")
 	private String nome;
-	@Column(name = "cpf_cnpj")
+	@Column(name = "cnpj")
 	private String cpfCnpj;
 	@Column(name = "telefone")
 	private String telefone;

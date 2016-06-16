@@ -33,6 +33,7 @@ public class ManterFornecedorMB {
 	@PostConstruct
 	public void init() {
 		fornecedor = new Fornecedor();
+		listaFornecedores();
 	}
 
 	public void listaFornecedores() {

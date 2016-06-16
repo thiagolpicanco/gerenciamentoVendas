@@ -29,7 +29,7 @@ public class Cliente extends Entidade implements Serializable {
 	private Integer id;
 	@Column(name = "nome")
 	private String nome;
-	@Column(name = "cpf_cnpj")
+	@Column(name = "cpf")
 	private String cpfCnpj;
 	@Column(name = "telefone")
 	private String telefone;
@@ -103,6 +103,26 @@ public class Cliente extends Entidade implements Serializable {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

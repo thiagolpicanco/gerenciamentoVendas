@@ -30,15 +30,12 @@
 
 						<h:outputLabel value="CPF" />
 						<h:inputText label="CPF" required="true" styleClass="form-control"
-							value="#{manterFuncionarioMB.funcionario.cpfCnpj}" />
-
-
+							value="#{manterFuncionarioMB.funcionario.cpfCnpj}"
+							validator="cpfValidator" onkeypress="mascara(this,cpf)" />
 
 						<h:outputLabel value="Telefone" />
 						<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
 							value="#{manterFuncionarioMB.funcionario.telefone}" />
-
-
 
 						<h:outputLabel value="Celular" />
 
@@ -49,7 +46,7 @@
 
 						<h:outputLabel value="E-Mail" />
 						<h:inputText value="#{manterFuncionarioMB.funcionario.email}"
-							styleClass="form-control" />
+							styleClass="form-control" validator="emailValidator"/>
 
 
 						<h:outputLabel value="Endereço" />
@@ -73,8 +70,9 @@
 								<h:commandButton value="Cadastrar"
 									styleClass="btn btn-info pull-right"
 									action="#{manterFuncionarioMB.cadastrarFuncionario}"
-									ajax="false"/>
-								<h:commandButton value="Limpar" styleClass="btn btn-info pull-right"
+									ajax="false" />
+								<h:commandButton value="Limpar"
+									styleClass="btn btn-info pull-right"
 									action="#{manterFuncionarioMB.limpaCampos()}" immediate="true"
 									ajax="true" update="@form" />
 							</div>

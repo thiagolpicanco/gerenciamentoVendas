@@ -39,10 +39,10 @@
 						<p:outputLabel value="Cargo" />
 						<h:selectOneMenu converter="omnifaces.SelectItemsConverter"
 							styleClass="form-control"
-							value="#{manterFuncionarioMB.funcionario.tipoFuncionario}">
+							value="#{manterFuncionarioMB.funcionario.cargo}">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
 							<f:selectItems value="#{manterFuncionarioMB.listaCargos}"
-								var="cargo" itemLabel="#{cargo.noTipoFuncionario}">
+								var="cargo">
 							</f:selectItems>
 						</h:selectOneMenu>
 
@@ -111,8 +111,7 @@
 						<f:facet name="header">
 							<p:outputLabel value="Cargo" />
 						</f:facet>
-						<h:outputText value="#{func.tipoFuncionario.noTipoFuncionario}"
-							style="font-size: 15px;">
+						<h:outputText value="#{func.cargo}" style="font-size: 15px;">
 						</h:outputText>
 					</p:column>
 

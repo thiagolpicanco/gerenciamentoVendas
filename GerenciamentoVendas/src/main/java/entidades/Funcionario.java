@@ -32,7 +32,7 @@ public class Funcionario extends Entidade implements Serializable {
 	private Integer id;
 	@Column(name = "nome")
 	private String nome;
-	@Column(name = "cnpj")
+	@Column(name = "cpf")
 	private String cpf;
 	@Column(name = "telefone")
 	private String telefone;

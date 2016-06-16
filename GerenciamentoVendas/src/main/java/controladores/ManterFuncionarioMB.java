@@ -1,5 +1,6 @@
 package controladores;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -41,7 +42,7 @@ public class ManterFuncionarioMB {
 
 	private List<Funcionario> listaFuncionarios;
 
-	private List<TipoFuncionario> listaCargos;
+	private List<String> listaCargos;
 
 	@PostConstruct
 	public void init() {
@@ -61,8 +62,8 @@ public class ManterFuncionarioMB {
 	}
 
 	public void inicializaCombos() {
-		listaCargos = tipoFuncionarioDao.listarTudo();
-		
+		listaCargos = Arrays.asList("Gerente", "Vendedor", "Estoquista", "Administrador");
+
 	}
 
 	public void filtrarFuncionarios() {
@@ -109,11 +110,11 @@ public class ManterFuncionarioMB {
 		this.funcionario = funcionario;
 	}
 
-	public List<TipoFuncionario> getListaCargos() {
+	public List<String> getListaCargos() {
 		return listaCargos;
 	}
 
-	public void setListaCargos(List<TipoFuncionario> listaCargos) {
+	public void setListaCargos(List<String> listaCargos) {
 		this.listaCargos = listaCargos;
 	}
 

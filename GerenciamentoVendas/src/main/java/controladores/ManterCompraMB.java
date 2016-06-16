@@ -79,6 +79,7 @@ public class ManterCompraMB {
 		produto = new Produto();
 		filtroProduto = new Produto();
 		entradaProduto = new EntradaProduto();
+		this.listaCompras = compraService.listarTodos();
 		inicializaCombos();
 	}
 
