@@ -32,8 +32,5 @@ public class LoginDao extends GerencialDao<Login> {
 		}
 
 	}
-	
-	
-	
 
 }

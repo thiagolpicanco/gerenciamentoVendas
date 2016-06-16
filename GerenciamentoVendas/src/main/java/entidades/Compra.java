@@ -1,6 +1,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Compra extends Entidade implements Serializable {
 	@Column
 	private Integer nu_compra;
 	@OneToMany(mappedBy = "compra")
-	private List<EntradaProduto> listaProdutos;
+	private List<EntradaProduto> listaProdutos = new ArrayList<>();
 	@ManyToOne
 	@JoinColumn(name = "id_fornecedor")
 	private Fornecedor fornecedor;
@@ -101,8 +102,6 @@ public class Compra extends Entidade implements Serializable {
 	public void setDataCompra(Date dataCompra) {
 		this.dataCompra = dataCompra;
 	}
-
-	
 
 	public Double getValorTotal() {
 		return valorTotal;

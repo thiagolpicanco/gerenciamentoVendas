@@ -32,8 +32,8 @@ public class Funcionario extends Entidade implements Serializable {
 	private Integer id;
 	@Column(name = "nome")
 	private String nome;
-	@Column(name = "cpf_cnpj")
-	private String cpfCnpj;
+	@Column(name = "cnpj")
+	private String cpf;
 	@Column(name = "telefone")
 	private String telefone;
 	@Column(name = "celular")
@@ -42,17 +42,10 @@ public class Funcionario extends Entidade implements Serializable {
 	private String email;
 	@Column(name = "endereco")
 	private String endereco;
-	@ManyToOne
-	@JoinColumn(name = "tipo_funcionario")
-	private TipoFuncionario tipoFuncionario;
-	// @Column
-	// private String percentualComissao;
-	//
-	// @Transient
-	// private Double comissaoMes;
+	@Column(name = "cargo")
+	private String cargo;
 
 	public Funcionario() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getId() {
@@ -72,11 +65,11 @@ public class Funcionario extends Entidade implements Serializable {
 	}
 
 	public String getCpfCnpj() {
-		return cpfCnpj;
+		return cpf;
 	}
 
 	public void setCpfCnpj(String cpfCnpj) {
-		this.cpfCnpj = cpfCnpj;
+		this.cpf = cpfCnpj;
 	}
 
 	public String getTelefone() {
@@ -111,19 +104,25 @@ public class Funcionario extends Entidade implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public TipoFuncionario getTipoFuncionario() {
-		return tipoFuncionario;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setTipoFuncionario(TipoFuncionario tipoFuncionario) {
-		this.tipoFuncionario = tipoFuncionario;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
 
 	// public String getPercentualComissao() {
 	// return percentualComissao;

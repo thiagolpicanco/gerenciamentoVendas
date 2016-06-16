@@ -39,16 +39,31 @@ public class Venda extends Entidade implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_funcionario")
 	private Funcionario funcionarioResponsavel;
+
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
+	private Cliente cliente;
+
 	@Column(name = "nota_fiscal")
 	private String notaFiscal;
 	@Column(name = "data_venda")
 	private Date dataVenda;
-	@Column(name = "status")
-	private String status;
 	@Column(name = "valor_total")
 	private Double valorTotal;
 	@Column(name = "tipo_pagamento")
 	private TipoPagamento tipoPagamento;
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public Venda() {
 		this.listaProdutos = new ArrayList<>();
@@ -93,14 +108,6 @@ public class Venda extends Entidade implements Serializable {
 
 	public void setDataVenda(Date dataVenda) {
 		this.dataVenda = dataVenda;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public Double getValorTotal() {

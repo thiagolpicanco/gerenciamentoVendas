@@ -28,6 +28,14 @@
 	  MAXVALUE 9223372036854775807
 	  START 1
 	  CACHE 1;
+	  
+	  CREATE SEQUENCE sq_nota_fiscal
+	  INCREMENT 1
+	  MINVALUE 00001
+	  MAXVALUE 9223372036854775807
+	  START 00001
+	  CACHE 1;
+
 
 	ALTER TABLE sq_fornecedor OWNER TO postgres;
 	
@@ -77,28 +85,29 @@
 	ALTER TABLE sq_venda OWNER TO postgres;
 	
 	
-	CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria text
+	
+	
+
+	
+	CREATE TABLE categoria_produto  ( id integer NOT NULL PRIMARY KEY, no_categoria varchar(2)
 	)
 	
 	WITH ( OIDS=FALSE );
 	
 	
 	
-	CREATE TABLE tipo_funcionario ( id integer NOT NULL PRIMARY KEY, no_tipo text)
-	
-	WITH ( OIDS=FALSE );
 
 	CREATE TABLE CLIENTE
 	(
 	  id integer NOT NULL DEFAULT nextval('sq_cliente'::regclass),
-	  nome text NOT NULL,
-	  cpf_Cnpj text NOT NULL,
-	  telefone text,
-	  celular text,
-	  email text,
-	  endereco text,
-	  bairro text,
-	  cidade text,
+	  nome varchar(2) NOT NULL,
+	  cpf_Cnpj varchar(2) NOT NULL,
+	  telefone varchar(2),
+	  celular varchar(2),
+	  email varchar(2),
+	  endereco varchar(2),
+	  bairro varchar(2),
+	  cidade varchar(2),
 	  CONSTRAINT pk_cliente PRIMARY KEY (id)
 	  )
 	WITH (
@@ -112,13 +121,13 @@
 	CREATE TABLE FUNCIONARIO
 	(
 	  id integer NOT NULL DEFAULT nextval('sq_funcionario'::regclass),
-	  nome text NOT NULL,
-	  cpf_Cnpj text unique not null,
-	  telefone text,
-	  celular text,
-	  email text,
-	  endereco text,
-	  tipo_funcionario integer,
+	  nome varchar(2) NOT NULL,
+	  cpf_Cnpj varchar(2) unique not null,
+	  telefone varchar(2),
+	  celular varchar(2),
+	  email varchar(2),
+	  endereco varchar(2),
+	  cargo varchar(2),
 	  CONSTRAINT pf_funcionario PRIMARY KEY (id),
 	  CONSTRAINT fk_tipo_funcionario FOREIGN KEY (tipo_funcionario)
 	  REFERENCES tipo_funcionario (id) MATCH SIMPLE
@@ -131,8 +140,8 @@
 	
 	CREATE TABLE LOGIN
 	(
-	  usuario text not null,
-	  senha text not null,
+	  usuario varchar(2) not null,
+	  senha varchar(2) not null,
 	  id_funcionario integer not null,
 		  CONSTRAINT pk_login PRIMARY KEY (usuario),
 		  CONSTRAINT fk_func FOREIGN KEY (id_funcionario) references FUNCIONARIO (id)
@@ -151,12 +160,12 @@
 	CREATE TABLE FORNECEDOR
 	(
 	  id integer NOT NULL DEFAULT nextval('sq_fornecedor'::regclass),
-	  nome text NOT NULL,
-	  cpf_Cnpj text,
-	  telefone text,
-	  celular text,
-	  email text,
-	  endereco text,
+	  nome varchar(2) NOT NULL,
+	  cpf_Cnpj varchar(2),
+	  telefone varchar(2),
+	  celular varchar(2),
+	  email varchar(2),
+	  endereco varchar(2),
 		  CONSTRAINT pk_fornecedor PRIMARY KEY (id)
 	  )
 	WITH (
@@ -172,7 +181,7 @@
 	  id_fornecedor integer NOT NULL,
 	  id_funcionario integer NOT NULL,
 	  valor_venda numeric,
-	  nota_fiscal text,
+	  nota_fiscal varchar(2),
 	  data_compra timestamp,
 	valor_total numeric,
 	  CONSTRAINT pk_compra PRIMARY KEY (nu_compra),
@@ -192,7 +201,7 @@
 
 	CREATE TABLE  TIPO_PAGAMENTO(
 	id integer not null,
-	no_tipo_pagamento text not null,
+	no_tipo_pagamento varchar(2) not null,
 
 	constraint pk_tipo_pagamento primary key (id)
 	)WITH (
@@ -206,9 +215,9 @@
 	(
 	  nu_venda integer NOT NULL DEFAULT nextval('sq_venda'::regclass),
 	  id_funcionario integer NOT NULL,
-	  nota_fiscal text,
+	  nota_fiscal varchar(2),
 	  data_venda date,
-	  status text,
+	  status varchar(2),
 	  valor_total numeric not null,
 	  tipo_pagamento integer not null,
 	  id_cliente integer not null,
@@ -232,10 +241,10 @@
 	CREATE TABLE PRODUTO
 	(
 	  cod_produto integer NOT NULL,
-	  tamanho text not null,
-	  nome text NOT NULL,
+	  tamanho varchar(2) not null,
+	  nome varchar(2) NOT NULL,
 	  id_fornecedor integer NOT NULL,
-	  descricao text,
+	  descricao varchar(2),
 	  categoria integer,
 	  valor_venda numeric,
 	  qtd_minima integer not null,
@@ -257,11 +266,11 @@
 	CREATE TABLE SAIDA_PRODUTO(
 	id integer not null,
 	cod_produto integer not null,
-	tamanho text not null,
+	tamanho varchar(2) not null,
 	nu_venda integer,
 	data_saida timestamp not null,
 	quantidade integer not null,
-	observacao text,
+	observacao varchar(2),
 	
 	constraint fk_produto_saida foreign key (cod_produto, tamanho) references
 	PRODUTO (cod_produto, tamanho) MATCH SIMPLE ON update restrict on DELETE restrict,
@@ -277,11 +286,11 @@
 	CREATE TABLE  ENTRADA_PRODUTO(
 	id integer not null,
 	cod_produto integer not null,
-	tamanho text not null,
+	tamanho varchar(2) not null,
 	nu_compra integer,
 	data_entrada timestamp not null,
 	quantidade integer not null,
-	observacao text,
+	observacao varchar(2),
 	valor_untario numeric,
 	
 	constraint fk_produto_entrada foreign key (cod_produto, tamanho) references
@@ -304,6 +313,18 @@
 	insert into cliente values (0, 'Jorge Carlos Souza', '05788847116', '2126202191', '21970014019', 'joao@gmail.com', 'Rua Carlos Monteiro 90', 'Centro', 'Cabo Frio');
 
 
+		CREATE TABLE NOTA_FISCAL(nu_nota_fiscal integer not null, id_cliente integer, id_funcionario integer,
+		CONSTRAINT fk_cliente_nf FOREIGN KEY (id_cliente) references
+	  		CLIENTE (id) MATCH SIMPLE
+		  ON UPDATE RESTRICT ON DELETE RESTRICT,
+		  CONSTRAINT fk_funcionario_nf FOREIGN KEY (id_funcionario) references
+	  		FUNCIONARIO (id) MATCH SIMPLE
+		  ON UPDATE RESTRICT ON DELETE RESTRICT)
+		  
+		  
+	
+	
+	
 
 	insert into tipo_pagamento values(1, 'Cheque');
 	insert into tipo_pagamento values(2, 'Credito');

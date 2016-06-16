@@ -44,15 +44,14 @@ public class LoginService {
 	private String convertStringToMd5(String valor) {
 		MessageDigest mDigest;
 		try {
-			mDigest = MessageDigest.getInstance("MD5");
-			// Convert a String valor para um array de bytes em MD5
-			byte[] valorMD5 = mDigest.digest(valor.getBytes("UTF-8"));
-			StringBuffer sb = new StringBuffer();
-			for (byte b : valorMD5) {
-				sb.append(Integer.toHexString((b & 0xFF) | 0x100).substring(1, 3));
-			}
+			MessageDigest algorithm = MessageDigest.getInstance("SHA-256");
+			byte messageDigest[] = algorithm.digest(valor.getBytes("UTF-8"));
 
-			return sb.toString();
+			StringBuilder hexString = new StringBuilder();
+			for (byte b : messageDigest) {
+				hexString.append(String.format("%02X", 0xFF & b));
+			}
+			return hexString.toString();
 
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
