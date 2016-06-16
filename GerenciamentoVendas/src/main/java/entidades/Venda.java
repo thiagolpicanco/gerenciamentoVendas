@@ -34,7 +34,7 @@ public class Venda extends Entidade implements Serializable {
 	@GeneratedValue(generator = "sq_venda")
 	@Column(name = "nu_venda")
 	private Integer nuVenda;
-	@OneToMany(mappedBy = "venda")
+	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
 	private List<SaidaProduto> listaProdutos;
 	@ManyToOne
 	@JoinColumn(name = "id_funcionario")

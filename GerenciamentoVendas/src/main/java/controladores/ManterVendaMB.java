@@ -158,6 +158,7 @@ public class ManterVendaMB {
 				produtoService.atualizaProduto(prod);
 			}
 			venda.setDataVenda(new Date());
+			venda.setCliente(cliente);
 			venda.setFuncionarioResponsavel(UsuarioSessaoMB.getUsuarioLogin().getFuncionario());
 			NotaFiscal notaFiscal = new NotaFiscal();
 			notaFiscal.setFuncionarioResponsavel(venda.getFuncionarioResponsavel());

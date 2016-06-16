@@ -24,7 +24,7 @@ public class Cliente extends Entidade implements Serializable {
 	private static final long serialVersionUID = 6069440809044428248L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator = "sq_cliente")
 	@Column(name = "id")
 	private Integer id;
 	@Column(name = "nome")
