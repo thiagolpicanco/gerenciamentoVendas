@@ -156,6 +156,7 @@ public class ManterVendaMB {
 				Integer qtdFinal = prod.getQtdAtual() - saidaProd.getQuantidade();
 				prod.setQtdAtual(qtdFinal);
 				produtoService.atualizaProduto(prod);
+				saidaProd.setObservacao("Venda");
 			}
 			venda.setDataVenda(new Date());
 			venda.setCliente(cliente);

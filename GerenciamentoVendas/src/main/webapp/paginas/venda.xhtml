@@ -113,7 +113,7 @@
 							itemLabel="Selecione o Produto" />
 						<f:selectItems value="#{manterVendaMB.listaProdutos}" var="prod"
 							itemLabel="Nome: #{prod.nome} | Codigo: #{prod.id.codigo} | Tamanho #{prod.id.tamanho}"></f:selectItems>
-						<p:ajax update="dadosProduto" event="change" partialSubmit="true"></p:ajax>
+						<p:ajax update="@form" event="change" partialSubmit="true"></p:ajax>
 					</h:selectOneMenu>
 				</h:panelGrid>
 				<p:separator></p:separator>
@@ -158,8 +158,9 @@
 						<h:panelGrid columns="2" style="marginright: 356px;">
 							<p:outputLabel value="Quantidade: " />
 							<p:spinner id="basic" value="#{manterVendaMB.qtdSaida}"
-								maxlength="4" size="2" requiredMessage="Campo Obrigatório"
-								style="textalign: center;" min="1" />
+								max="#{manterVendaMB.produto.qtdAtual}" maxlength="4" size="2"
+								requiredMessage="Campo Obrigatório" style="textalign: center;"
+								min="1" />
 						</h:panelGrid>
 					</p:column>
 					<p:column>
