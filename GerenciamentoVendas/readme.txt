@@ -1,132 +1,115 @@
+3.1.1. - O Sistema
 
-                                 StoreManagement 
+O sistema se baseia em um módulo de gerenciamento do controle de
 
- Source archetype: weld-jsf-jee
+vendas de uma loja de roupas femininas. Atende as necessidades básicas de
 
- What is it?
- ===========
+cadastro de clientes, fornecedores, pedidos, controle de estoque e a consulta a cada
 
- This is your project! It's a sample, deployable Maven 2 project to help you
- get your foot in the door developing with Java EE 6. This project is setup to
- allow you to create a compliant Java EE 6 application using JSF 2.0, CDI 1.0,
- EJB 3.1 and JPA 2.0) that can run on a certified application server (Complete
- or Web Profile). It includes a persistence unit and some sample persistence
- and transaction code to help you get your feet wet with database access in
- enterprise Java. 
+um dos itens.
 
- System requirements
- ===================
+3.1.2. - Funcionamento do sistema
 
- All you need to run this project is Java 5.0 (Java SDK 1.5) or greator and
- Maven 2.0.10 or greater. This application is setup to be run on a Java EE 6
- certified application server. It has been tested with GlassFish V3 and JBoss
- AS 6.0.
+A mercadoria chegará no setor de estoque e o estoquista dará entrada
 
- If you want to deploy the application to a standalone Servlet Container, then
- you will need to set one up. Alternatively, you can use a Maven command to run
- the application in place on an embedded version of GlassFish.
+nessa mercadoria através da nota de entrada. Caso o produto não esteja no
 
- Please note that Maven 2 project needs to use the JBoss Maven repository
- because there are certain Java EE API JARs that are not yet publised to the
- Maven Central Repository (see https://jira.jboss.org/jira/browse/WELD-222)
+sistema, o gerente realizará o cadastro dessa mercadoria. Caso o fornecedor
 
- Deploying the application
- =========================
+também não exista o gerente fará o cadastro. O caixa e o gerente terão alguns
 
- To deploy the application to JBoss AS (standalone), first make sure that the
- JBOSS_HOME environment variable points to a JBoss AS 6.0 installation.
- Alternatively, you can set the location of JBoss AS using the following
- profile defintion in the .m2/settings.xml file in your home directory:
+relatórios a disposição, como o de cadastro de produtos, cliente, fornecedor e
 
-<?xml version="1.0" encoding="UTF-8"?>
-<settings
-   xmlns="http://maven.apache.org/POM/4.0.0"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+vendedor. O vendedor passará o pedido para o caixa, que lançará os produtos no
 
-   <profiles>
-      <profile>
-         <id>environment</id>
-         <activation>
-            <activeByDefault>true</activeByDefault>
-         </activation>
-         <properties>
-            <jboss.home>/path/to/jboss-as-6.0.0.M1</jboss.home>
-         </properties>
-      </profile>
-   </profiles>
-   
-</settings>
+sistema com sua devida forma de pagamento, com a compra finalizada
 
- You can now deploy to JBoss AS by executing the following command:
+automaticamente será emitido um cupom fiscal para o cliente.
 
-  mvn package jboss:hard-deploy
+3.1.3. - O Ambiente do Sistema
 
- Start JBoss AS. The application will be running at the following URL:
+O sistema é utilizado pelo gerente da loja, que é responsável por cadastrar e
 
-  http://localhost:8080/StoreManagement
+realizar a manutenção dos fornecedores, produtos,vendedor, condição de
 
- If you want to deploy to GlassFish (standalone), you first need to change
- the name of the DataSource used by the persistence unit! Open this file:
+pagamento inicial e controle de estoque. Pelo estoquista que lança a entrada dos
 
-  src/main/resources/META-INF/persistence.xml
+produtos. Pelo vendedor,que é responsável pelo cadastro de cliente no ato da venda
 
- Change the value of <jta-data-source> to the following:
+e pelo Caixa que é responsável pelo gerenciamento e controle de pagamentos da
 
-  <jta-data-source>jdbc/__default</jta-data-source>
+empresa.
 
- This configuration uses the built-in default Derby DataSource in GlassFish.
- Optionally, you can use an alternative DataSource of your choice.
- 
- Now, execute the command:
+3.1.4. - A definição do escopo
 
-  mvn package
- 
- You can now deploy the target/StoreManagement.war archive and launch the
- application the through GlassFish administration console.
+Através da informatização de alguns processos a empresa visa ter um
 
- Alternatively, you can deploy the application without moving any files around
- using the embedded GlassFish application server.
+controle maior sobre seus cadastros, estoques e finanças. Assim o gerente terá uma
 
- To run the application using embedded GlassFish, execute this command:
+visão mais ampla e atual da situação financeira da empresa. O sistema irá
 
-  mvn package embedded-glassfish:run
+automatizar alguns processos operacionais e financeiros da empresa.
 
- The application will be running at the following URL:
- 
-  http://localhost:7070/StoreManagement
+O sistema proporcionará à diretoria uma maior agilidade e eficiência no
 
- Importing the project into an IDE
- =================================
+estudo e análise dos perfis dos clientes e terá um controle maior sobre a
 
- If you created the project using the Maven 2 archetype wizard in your IDE
- (Eclipse, NetBeans or IntelliJ IDEA), then there is nothing to do. You should
- already have an IDE project.
+inadimplência.
 
- If you created the project from the commandline using archetype:generate, then
- you need to bring the project into your IDE. If you are using NetBeans 6.8 or
- IntelliJ IDEA 9, then all you have to do is open the project as an existing
- project. Both of these IDEs recognize Maven 2 projects natively.
+3.2. - Motivação para o novo sistema
 
- To import into Eclipse, you first need to install the m2eclipse plugin. To get
- started, add the m2eclipse update site (http://m2eclipse.sonatype.org/update/)
- to Eclipse and install the m2eclipse plugin and required dependencies. Once
- that is installed, you'll be ready to import the project into Eclipse.
+Após o levantamento e análise de informações e necessidades atuais da
 
- Select File > Import... and select "Import... > Maven Projects" and select
- your project directory. m2eclipse should take it from there.
+empresa, foram obtidas as seguintes causas para o desenvolvimento do novo
 
- Once in the IDE, you can execute the Maven commands through the IDE controls
- to run the application on an embedded Servlet Container.
+sistema:
 
- Resources
- =========
+ Dificuldade em manter e consultar o histórico dos clientes;
 
- Weld archetypes:
- -  Quickstart:        http://seamframework.org/Documentation/WeldQuickstartForMavenUsers
- -  Issue tracker:     https://jira.jboss.org/jira/browse/WELDX
- -  Source code:       http://anonsvn.jboss.org/repos/weld/archetypes
- -  Forums:            http://seamframework.org/Community/WeldUsers
- JSR-299 overview:     http://seamframework.org/Weld
- JSF community site:   http://www.javaserverfaces.org
+ Cadastro de produtos (feitos manualmente em planilhas);
 
+ Cadastro de clientes/fornecedores (feitos manualmente em planilhas);
+
+ Falta de confiabilidade das informações;
+
+ Falta de opções de relatórios;
+
+ Aumento no índice de inadimplência gerado pela inexistência do
+
+controle do fluxo de pagamento;
+
+ Atraso no pagamento de fornecedores;
+
+ Dificuldade no processo de lançamento e baixa de estoque.
+
+3.3. - Situação Desejada
+
+ Maior visibilidade do perfil dos clientes;
+
+ Gestão integrada dos processos ligados ao registro e atendimento dos
+
+pedidos;
+
+ Maior poder de negociação junto aos fornecedores, gerado pela gestão
+
+integrada dos processos de compra e venda;
+
+ Mais opções de relatórios;
+
+ Segurança;
+
+ Agilidade;
+
+ Restrição ao acesso das informações por parte dos usuários;
+
+ Possibilitará uma visão geral da vida financeira da empresa;
+
+3.4. - Problemas do sistema atual
+
+O sistema atual utiliza planilhas eletrônicas. Todos os lançamentos
+
+financeiros, cadastros de clientes,fornecedores, produtos e vendedores são feitos
+
+em planilhas. Isso dificulta o processo de manutenção, podendo acarretar perdas,
+
+erros de informação e atraso no atendimento dos clientes.
