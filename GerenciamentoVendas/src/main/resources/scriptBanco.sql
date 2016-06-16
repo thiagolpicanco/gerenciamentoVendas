@@ -284,7 +284,7 @@ CREATE TABLE NOTA_FISCAL(nu_nota_fiscal integer primary key not null, id_cliente
 	data_entrada timestamp not null,
 	quantidade integer not null,
 	observacao varchar,
-	valor_untario numeric,
+	valor_unitario numeric,
 	
 	constraint fk_produto_entrada foreign key (cod_produto, tamanho) references
 	PRODUTO (cod_produto, tamanho) MATCH SIMPLE ON update restrict on DELETE restrict,

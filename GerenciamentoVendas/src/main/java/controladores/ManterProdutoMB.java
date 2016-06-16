@@ -135,6 +135,25 @@ public class ManterProdutoMB {
 
 	}
 
+	public void deletarProduto(Produto produto) {
+		if (produto.getQtdAtual() > 0) {
+			SaidaProduto sp = new SaidaProduto();
+			sp.setDataSaida(new Date());
+			sp.setObservacao("Exclusão de Produto");
+			sp.setProduto(produto);
+			sp.setQuantidade(produto.getQtdAtual());
+			try {
+				produtoService.saidaProduto(sp);
+				produtoService.deletaProduto(produto);
+				MensagensUtil.adicionaMensagemSucesso("Produto removido com sucesso");
+			} catch (Exception e) {
+				MensagensUtil.adicionaMensagemErro(e.getMessage());
+			}
+
+		}
+
+	}
+
 	public void listarMotivos() {
 		listaMotivos = new ArrayList<String>();
 		for (EnumMotivoEntrada motivo : EnumMotivoEntrada.values()) {

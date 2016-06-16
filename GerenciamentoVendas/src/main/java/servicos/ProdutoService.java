@@ -32,6 +32,10 @@ public class ProdutoService {
 	@EJB
 	SaidaProdutoDao saidaProdutoDao;
 
+	public void cadastraSaidaProduto(SaidaProduto saidaProduto) throws Exception {
+		saidaProdutoDao.gravar(saidaProduto);
+	}
+
 	public Produto buscaProduto(Produto produto) throws Exception {
 		return produtoDao.buscaProduto(produto);
 	}

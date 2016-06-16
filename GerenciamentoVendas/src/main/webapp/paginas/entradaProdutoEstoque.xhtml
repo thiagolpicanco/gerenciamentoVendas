@@ -21,7 +21,8 @@
 
 						<h:outputLabel value="Produto: " />
 						<h:selectOneMenu style="width: 350px;" required="true"
-							styleClass="form-control" value="#{manterProdutoMB.produto}"
+							label="Produto" styleClass="form-control"
+							value="#{manterProdutoMB.produto}"
 							converter="omnifaces.SelectItemsConverter">
 							<f:selectItem itemLabel="Selecione" naoSelectionOption="true"></f:selectItem>
 							<f:selectItems value="#{manterProdutoMB.listaProdutos}"
@@ -43,15 +44,15 @@
 						<h:outputLabel value="Quantidade a entrar: " />
 						<BR />
 						<p:spinner id="basic" value="#{manterProdutoMB.qtdEntrada}"
-							maxlength="4" size="4" requiredMessage="Campo Obrigatório"
-							style="text-align: center;" min="1" />
-
-
+							label="Quantidade" maxlength="4" size="4"
+							requiredMessage="Campo Obrigatório" style="text-align: center;"
+							min="1" />
 
 
 						<h:panelGrid columns="2" style="float: right;">
 							<p:commandButton value="Efetuar entrada"
-								action="#{manterProdutoMB.efetuarEntradaEstoque()}" update="@form"></p:commandButton>
+								action="#{manterProdutoMB.efetuarEntradaEstoque()}"
+								update="@form"></p:commandButton>
 							<p:commandButton value="Limpar"
 								action="#{manterProdutoMB.limpaCampos()}" ajax="true"
 								immediate="true">
