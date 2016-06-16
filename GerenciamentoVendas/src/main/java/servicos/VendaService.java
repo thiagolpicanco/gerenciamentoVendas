@@ -2,6 +2,7 @@ package servicos;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 /**
  * 
  * @author thiago.picanco
@@ -10,14 +11,12 @@ import java.util.List;
 import javax.ejb.Stateless;
 
 import entidades.Venda;
-import entidades.Produto;
-import entidades.Venda;
 import exceptions.PersistenciaException;
 import persistence.VendaDao;
 
 @Stateless
 public class VendaService {
-
+	@EJB
 	private VendaDao vendaDao;
 
 	// public void efetuarVenda(Venda venda) {
@@ -38,12 +37,10 @@ public class VendaService {
 
 	}
 
-	public void cadastraVenda(Venda venda) {
-		try {
-			vendaDao.gravarOuAtualizar(venda);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void cadastraVenda(Venda venda) throws Exception {
+
+		vendaDao.gravarOuAtualizar(venda);
+
 	}
 
 	public void deletaVenda(Venda venda) {

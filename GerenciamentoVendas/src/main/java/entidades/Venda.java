@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -44,13 +44,16 @@ public class Venda extends Entidade implements Serializable {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	@Column(name = "nota_fiscal")
-	private String notaFiscal;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "nota_fiscal")
+	private NotaFiscal notaFiscal;
 	@Column(name = "data_venda")
 	private Date dataVenda;
 	@Column(name = "valor_total")
 	private Double valorTotal;
-	@Column(name = "tipo_pagamento")
+
+	@ManyToOne
+	@JoinColumn(name = "tipo_pagamento")
 	private TipoPagamento tipoPagamento;
 
 	public Cliente getCliente() {
@@ -94,11 +97,11 @@ public class Venda extends Entidade implements Serializable {
 		this.funcionarioResponsavel = funcionarioResponsavel;
 	}
 
-	public String getNotaFiscal() {
+	public NotaFiscal getNotaFiscal() {
 		return notaFiscal;
 	}
 
-	public void setNotaFiscal(String notaFiscal) {
+	public void setNotaFiscal(NotaFiscal notaFiscal) {
 		this.notaFiscal = notaFiscal;
 	}
 

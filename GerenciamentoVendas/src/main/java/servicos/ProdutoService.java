@@ -32,6 +32,10 @@ public class ProdutoService {
 	@EJB
 	SaidaProdutoDao saidaProdutoDao;
 
+	public Produto buscaProduto(Produto produto) throws Exception {
+		return produtoDao.buscaProduto(produto);
+	}
+
 	public List<Produto> listaProdutosPendentes() {
 		return produtoDao.listaProdutosPendentes();
 	}
@@ -70,13 +74,10 @@ public class ProdutoService {
 		}
 	}
 
-	public void atualizaProduto(Produto produto) {
-		try {
-			produtoDao.gravarOuAtualizar(produto);
-		} catch (PersistenciaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void atualizaProduto(Produto produto) throws PersistenciaException {
+
+		produtoDao.gravarOuAtualizar(produto);
+
 	}
 
 	public void atualizarProduto(Produto produto) {

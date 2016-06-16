@@ -10,6 +10,10 @@ import entidades.Produto;
 @Stateless
 public class ProdutoDao extends GerencialDao<Produto> {
 
+	public Produto buscaProduto(Produto produto) throws Exception {
+		return getEntityManager().find(Produto.class, produto.getId());
+	}
+
 	public List<Produto> filtrarProdutos(Produto filtro) {
 		List<Produto> listaProdutos;
 

@@ -31,7 +31,7 @@ public class FuncionarioDao extends GerencialDao<Funcionario> {
 			hql.append(" and p.cpfCnpj = :cpf");
 		}
 
-		if (null != filtro.getTipoFuncionario()) {
+		if (null != filtro.getCargo()) {
 			hql.append(" and p.tipoFuncionario = :tipo");
 		}
 
@@ -52,8 +52,8 @@ public class FuncionarioDao extends GerencialDao<Funcionario> {
 			query.setParameter("cpf", filtro.getCpfCnpj());
 		}
 
-		if (null != filtro.getTipoFuncionario()) {
-			query.setParameter("tipo", filtro.getTipoFuncionario());
+		if (null != filtro.getCargo()) {
+			query.setParameter("tipo", filtro.getCargo());
 		}
 
 		if (null != filtro.getEmail() && !filtro.getEmail().isEmpty()) {

@@ -26,12 +26,16 @@ public class UsuarioSessaoMB {
 	/**
 	 * Retorna usuario logado
 	 */
-	
-	public void limpaCampos(){
+
+	public void limpaCampos() {
 		usuario = null;
 		senha = null;
 	}
-	
+
+	public static Login getUsuarioLogin() {
+		return (Login) SessionContext.getInstance().getUsuarioLogado();
+	}
+
 	public Login getUser() {
 		return (Login) SessionContext.getInstance().getUsuarioLogado();
 	}

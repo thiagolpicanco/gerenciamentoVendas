@@ -31,8 +31,7 @@ public class EntradaProduto extends Entidade {
 	@GeneratedValue(generator = "sq_entrada_produto")
 	private Integer id;
 	@ManyToOne
-	@JoinColumns({
-			@JoinColumn(name = "cod_produto", referencedColumnName = "cod_produto", nullable = false),
+	@JoinColumns({ @JoinColumn(name = "cod_produto", referencedColumnName = "cod_produto", nullable = false),
 			@JoinColumn(name = "tamanho", referencedColumnName = "tamanho", nullable = false) })
 	private Produto produto;
 	@ManyToOne
@@ -100,6 +99,14 @@ public class EntradaProduto extends Entidade {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public Double getValorUnitario() {
+		return valorUnitario;
+	}
+
+	public void setValorUnitario(Double valorUnitario) {
+		this.valorUnitario = valorUnitario;
 	}
 
 }

@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -35,7 +34,7 @@ public class Compra extends Entidade implements Serializable {
 	@GeneratedValue(generator = "sq_compra")
 	@Column
 	private Integer nu_compra;
-	@OneToMany(mappedBy = "compra")
+	@OneToMany(mappedBy = "compra", cascade = CascadeType.ALL)
 	private List<EntradaProduto> listaProdutos = new ArrayList<>();
 	@ManyToOne
 	@JoinColumn(name = "id_fornecedor")

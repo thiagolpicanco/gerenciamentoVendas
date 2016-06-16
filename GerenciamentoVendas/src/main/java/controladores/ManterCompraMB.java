@@ -2,6 +2,7 @@ package controladores;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,12 +17,14 @@ import entidades.EntradaProduto;
 import entidades.Fornecedor;
 import entidades.Funcionario;
 import entidades.Produto;
+import entidades.SaidaProduto;
 import persistence.CategoriaProdutoDao;
 import servicos.ClienteService;
 import servicos.CompraService;
 import servicos.FornecedorService;
 import servicos.FuncionarioService;
 import servicos.ProdutoService;
+import util.MensagensUtil;
 
 @ManagedBean
 @ViewScoped
@@ -40,6 +43,9 @@ public class ManterCompraMB {
 	FornecedorService fornecedorService;
 
 	@EJB
+	CompraService compraService;
+
+	@EJB
 	CategoriaProdutoDao categoriaProdutoDao;
 
 	// -------VARIAVEIS------------//
@@ -52,6 +58,8 @@ public class ManterCompraMB {
 
 	private Funcionario funcionarioResponsavel;
 
+	private Fornecedor fornecedorCompra;
+
 	private List<Funcionario> listaFuncionarios;
 
 	private Produto filtroProduto;
@@ -60,7 +68,6 @@ public class ManterCompraMB {
 
 	private Produto produto;
 	private EntradaProduto entradaProduto;
-	private List<EntradaProduto> listaProdutosEntrada;
 	private List<CategoriaProduto> listaCategorias;
 	private Integer qtdEntrada;
 
@@ -69,7 +76,6 @@ public class ManterCompraMB {
 	@PostConstruct
 	public void init() {
 		compra = new Compra();
-		listaProdutosEntrada = new ArrayList<>();
 		produto = new Produto();
 		filtroProduto = new Produto();
 		entradaProduto = new EntradaProduto();
@@ -99,12 +105,33 @@ public class ManterCompraMB {
 	}
 
 	public void adicionaProdutoCompra() {
-		entradaProduto = new EntradaProduto();
-		entradaProduto.setQuantidade(qtdEntrada);
-		entradaProduto.setProduto(produto);
-		entradaProduto.setCompra(compra);
-		entradaProduto.setData(new Date());
-		compra.getListaProdutos().add(entradaProduto);
+		if (entradaProduto.getProduto() == null || entradaProduto.getQuantidade() == null) {
+			MensagensUtil.adicionaMensagemErro("Erro ao adicionar produto: Preencha os campos obrigatórios");
+		} else {
+			entradaProduto.setCompra(compra);
+			entradaProduto.setData(new Date());
+			entradaProduto.setObservacao("Compra");
+			compra.getListaProdutos().add(entradaProduto);
+			entradaProduto = new EntradaProduto();
+			alteraValorTotal();
+		}
+	}
+
+	public void removerProdutoCompra(EntradaProduto entrada) {
+		compra.getListaProdutos().remove(entrada);
+		this.alteraValorTotal();
+	}
+
+	public void registrarVenda() {
+
+	}
+
+	public void alteraValorTotal() {
+		Double valorTotal = 0.0;
+		for (EntradaProduto entradaProduto : compra.getListaProdutos()) {
+			valorTotal += entradaProduto.getValorUnitario() * entradaProduto.getQuantidade();
+		}
+		this.compra.setValorTotal(valorTotal);
 	}
 
 	public void listarProdutos() {
@@ -116,6 +143,23 @@ public class ManterCompraMB {
 	}
 
 	public void efetuarCompra() {
+		try {
+			for (EntradaProduto entradaProd : compra.getListaProdutos()) {
+				Produto prod = produtoService.buscaProduto(entradaProd.getProduto());
+				Integer qtdFinal = prod.getQtdAtual() + entradaProd.getQuantidade();
+				prod.setQtdAtual(qtdFinal);
+
+				produtoService.atualizaProduto(prod);
+			}
+			compra.setDataCompra(new Date());
+			compra.setFuncionarioResponsavel(UsuarioSessaoMB.getUsuarioLogin().getFuncionario());
+
+			compraService.cadastraCompra(compra);
+			MensagensUtil.adicionaMensagemSucesso("Compra registrada com sucesso");
+			init();
+		} catch (Exception e) {
+			MensagensUtil.adicionaMensagemErro("Erro ao registrar compra: " + e.getMessage());
+		}
 
 	}
 
@@ -185,14 +229,6 @@ public class ManterCompraMB {
 
 	public void setEntradaProduto(EntradaProduto entradaProduto) {
 		this.entradaProduto = entradaProduto;
-	}
-
-	public List<EntradaProduto> getListaProdutosEntrada() {
-		return listaProdutosEntrada;
-	}
-
-	public void setListaProdutosEntrada(List<EntradaProduto> listaProdutosEntrada) {
-		this.listaProdutosEntrada = listaProdutosEntrada;
 	}
 
 	public List<Compra> getListaCompras() {
@@ -273,6 +309,14 @@ public class ManterCompraMB {
 
 	public void setQtdEntrada(Integer qtdEntrada) {
 		this.qtdEntrada = qtdEntrada;
+	}
+
+	public Fornecedor getFornecedorCompra() {
+		return fornecedorCompra;
+	}
+
+	public void setFornecedorCompra(Fornecedor fornecedorCompra) {
+		this.fornecedorCompra = fornecedorCompra;
 	}
 
 }
