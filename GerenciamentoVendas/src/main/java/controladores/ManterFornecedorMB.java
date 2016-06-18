@@ -41,8 +41,8 @@ public class ManterFornecedorMB {
 	@PostConstruct
 	public void init() {
 
-		if (getFlash().get("obj") != null) {
-			Object vetorDados[] = (Object[]) getFlash().get("obj");
+		if (getFlash().get("forn") != null) {
+			Object vetorDados[] = (Object[]) getFlash().get("forn");
 			fornecedor = (Fornecedor) vetorDados[0];
 			tipoVisao = (String) vetorDados[1];
 		} else {
@@ -79,6 +79,12 @@ public class ManterFornecedorMB {
 
 	}
 
+
+
+	public void filtrarFornecedores() {
+		listaFornecedores = fornecedorService.listaPorFiltro(fornecedor);
+	}
+	
 	public Flash getFlash() {
 		return FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	}
@@ -87,8 +93,9 @@ public class ManterFornecedorMB {
 		try {
 			Object obj[] = { fornecedor, "v" };
 
-			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("obj", obj);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("cadastrarFornecedores.jsf");
+			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("forn", obj);
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("cadastrarFornecedores.jsf?faces-redirect=true");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,8 +106,9 @@ public class ManterFornecedorMB {
 		try {
 			Object obj[] = { fornecedor, "e" };
 
-			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("obj", obj);
-			FacesContext.getCurrentInstance().getExternalContext().redirect("cadastrarFornecedores.jsf");
+			FacesContext.getCurrentInstance().getExternalContext().getFlash().put("forn", obj);
+			FacesContext.getCurrentInstance().getExternalContext()
+					.redirect("cadastrarFornecedores.jsf?faces-redirect=true");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

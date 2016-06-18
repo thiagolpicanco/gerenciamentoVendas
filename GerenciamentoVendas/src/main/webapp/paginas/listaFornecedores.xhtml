@@ -17,67 +17,86 @@
 				</div>
 				<div class="box-body">
 					<p:messages />
+					<div class="box-body" style="max-width: 400px;">
+
+						<div class="form-group">
+							<p:outputLabel value="Nome" style="margin-right: 10px;" />
+							<h:inputText value="#{manterFornecedorMB.fornecedor.nome}"
+								styleClass="form-control" />
+
+							<p:outputLabel value="CNPJ" />
+							<h:inputText value="#{manterFornecedorMB.fornecedor.cpfCnpj}"
+								styleClass="form-control" mask="99.999.999/9999-99" />
 
 
-
-					<p:dataTable style="margin-top: 20px;" editable="true"
-						value="#{manterFornecedorMB.listaFornecedores}" var="forn"
-						emptyMessage="Não existem fornecedores cadastrados.">
-
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Nome" />
-							</f:facet>
-							<h:outputText value="#{forn.nome}">
-							</h:outputText>
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="CPF" />
-							</f:facet>
-							<h:outputText value="#{forn.cpfCnpj}" />
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Telefone" />
-							</f:facet>
-							<h:outputText value="#{forn.telefone}" />
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Celular" />
-							</f:facet>
-							<h:outputText value="#{forn.celular}">
-							</h:outputText>
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Email" />
-							</f:facet>
-							<h:outputText value="#{forn.email}">
-							</h:outputText>
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Ações" />
-							</f:facet>
-							<p:commandButton icon="ui-icon-search" ajax="false"
-								action="#{manterFornecedorMB.redirecionaVisualizar(forn)}"
-								title="Visualizar">
-
-							</p:commandButton>
-							<p:commandButton icon="ui-icon-pencil" title="Editar"
-								action="#{manterFornecedorMB.redirecionaEditar(forn)}" />
-						</p:column>
-
-
-					</p:dataTable>
+							<p:commandButton value="Buscar" style="margin-top: 20px;"
+								action="#{manterFornecedorMB.filtrarFornecedores()}"
+								update="@form" />
+							<p:commandButton value="Limpar"
+								action="#{manterFornecedorMB.limparCampos()}" ajax="true"
+								update="@form" />
+						</div>
+					</div>
 				</div>
+
+				<p:dataTable style="margin-top: 20px;" editable="true"
+					value="#{manterFornecedorMB.listaFornecedores}" var="forn"
+					emptyMessage="Não existem fornecedores cadastrados.">
+
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Nome" />
+						</f:facet>
+						<h:outputText value="#{forn.nome}">
+						</h:outputText>
+					</p:column>
+					<p:column style="width: 195px;">
+						<f:facet name="header">
+							<p:outputLabel value="CNPJ" />
+						</f:facet>
+						<h:outputText value="#{forn.cpfCnpj}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Telefone" />
+						</f:facet>
+						<h:outputText value="#{forn.telefone}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Celular" />
+						</f:facet>
+						<h:outputText value="#{forn.celular}">
+						</h:outputText>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Email" />
+						</f:facet>
+						<h:outputText value="#{forn.email}">
+						</h:outputText>
+					</p:column>
+
+					<p:column style="text-align:center">
+						<f:facet name="header">
+							<p:outputLabel value="Ações" />
+						</f:facet>
+						<p:commandButton icon="ui-icon-search" ajax="false"
+							action="#{manterFornecedorMB.redirecionaVisualizar(forn)}"
+							title="Visualizar">
+
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-pencil" title="Editar"
+							action="#{manterFornecedorMB.redirecionaEditar(forn)}" />
+					</p:column>
+
+
+				</p:dataTable>
+
 			</div>
 
 

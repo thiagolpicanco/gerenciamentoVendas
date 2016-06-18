@@ -23,7 +23,7 @@ public class ClienteService {
 	public void cadastraCliente(Cliente cliente) {
 		try {
 			clienteDao.gravarOuAtualizar(cliente);
-		} catch (Exception 	e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -48,6 +48,10 @@ public class ClienteService {
 
 	public List<Cliente> listarTodos() {
 		return clienteDao.listarTudo();
+	}
+
+	public List<Cliente> listaPorFiltro(Cliente cliente) {
+		return clienteDao.filtrarClientees(cliente);
 	}
 
 }

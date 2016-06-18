@@ -78,21 +78,24 @@
 					</div>
 					<div class="box-footer">
 						<div class="form-group" style="float: right;">
+
 							<h:panelGroup
 								rendered="#{!manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}">
 								<p:commandButton value="Salvar"
 									action="#{manterFuncionarioMB.cadastrarFuncionario}"
 									ajax="false" />
 								<p:commandButton value="Limpar"
+									rendered="#{!manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v') and !manterFuncionarioMB.tipoVisao.equalsIgnoreCase('e')}"
 									action="#{manterFuncionarioMB.limpaCampos()}" immediate="true"
 									ajax="true" update="@form" />
 							</h:panelGroup>
-
 							<h:panelGroup
-								rendered="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}">
+								rendered="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v') or manterFuncionarioMB.tipoVisao.equalsIgnoreCase('e')}">
 								<p:commandButton value="Voltar"
 									action="listarFuncionarios.xhtml?faces-redirect=true" />
 							</h:panelGroup>
+
+
 						</div>
 					</div>
 				</div>

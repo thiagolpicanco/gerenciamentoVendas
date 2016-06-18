@@ -53,30 +53,20 @@ public class ManterVendaMB {
 	// -------VARIAVEIS------------//
 
 	private Venda venda;
-
 	private List<Venda> listaVendas;
-
 	private List<Cliente> listaClientes;
-
 	private Funcionario funcionarioResponsavel;
-
 	private List<Funcionario> listaFuncionarios;
-
 	private Produto filtroProduto;
-
 	private Cliente filtroCliente;
-
 	private List<Produto> listaProdutos;
-
 	private Cliente cliente;
 	private Produto produto;
 	private SaidaProduto saidaProduto;
 	private List<SaidaProduto> listaProdutosCarrinho;
 	private List<CategoriaProduto> listaCategorias;
 	private Integer qtdSaida;
-
 	private List<TipoPagamento> tiposPagamento;
-
 	private List<Fornecedor> listaFornecedores;
 
 	@PostConstruct
@@ -90,7 +80,6 @@ public class ManterVendaMB {
 		inicializaCombos();
 		try {
 			listaVendas = vendaService.listarTodos();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -99,7 +88,6 @@ public class ManterVendaMB {
 	public List<String> completaNomeProduto(String query) {
 		filtroProduto.setNome(query);
 		List<String> listaNomes = new ArrayList<>();
-
 		listaProdutos = produtoService.listarProdutoLike(filtroProduto);
 		for (Produto produto : listaProdutos) {
 			listaNomes.add(produto.getNome());
@@ -157,13 +145,19 @@ public class ManterVendaMB {
 	public void efetuarVenda() {
 
 		try {
+			Produto produtoFinal = new Produto();
 			for (SaidaProduto saidaProd : venda.getListaProdutos()) {
-				Produto prod = produtoService.buscaProduto(saidaProd.getProduto());
-				Integer qtdFinal = prod.getQtdAtual() - saidaProd.getQuantidade();
-				prod.setQtdAtual(qtdFinal);
-				produtoService.atualizaProduto(prod);
+				produtoFinal = produtoService.buscaProduto(saidaProd.getProduto());
+				Integer qtdFinal = produtoFinal.getQtdAtual() - saidaProd.getQuantidade();
+				produtoFinal.setQtdAtual(qtdFinal);
+				produtoService.atualizaProduto(produtoFinal);
 				saidaProd.setObservacao("Venda");
 			}
+
+			if (produtoFinal.getQtdAtual() < 0) {
+				throw new Exception("Não existe essa quantidade de produto estoque");
+			}
+
 			venda.setDataVenda(new Date());
 			venda.setCliente(cliente);
 			venda.setFuncionarioResponsavel(UsuarioSessaoMB.getUsuarioLogin().getFuncionario());

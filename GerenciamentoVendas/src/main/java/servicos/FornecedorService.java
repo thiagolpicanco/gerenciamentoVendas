@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import entidades.Fornecedor;
+import entidades.Produto;
 import exceptions.PersistenciaException;
 import persistence.FornecedorDao;
 
@@ -48,6 +49,10 @@ public class FornecedorService {
 
 	public List<Fornecedor> listarTodos() {
 		return fornecedorDao.listarTudo();
+	}
+
+	public List<Fornecedor> listaPorFiltro(Fornecedor filtro) {
+		return fornecedorDao.filtrarFornecedores(filtro);
 	}
 
 }

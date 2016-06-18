@@ -117,8 +117,8 @@ public class ManterFuncionarioMB {
 		try {
 			funcionarioService.cadastraFuncionario(funcionario);
 			if (tipoVisao.equalsIgnoreCase("e")) {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("listarFuncionarios.jsf");
 				MensagensUtil.adicionaMensagemSucesso(MSG_EDITADO_SUCESSO);
+				FacesContext.getCurrentInstance().getExternalContext().redirect("listarFuncionarios.jsf");
 			} else {
 				MensagensUtil.adicionaMensagemSucesso(MSG_CADASTRO_SUCESSO);
 				this.limpaCampos();

@@ -19,71 +19,102 @@
 					<p:messages />
 
 
+					<div class="box-body" style="max-width: 400px;">
+						<p:outputLabel value="Nome" style="margin-right: 10px;" />
+						<h:inputText value="#{manterClienteMB.cliente.nome}"
+							styleClass="form-control" />
 
-					<p:dataTable style="margin-top: 20px;"
-						value="#{manterClienteMB.listaClientes}" var="cliente"
-						emptyMessage="Não existem clientes cadastrados.">
-
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Nome" />
-							</f:facet>
-							<h:outputText value="#{cliente.nome}">
-							</h:outputText>
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="CPF" />
-							</f:facet>
-							<h:outputText value="#{cliente.cpfCnpj}" />
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Cidade" />
-							</f:facet>
-							<h:outputText value="#{cliente.cpfCnpj}" />
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Bairro" />
-							</f:facet>
-							<h:outputText value="#{cliente.cpfCnpj}">
-							</h:outputText>
-						</p:column>
+						<p:outputLabel value="CNPJ" />
+						<h:inputText value="#{manterClienteMB.cliente.cpfCnpj}"
+							styleClass="form-control" />
 
 
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Endereço" />
-							</f:facet>
-							<h:outputText value="#{cliente.cpfCnpj}" />
-						</p:column>
+						<p:commandButton value="Buscar" style="margin-top: 20px;"
+							action="#{manterClienteMB.filtraClientes()}" update="@form" />
+						<p:commandButton value="Limpar"
+							action="#{manterClienteMB.limparCampos()}" ajax="true"
+							update="@form" />
+					</div>
 
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Email" />
-							</f:facet>
-							<h:outputText value="#{produto.categoria.noCategoria}" />
-						</p:column>
-
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Telefone" />
-							</f:facet>
-							<h:outputText value="#{produto.categoria.noCategoria}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<p:outputLabel value="Celular" />
-							</f:facet>
-							<h:outputText value="#{produto.categoria.noCategoria}" />
-						</p:column>
-					</p:dataTable>
 				</div>
+
+
+				<p:dataTable style="margin-top: 20px;"
+					value="#{manterClienteMB.listaClientes}" var="cliente"
+					emptyMessage="Não existem clientes cadastrados.">
+
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Nome" />
+						</f:facet>
+						<h:outputText value="#{cliente.nome}">
+						</h:outputText>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="CPF" />
+						</f:facet>
+						<h:outputText value="#{cliente.cpfCnpj}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Cidade" />
+						</f:facet>
+						<h:outputText value="#{cliente.cpfCnpj}" />
+					</p:column>
+
+					<!-- 					<p:column> -->
+					<!-- 						<f:facet name="header"> -->
+					<!-- 							<p:outputLabel value="Bairro" /> -->
+					<!-- 						</f:facet> -->
+					<!-- 						<h:outputText value="#{cliente.cpfCnpj}"> -->
+					<!-- 						</h:outputText> -->
+					<!-- 					</p:column> -->
+
+
+					<!-- 					<p:column> -->
+					<!-- 						<f:facet name="header"> -->
+					<!-- 							<p:outputLabel value="Endereço" /> -->
+					<!-- 						</f:facet> -->
+					<!-- 						<h:outputText value="#{cliente.cpfCnpj}" /> -->
+					<!-- 					</p:column> -->
+
+
+					<!-- 					<p:column> -->
+					<!-- 						<f:facet name="header"> -->
+					<!-- 							<p:outputLabel value="Email" /> -->
+					<!-- 						</f:facet> -->
+					<!-- 						<h:outputText value="#{produto.categoria.noCategoria}" /> -->
+					<!-- 					</p:column> -->
+
+					<!-- 					<p:column> -->
+					<!-- 						<f:facet name="header"> -->
+					<!-- 							<p:outputLabel value="Telefone" /> -->
+					<!-- 						</f:facet> -->
+					<!-- 						<h:outputText value="#{produto.categoria.noCategoria}" /> -->
+					<!-- 					</p:column> -->
+					<!-- 					<p:column> -->
+					<!-- 						<f:facet name="header"> -->
+					<!-- 							<p:outputLabel value="Celular" /> -->
+					<!-- 						</f:facet> -->
+					<!-- 						<h:outputText value="#{produto.categoria.noCategoria}" /> -->
+					<!-- 					</p:column> -->
+
+					<p:column style="text-align:center">
+						<f:facet name="header">
+							<p:outputLabel value="Ações" />
+						</f:facet>
+						<p:commandButton icon="ui-icon-search" ajax="false"
+							action="#{manterClienteMB.redirecionaVisualizar(cliente)}"
+							title="Visualizar">
+
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-pencil" title="Editar"
+							action="#{manterClienteMB.redirecionaEditar(cliente)}" />
+					</p:column>
+				</p:dataTable>
 			</div>
 
 

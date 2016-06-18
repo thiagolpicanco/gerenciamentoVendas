@@ -64,7 +64,7 @@
 				<p:dataTable var="func"
 					value="#{manterFuncionarioMB.listaFuncionarios}">
 
-					<p:column>
+					<p:column style="text-align:center">
 						<f:facet name="header">
 							<p:outputLabel value="Nome" />
 						</f:facet>
@@ -73,7 +73,7 @@
 						</h:outputText>
 					</p:column>
 
-					<p:column>
+					<p:column style="width: 200px; text-align:center">
 						<f:facet name="header">
 							<p:outputLabel value="CPF" />
 						</f:facet>
@@ -81,33 +81,33 @@
 						</h:outputText>
 					</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<p:outputLabel value="Telefone" />
-						</f:facet>
-						<h:outputText value="#{func.telefone}" style="font-size: 15px;">
-						</h:outputText>
-					</p:column>
+					<!-- 					<p:column style="width: 150px;"> -->
+					<!-- 						<f:facet name="header"> -->
+					<!-- 							<p:outputLabel value="Telefone" /> -->
+					<!-- 						</f:facet> -->
+					<!-- 						<h:outputText value="#{func.telefone}" style="font-size: 15px;"> -->
+					<!-- 						</h:outputText> -->
+					<!-- 					</p:column> -->
 
-					<p:column>
-						<f:facet name="header">
-							<p:outputLabel value="Celular" />
-						</f:facet>
-						<h:outputText value="#{func.celular}" style="font-size: 15px;">
-						</h:outputText>
-					</p:column>
-
-
-					<p:column>
-						<f:facet name="header">
-							<p:outputLabel value="E-mail" />
-						</f:facet>
-						<h:outputText value="#{func.email}" style="font-size: 12px;">
-						</h:outputText>
-					</p:column>
+					<!-- 					<p:column style="width: 150px;"> -->
+					<!-- 						<f:facet name="header"> -->
+					<!-- 							<p:outputLabel value="Celular" /> -->
+					<!-- 						</f:facet> -->
+					<!-- 						<h:outputText value="#{func.celular}" style="font-size: 15px;"> -->
+					<!-- 						</h:outputText> -->
+					<!-- 					</p:column> -->
 
 
-					<p:column>
+					<!-- 					<p:column> -->
+					<!-- 						<f:facet name="header"> -->
+					<!-- 							<p:outputLabel value="E-mail" /> -->
+					<!-- 						</f:facet> -->
+					<!-- 						<h:outputText value="#{func.email}" style="font-size: 12px;"> -->
+					<!-- 						</h:outputText> -->
+					<!-- 					</p:column> -->
+
+
+					<p:column style="text-align:center">
 						<f:facet name="header">
 							<p:outputLabel value="Cargo" />
 						</f:facet>
@@ -115,7 +115,7 @@
 						</h:outputText>
 					</p:column>
 
-					<p:column>
+					<p:column style="text-align: center">
 						<f:facet name="header">
 							<p:outputLabel value="Ações" />
 						</f:facet>
