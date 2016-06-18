@@ -1,5 +1,6 @@
 package controladores;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,6 +9,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 
 import entidades.CategoriaProduto;
 import entidades.Cliente;
@@ -68,10 +71,15 @@ public class ManterVendaMB {
 	private Integer qtdSaida;
 	private List<TipoPagamento> tiposPagamento;
 	private List<Fornecedor> listaFornecedores;
+	private Venda vendaSelecionada;
+	private Boolean isVisualizar;
+	private String tituloMB = "Lista de Vendas Efetuadas";
 
 	@PostConstruct
 	public void init() {
+
 		venda = new Venda();
+		venda.setNotaFiscal(new NotaFiscal());
 		listaProdutosCarrinho = new ArrayList<>();
 		produto = new Produto();
 		filtroProduto = new Produto();
@@ -79,10 +87,21 @@ public class ManterVendaMB {
 		saidaProduto = new SaidaProduto();
 		inicializaCombos();
 		try {
+			listaFuncionarios = funcionarioService.listarTodos();
 			listaVendas = vendaService.listarTodos();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Flash getFlash() {
+		return FacesContext.getCurrentInstance().getExternalContext().getFlash();
+	}
+
+	public void visualizaVenda(Venda vendaParametro) {
+		isVisualizar = Boolean.TRUE;
+		vendaSelecionada = vendaParametro;
+		tituloMB = "Detalhamento de venda efetuada";
 	}
 
 	public List<String> completaNomeProduto(String query) {
@@ -100,15 +119,6 @@ public class ManterVendaMB {
 		listaProdutos = produtoService.listaPorFiltro(filtroProduto);
 	}
 
-	public List<String> completeText(String query) {
-		List<String> results = new ArrayList<String>();
-		for (int i = 0; i < 10; i++) {
-			results.add(query + i);
-		}
-
-		return results;
-	}
-
 	public void inicializaCombos() {
 		this.listarClientes();
 		listaFornecedores = fornecedorService.listarTodos();
@@ -124,6 +134,10 @@ public class ManterVendaMB {
 		saidaProduto.setDataSaida(new Date());
 		venda.getListaProdutos().add(saidaProduto);
 		this.alteraValorTotal();
+	}
+
+	public void filtrarVendas() {
+		listaVendas = vendaService.filtraVenda(venda);
 	}
 
 	public void alteraValorTotal() {
@@ -352,6 +366,30 @@ public class ManterVendaMB {
 
 	public void setQtdSaida(Integer qtdSaida) {
 		this.qtdSaida = qtdSaida;
+	}
+
+	public Venda getVendaSelecionada() {
+		return vendaSelecionada;
+	}
+
+	public void setVendaSelecionada(Venda vendaSelecionada) {
+		this.vendaSelecionada = vendaSelecionada;
+	}
+
+	public Boolean getIsVisualizar() {
+		return isVisualizar;
+	}
+
+	public void setIsVisualizar(Boolean isVisualizar) {
+		this.isVisualizar = isVisualizar;
+	}
+
+	public String getTituloMB() {
+		return tituloMB;
+	}
+
+	public void setTituloMB(String tituloMB) {
+		this.tituloMB = tituloMB;
 	}
 
 }

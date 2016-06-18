@@ -33,8 +33,8 @@ public class VendaService {
 	// return total;
 	// }
 
-	public void geraComissao() {
-
+	public List<Venda> filtraVenda(Venda venda) {
+		return vendaDao.filtrarVendas(venda);
 	}
 
 	public void cadastraVenda(Venda venda) throws Exception {

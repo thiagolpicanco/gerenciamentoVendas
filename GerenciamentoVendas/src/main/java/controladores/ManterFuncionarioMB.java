@@ -65,6 +65,9 @@ public class ManterFuncionarioMB {
 
 	}
 
+	public Flash getFlash() {
+		return FacesContext.getCurrentInstance().getExternalContext().getFlash();
+	}
 	public void redirecionaVisualizar(Funcionario funcionario) {
 		try {
 			Object obj[] = { funcionario, "v" };
@@ -90,9 +93,6 @@ public class ManterFuncionarioMB {
 		}
 	}
 
-	public Flash getFlash() {
-		return FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	}
 
 	public void limpaCampos() {
 		funcionario = new Funcionario();

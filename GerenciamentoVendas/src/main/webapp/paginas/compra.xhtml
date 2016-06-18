@@ -29,7 +29,8 @@
 				<h:inputText id="dd" value="#{manterCompraMB.compra.notaFiscal}"
 					required="false" class="form-control"></h:inputText>
 
-				<p:outputLabel value="Fornecedor: " for="dd" style="margin-top: 15px;"/>
+				<p:outputLabel value="Fornecedor: " for="dd"
+					style="margin-top: 15px;" />
 				<h:selectOneMenu value="#{manterCompraMB.compra.fornecedor}"
 					converter="omnifaces.SelectItemsConverter" class="form-control">
 					<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
@@ -132,12 +133,12 @@
 				<p:messages></p:messages>
 				<h:panelGrid columns="4">
 					<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" />
-					<p:autoComplete value="#{manterCompraMB.filtroProduto.nome}"
-						completeMethod="#{manterCompraMB.completaNomeProduto}"></p:autoComplete>
+					<h:inputText value="#{manterCompraMB.filtroProduto.nome}"
+						styleClass="form-control" />
 
 					<p:outputLabel value="Código" style="margin-left: 20px;" />
 					<h:inputText value="#{manterCompraMB.filtroProduto.id.codigo}"
-						class="form-control" />
+						styleClass="form-control" />
 
 					<p:outputLabel value="Fornecedor" />
 					<h:selectOneMenu value="#{manterCompraMB.filtroProduto.fornecedor}"

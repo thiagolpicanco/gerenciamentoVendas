@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -34,7 +35,7 @@ public class Venda extends Entidade implements Serializable {
 	@GeneratedValue(generator = "sq_venda")
 	@Column(name = "nu_venda")
 	private Integer nuVenda;
-	@OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "venda", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<SaidaProduto> listaProdutos;
 	@ManyToOne
 	@JoinColumn(name = "id_funcionario")

@@ -21,8 +21,8 @@ public class ProdutoDao extends GerencialDao<Produto> {
 		hql.append("select p from Produto p ");
 		hql.append("where p.id.codigo is not null ");
 
-		if (null != filtro.getNome() && !filtro.getNome().isEmpty()) {
-			hql.append(" and p.nome = :nome");
+		if (null != filtro.getNome() || !filtro.getNome().isEmpty()) {
+			hql.append(" and lower(p.nome) like :nome ");
 		}
 
 		if (null != filtro.getId().getCodigo() && !filtro.getId().getCodigo().equals(0)) {
@@ -38,8 +38,8 @@ public class ProdutoDao extends GerencialDao<Produto> {
 		}
 
 		Query query = getEntityManager().createQuery(hql.toString());
-		if (null != filtro.getNome() && !filtro.getNome().isEmpty()) {
-			query.setParameter("nome", filtro.getNome());
+		if (filtro.getNome() != null || !filtro.getNome().isEmpty()) {
+			query.setParameter("nome", filtro.getNome().toLowerCase() + "%");
 		}
 
 		if (null != filtro.getId().getCodigo() && !filtro.getId().getCodigo().equals(0)) {

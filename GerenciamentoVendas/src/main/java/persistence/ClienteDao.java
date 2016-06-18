@@ -40,6 +40,5 @@ public class ClienteDao extends GerencialDao<Cliente> {
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
 }
