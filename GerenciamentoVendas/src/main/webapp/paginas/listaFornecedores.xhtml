@@ -20,7 +20,7 @@
 
 
 
-					<p:dataTable style="margin-top: 20px;"
+					<p:dataTable style="margin-top: 20px;" editable="true"
 						value="#{manterFornecedorMB.listaFornecedores}" var="forn"
 						emptyMessage="Não existem fornecedores cadastrados.">
 
@@ -60,6 +60,19 @@
 							</f:facet>
 							<h:outputText value="#{forn.email}">
 							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Ações" />
+							</f:facet>
+							<p:commandButton icon="ui-icon-search" ajax="false"
+								action="#{manterFornecedorMB.redirecionaVisualizar(forn)}"
+								title="Visualizar">
+
+							</p:commandButton>
+							<p:commandButton icon="ui-icon-pencil" title="Editar"
+								action="#{manterFornecedorMB.redirecionaEditar(forn)}" />
 						</p:column>
 
 

@@ -26,56 +26,73 @@
 						<h:outputLabel value="Nome" />
 						<h:inputText required="true" label="Nome"
 							styleClass="form-control"
-							value="#{manterFuncionarioMB.funcionario.nome}" />
+							value="#{manterFuncionarioMB.funcionario.nome}"
+							disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}" />
 
 						<h:outputLabel value="CPF" />
-						<h:inputText label="CPF" required="true" styleClass="form-control"
-							value="#{manterFuncionarioMB.funcionario.cpfCnpj}"
-							validator="cpfValidator" onkeypress="mascara(this,cpf)" />
+						<p:inputMask mask="999.999.999-99" label="CPF" required="true"
+							styleClass="form-control"
+							disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}"
+							value="#{manterFuncionarioMB.funcionario.cpf}"
+							validator="cpfValidator" />
 
 						<h:outputLabel value="Telefone" />
 						<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
-							value="#{manterFuncionarioMB.funcionario.telefone}" />
+							value="#{manterFuncionarioMB.funcionario.telefone}"
+							disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}" />
 
 						<h:outputLabel value="Celular" />
 
 						<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
-							value="#{manterFuncionarioMB.funcionario.celular}" />
+							value="#{manterFuncionarioMB.funcionario.celular}"
+							disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}" />
 
 
 
 						<h:outputLabel value="E-Mail" />
 						<h:inputText value="#{manterFuncionarioMB.funcionario.email}"
-							styleClass="form-control" validator="emailValidator"/>
+							styleClass="form-control"
+							disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}" />
 
 
 						<h:outputLabel value="Endereço" />
 						<h:inputText value="#{manterFuncionarioMB.funcionario.endereco}"
-							styleClass="form-control" />
+							styleClass="form-control"
+							disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}" />
 
 
 
 						<h:outputLabel value="Cargo" />
 						<h:selectOneMenu required="true" styleClass="form-control"
-							label="Cargo"
-							value="#{manterFuncionarioMB.funcionario.tipoFuncionario}"
+							label="Cargo" value="#{manterFuncionarioMB.funcionario.cargo}"
+							disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}"
 							converter="omnifaces.SelectItemsConverter">
 							<f:selectItem noSelectionOption="true" itemLabel="Selecione"></f:selectItem>
 							<f:selectItems value="#{manterFuncionarioMB.listaCargos}"
-								var="cargo" itemLabel="#{cargo.noTipoFuncionario}"></f:selectItems>
+								var="cargo"></f:selectItems>
 						</h:selectOneMenu>
 
-						<div class="box-footer">
-							<div class="form-group">
-								<h:commandButton value="Cadastrar"
-									styleClass="btn btn-info pull-right"
+
+
+
+					</div>
+					<div class="box-footer">
+						<div class="form-group" style="float: right;">
+							<h:panelGroup
+								rendered="#{!manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}">
+								<p:commandButton value="Salvar"
 									action="#{manterFuncionarioMB.cadastrarFuncionario}"
 									ajax="false" />
-								<h:commandButton value="Limpar"
-									styleClass="btn btn-info pull-right"
+								<p:commandButton value="Limpar"
 									action="#{manterFuncionarioMB.limpaCampos()}" immediate="true"
 									ajax="true" update="@form" />
-							</div>
+							</h:panelGroup>
+
+							<h:panelGroup
+								rendered="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}">
+								<p:commandButton value="Voltar"
+									action="listarFuncionarios.xhtml?faces-redirect=true" />
+							</h:panelGroup>
 						</div>
 					</div>
 				</div>

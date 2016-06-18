@@ -26,10 +26,10 @@
 
 
 				<p:outputLabel value="Nota Fiscal: " for="dd" />
-				<p:inputText id="dd" value="#{manterCompraMB.compra.notaFiscal}"
-					required="false"></p:inputText>
+				<h:inputText id="dd" value="#{manterCompraMB.compra.notaFiscal}"
+					required="false" class="form-control"></h:inputText>
 
-				<p:outputLabel value="Fornecedor: " for="dd" />
+				<p:outputLabel value="Fornecedor: " for="dd" style="margin-top: 15px;"/>
 				<h:selectOneMenu value="#{manterCompraMB.compra.fornecedor}"
 					converter="omnifaces.SelectItemsConverter" class="form-control">
 					<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>

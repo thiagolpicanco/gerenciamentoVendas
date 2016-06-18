@@ -42,13 +42,14 @@
 							converter="omnifaces.SelectItemsConverter">
 							<f:selectItem noSelectionOption="true" itemLabel="Selecione"></f:selectItem>
 							<f:selectItems value="#{manterUsuarioMB.listaFuncionarios}"
-								var="func" itemLabel="#{func.nome} - #{func.cpfCnpj} "></f:selectItems>
+								var="func" itemLabel="#{func.nome} - #{func.cpf} "></f:selectItems>
 						</h:selectOneMenu>
 
 						<div class="box-footer">
 							<div class="form-group">
 								<p:commandButton value="Cadastrar"
-									action="#{manterUsuarioMB.cadastrarUsuario()}" ajax="true" />
+									action="#{manterUsuarioMB.cadastrarUsuario()}" ajax="true"
+									update="@form" />
 								<p:commandButton value="Limpar"
 									action="#{manterUsuarioMB.limpaCampos()}" immediate="true"
 									ajax="true" update="@form" />

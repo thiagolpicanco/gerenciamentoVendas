@@ -64,14 +64,7 @@ public class Funcionario extends Entidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getCpfCnpj() {
-		return cpf;
-	}
-
-	public void setCpfCnpj(String cpfCnpj) {
-		this.cpf = cpfCnpj;
-	}
-
+	
 	public String getTelefone() {
 		return telefone;
 	}

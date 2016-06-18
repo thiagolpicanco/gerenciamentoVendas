@@ -23,16 +23,12 @@ public class FuncionarioDao extends GerencialDao<Funcionario> {
 			hql.append(" and p.nome = :nome");
 		}
 
-		if (null != filtro.getId() && !filtro.getId().equals(0)) {
-			hql.append(" and p.id = :id ");
+		if (null != filtro.getCpf() && !filtro.getCpf().isEmpty()) {
+			hql.append(" and p.cpf= :cpf");
 		}
 
-		if (null != filtro.getCpfCnpj() && !filtro.getCpfCnpj().isEmpty()) {
-			hql.append(" and p.cpfCnpj = :cpf");
-		}
-
-		if (null != filtro.getCargo()) {
-			hql.append(" and p.tipoFuncionario = :tipo");
+		if (null != filtro.getCargo() && !filtro.getCargo().isEmpty()) {
+			hql.append(" and p.cargo = :tipo");
 		}
 
 		if (null != filtro.getEmail() && !filtro.getEmail().isEmpty()) {
@@ -44,15 +40,11 @@ public class FuncionarioDao extends GerencialDao<Funcionario> {
 			query.setParameter("nome", filtro.getNome());
 		}
 
-		if (null != filtro.getId() && !filtro.getId().equals(0)) {
-			query.setParameter("id", filtro.getId());
+		if (null != filtro.getCpf() && !filtro.getCpf().isEmpty()) {
+			query.setParameter("cpf", filtro.getCpf());
 		}
 
-		if (null != filtro.getCpfCnpj() && !filtro.getCpfCnpj().isEmpty()) {
-			query.setParameter("cpf", filtro.getCpfCnpj());
-		}
-
-		if (null != filtro.getCargo()) {
+		if (null != filtro.getCargo() && !filtro.getCargo().isEmpty()) {
 			query.setParameter("tipo", filtro.getCargo());
 		}
 

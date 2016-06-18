@@ -28,7 +28,7 @@ $(function() {
 					<h2 class="box-title">Cadastro de Clientes</h2>
 				</div>
 				<div class="box-body">
-					<p:messages></p:messages>
+					<p:growl></p:growl>
 					<div class="form-group" style="max-width: 400px;">
 
 
@@ -37,42 +37,43 @@ $(function() {
 							styleClass="form-control" value="#{manterClienteMB.cliente.nome}" />
 
 						<h:outputLabel value="CPF" />
-						<h:inputText required="true" label="celular" id="cpf" onkeypress="mascara(this,cpf)"
-							styleClass="form-control" validator="cpfValidator"
+						<h:inputText required="true" label="CPF" id="cpf"
+							onkeypress="mascara(this,cpf)" styleClass="form-control"
+							validator="cpfValidator"
 							value="#{manterClienteMB.cliente.cpfCnpj}" />
 
 						<h:outputLabel value="Email" />
-						<h:inputText required="true" label="email"
+						<h:inputText required="true" label="Email"
 							styleClass="form-control"
 							value="#{manterClienteMB.cliente.email}" />
 
 						<h:outputLabel value="Telefone" />
-						<h:inputText required="true" label="telefone"
+						<h:inputText required="true" label="Telefone"
 							styleClass="form-control"
 							value="#{manterClienteMB.cliente.telefone}" />
 
 
 						<h:outputLabel value="Celular" />
-						<h:inputText required="true" label="celular"
+						<h:inputText required="true" label="Celular"
 							styleClass="form-control"
 							value="#{manterClienteMB.cliente.celular}" />
 
 
 
 						<h:outputLabel value="Cidade" />
-						<h:inputText required="true" label="cidade"
+						<h:inputText required="true" label="Cidade"
 							styleClass="form-control"
 							value="#{manterClienteMB.cliente.cidade}" />
 
 						<h:outputLabel value="Bairro" />
-						<h:inputText required="true" label="celular"
+						<h:inputText required="true" label="Bairro"
 							styleClass="form-control"
 							value="#{manterClienteMB.cliente.bairro}" />
 
 
 
 						<h:outputLabel value="Endereço" />
-						<h:inputText required="true" label="endereco"
+						<h:inputText required="true" label="Endereço"
 							styleClass="form-control"
 							value="#{manterClienteMB.cliente.endereco}" />
 

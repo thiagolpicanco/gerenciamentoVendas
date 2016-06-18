@@ -52,7 +52,7 @@ public class ManterProdutoMB {
 	private Produto produto;
 	private List<String> listaTamanhos;
 	private Produto produtoSelecionado;
-	private Integer qtdEntrada;
+	private Integer qtdEntrada = 1;
 	private String render;
 	private Integer qtdSaida;
 	private List<String> listaMotivos;
@@ -210,7 +210,7 @@ public class ManterProdutoMB {
 			MensagensUtil.adicionaMensagemSucesso("Entrada de produto efetuada com sucesso");
 
 		} catch (Exception e) {
-			MensagensUtil.adicionaMensagemErro("Erro ao dar entrada de produto" + e.getMessage());
+			MensagensUtil.adicionaMensagemErro("Erro ao dar entrada de produto : " + e.getMessage());
 		}
 		this.limpaCampos();
 	}

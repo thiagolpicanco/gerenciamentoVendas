@@ -21,6 +21,9 @@
 				<div class="box-header with-border" style="border-bottom: 30px;">
 					<h2 class="box-title">Consulta Funcionários</h2>
 				</div>
+
+				<p:messages>
+				</p:messages>
 				<div class="box-body" style="max-width: 400px;">
 
 					<div class="form-group">
@@ -29,12 +32,9 @@
 							styleClass="form-control" />
 
 						<p:outputLabel value="CPF" />
-						<h:inputText value="#{manterFuncionarioMB.funcionario.cpfCnpj}"
-							styleClass="form-control" />
+						<h:inputText value="#{manterFuncionarioMB.funcionario.cpf}"
+							styleClass="form-control" onkeypress="mascara(this,cpf)" />
 
-						<p:outputLabel value="Código" />
-						<h:inputText value="#{manterFuncionarioMB.funcionario.id}"
-							styleClass="form-control" />
 
 						<p:outputLabel value="Cargo" />
 						<h:selectOneMenu converter="omnifaces.SelectItemsConverter"
@@ -77,7 +77,7 @@
 						<f:facet name="header">
 							<p:outputLabel value="CPF" />
 						</f:facet>
-						<h:outputText value="#{func.cpfCnpj}" style="font-size: 15px;">
+						<h:outputText value="#{func.cpf}" style="font-size: 15px;">
 						</h:outputText>
 					</p:column>
 
@@ -115,12 +115,26 @@
 						</h:outputText>
 					</p:column>
 
+					<p:column>
+						<f:facet name="header">
+							<p:outputLabel value="Ações" />
+						</f:facet>
+						<p:commandButton icon="ui-icon-search" ajax="false"
+							action="#{manterFuncionarioMB.redirecionaVisualizar(func)}"
+							title="Visualizar">
 
-
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-pencil" title="Editar"
+							action="#{manterFuncionarioMB.redirecionaEditar(func)}" />
+					</p:column>
 				</p:dataTable>
-
-
 			</div>
+
+
+
+
+
+
 		</h:form>
 	</ui:define>
 

@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 	<style type="text/css">
 </style>
@@ -68,7 +69,7 @@
 		</p:dialog>
 
 		<p:dialog widgetVar="dialogProduto" header="Inserir Produto"
-			id="dialogProduto" minHeight="600" minWidth="800" height="400"
+			id="dialogProduto" minHeight="640" minWidth="800" height="450"
 			width="800">
 			<h:form>
 				<h:panelGrid columns="4">
@@ -77,20 +78,21 @@
 						completeMethod="#{manterVendaMB.completaNomeProduto}"></p:autoComplete>
 
 					<p:outputLabel value="Código" style="marginleft: 20px;" />
-					<h:inputText value="#{manterVendaMB.filtroProduto.id.codigo}"
-						class="formcontrol" />
+					<p:inputText value="#{manterVendaMB.filtroProduto.id.codigo}" />
 
-					<p:outputLabel value="Fornecedor" />
-					<h:selectOneMenu value="#{manterVendaMB.filtroProduto.fornecedor}"
-						converter="omnifaces.SelectItemsConverter" class="formcontrol">
+					<p:outputLabel value="Fornecedor" style="margin-top: 10px;"/>
+					<h:selectOneMenu value="#{manterVendaMB.filtroProduto.fornecedor}" style="margin-top: 10px;"
+						converter="omnifaces.SelectItemsConverter"
+						styleClass="form-control">
 						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
 						<f:selectItems value="#{manterVendaMB.listaFornecedores}"
 							var="for" itemLabel="#{for.nome}" />
 					</h:selectOneMenu>
 
-					<p:outputLabel value="Categoria" style="marginleft: 20px;" />
+					<p:outputLabel value="Categoria" style="marginleft: 20px; margin-top: 10px;" />
 					<h:selectOneMenu value="#{manterVendaMB.filtroProduto.categoria}"
-						class="formcontrol" converter="omnifaces.SelectItemsConverter">
+						styleClass="form-control" style="margin-top: 10px;"
+						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
 						<f:selectItems value="#{manterVendaMB.listaCategorias}"
 							var="categoria" itemLabel="#{categoria.noCategoria}"></f:selectItems>
@@ -107,7 +109,8 @@
 
 					<p:outputLabel value="Produto: " style="marginright: 20px;" />
 					<h:selectOneMenu style="width: 600px; " id="produtoSelecionar"
-						class="formcontrol" converter="omnifaces.SelectItemsConverter"
+						styleClass="form-control"
+						converter="omnifaces.SelectItemsConverter"
 						value="#{manterVendaMB.produto}">
 						<f:selectItem noSelectionOption="true"
 							itemLabel="Selecione o Produto" />
@@ -121,41 +124,42 @@
 				<h:panelGrid columns="4" id="dadosProduto">
 
 					<p:outputLabel value="Nome: " style="marginright: 10px;" />
-					<h:inputText disabled="true" value="#{manterVendaMB.produto.nome}" />
-					<p:outputLabel value="Código: " />
-					<h:inputText disabled="true"
+					<p:inputText disabled="true" value="#{manterVendaMB.produto.nome}" />
+					<p:outputLabel value="Código: " style="margin-left: 10px;" />
+					<p:inputText disabled="true"
 						value="#{manterVendaMB.produto.id.codigo}" />
 
 					<p:outputLabel value="Tamanho: " />
-					<h:inputText disabled="true"
+					<p:inputText disabled="true"
 						value="#{manterVendaMB.produto.id.tamanho}" />
 
-					<p:outputLabel value="Fornecedor: " />
-					<h:inputText disabled="true"
+					<p:outputLabel value="Fornecedor: " style="margin-left: 10px;"/>
+					<p:inputText disabled="true"
 						value="#{manterVendaMB.produto.fornecedor.nome}" />
 
 					<p:outputLabel value="Categoria: " />
-					<h:inputText disabled="true"
+					<p:inputText disabled="true"
 						value="#{manterVendaMB.produto.categoria.noCategoria}" />
 
-					<p:outputLabel value="Valor: " />
-					<h:inputText disabled="true"
+					<p:outputLabel value="Valor: " style="margin-left: 10px;"/>
+					<pe:inputNumber disabled="true" symbol="R$"
 						value="#{manterVendaMB.produto.valorVenda}" />
 
 
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Descricao: " />
-					<h:inputText disabled="true" style="width: 520px;"
+					<p:inputText disabled="true" style="width: 520px;"
 						value="#{manterVendaMB.produto.descricao}" />
 				</h:panelGrid>
 
+				<p:separator></p:separator>
 
 
 
-				<h:panelGrid columns="2" style="margintop: 30px;">
+				<h:panelGrid columns="2" style="margin-top: 30px;">
 					<p:column>
-						<h:panelGrid columns="2" style="marginright: 356px;">
+						<h:panelGrid columns="2" style="margin-right: 356px;">
 							<p:outputLabel value="Quantidade: " />
 							<p:spinner id="basic" value="#{manterVendaMB.qtdSaida}"
 								max="#{manterVendaMB.produto.qtdAtual}" maxlength="4" size="2"

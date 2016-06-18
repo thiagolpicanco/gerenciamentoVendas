@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="starter.xhtml"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 	<style>
 .
@@ -56,8 +57,8 @@
 							</div>
 							<div class="form-group" style="width: 200px;">
 								<p:outputLabel value="Valor de Venda" for="vVenda" />
-								<h:inputText value="#{manterProdutoMB.produto.valorVenda}"
-									styleClass="form-control" id="vVenda" />
+								<pe:inputNumber value="#{manterProdutoMB.produto.valorVenda}"
+									symbol="R$" id="vVenda" />
 							</div>
 
 
@@ -107,15 +108,16 @@
 
 
 
-						<div class="box-footer">
-							<p:commandButton value="Cadastrar"
-								actionListener="#{manterProdutoMB.cadastraProduto()}"
-								ajax="false" />
-							<p:commandButton value="Limpar"
-								action="#{manterProdutoMB.limpaCampos()}" ajax="true"
-								update="@form" />
-						</div>
 
+					</div>
+
+					<div class="box-footer" style="float: right;">
+						<p:commandButton value="Cadastrar"
+							actionListener="#{manterProdutoMB.cadastraProduto()}"
+							ajax="false" />
+						<p:commandButton value="Limpar"
+							action="#{manterProdutoMB.limpaCampos()}" ajax="true"
+							update="@form" />
 					</div>
 				</div>
 

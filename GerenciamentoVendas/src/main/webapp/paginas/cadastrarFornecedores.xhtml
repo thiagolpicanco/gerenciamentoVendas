@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -19,69 +19,90 @@
 				</div>
 				<div class="box-body">
 					<p:messages></p:messages>
-					<div class="form-group" style="width: 200px;">
+					<div class="row">
+						<div class="col-md-6">
 
 
-						<h:panelGrid style=" margin-bottom: 10px;">
-							<p:outputLabel value="Nome" />
-							<h:inputText value="#{manterFornecedorMB.fornecedor.nome}"
-								styleClass="form-control" />
-						</h:panelGrid>
-
-						<h:panelGrid>
-							<p:outputLabel value="CNPJ" />
-							<h:inputText value="#{manterFornecedorMB.fornecedor.cpfCnpj}"
-								label="CNPJ" styleClass="form-control"
-								onkeypress="mascara(this,cnpj)" validator="cnpjValidator" />
-
-						</h:panelGrid>
+							<h:panelGrid style=" margin-bottom: 10px;">
+								<p:outputLabel value="Nome" />
+								<p:inputText value="#{manterFornecedorMB.fornecedor.nome}"
+									styleClass="form-control" required="true" label="Nome"
+									disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}" />
+							</h:panelGrid>
 
 
-						<h:panelGrid style="margin-bottom: 10px;">
-							<p:outputLabel value="Telefone" />
-							<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
-								value="#{manterFornecedorMB.fornecedor.telefone}" />
-						</h:panelGrid>
+							<h:panelGrid>
+								<p:outputLabel value="CNPJ" />
+								<p:inputMask value="#{manterFornecedorMB.fornecedor.cpfCnpj}"
+									label="CNPJ" styleClass="form-control" required="true"
+									disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}"
+									mask="99.999.999/9999-99" validator="cnpjValidator" />
+
+							</h:panelGrid>
 
 
-						<h:panelGrid>
-							<p:outputLabel value="Celular" />
-							<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
-								value="#{manterFornecedorMB.fornecedor.celular}" />
-
-						</h:panelGrid>
-
-
-						<h:panelGrid style="margin-bottom: 10px;">
-							<p:outputLabel value="E-Mail" />
-							<p:inputText value="#{manterFornecedorMB.fornecedor.email}"
-								styleClass="form-control" />
-						</h:panelGrid>
+							<h:panelGrid style="margin-bottom: 10px;">
+								<p:outputLabel value="Telefone" />
+								<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
+									value="#{manterFornecedorMB.fornecedor.telefone}"
+									disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}"
+									label=" Telefone" />
+							</h:panelGrid>
 
 
-						<h:panelGrid>
-							<p:outputLabel value="EndereÃ§o" />
-							<p:inputText value="#{manterFornecedorMB.fornecedor.endereco}"
-								styleClass="form-control" />
-						</h:panelGrid>
+							<h:panelGrid>
+								<p:outputLabel value="Celular" />
+								<p:inputMask mask="(99) 9999-9999" styleClass="form-control"
+									disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}"
+									label="
+									Celular"
+									value="#{manterFornecedorMB.fornecedor.celular}" />
 
+							</h:panelGrid>
+
+						</div>
+						<div class="col-md-6">
+							<h:panelGrid style="margin-bottom: 10px;">
+								<p:outputLabel value="E-Mail" />
+								<p:inputText value="#{manterFornecedorMB.fornecedor.email}"
+									disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}"
+									styleClass=" form-control" />
+							</h:panelGrid>
+
+
+							<h:panelGrid>
+								<p:outputLabel value="Endereço" />
+								<p:inputText value="#{manterFornecedorMB.fornecedor.endereco}"
+									disabled="#{manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}"
+									styleClass=" form-control" />
+							</h:panelGrid>
+
+						</div>
 					</div>
 
-					<h:panelGrid columns="2" style="float:right">
-						<p:commandButton value="Cadastrar"
-							action="#{manterFornecedorMB.cadastrarFornecedor()}"
-							update="@form" ajax="false"
-							style="margin-left: 40px ;margin-right: 20px;">
-							<p:ajax update="@form" resetValues="true" />
+					<h:panelGroup
+						rendered="#{!manterFornecedorMB.tipoVisao.equalsIgnoreCase('v')}">
+						<h:panelGrid columns="2" style="float:right">
+							<p:commandButton value="Cadastrar"
+								action="#{manterFornecedorMB.cadastrarFornecedor()}"
+								update="@form" ajax="false"
+								rendered="#{!manterFuncionarioMB.tipoVisao.equalsIgnoreCase('v')}"
+								style="margin-left: 40px ;margin-right: 20px;">
+								<p:ajax update="@form" resetValues="true" />
+							</p:commandButton>
+							<p:commandButton value="Limpar">
+								<p:ajax update="@form" resetValues="true" />
+							</p:commandButton>
+						</h:panelGrid>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{manterFornecedorMB.tipoVisao.equalsIgnoreCase('v')}">
+						<p:commandButton value="Voltar" action="listaFornecedores.jsf">
 						</p:commandButton>
-						<p:commandButton value="Limpar">
-							<p:ajax update="@form" resetValues="true" />
-						</p:commandButton>
-					</h:panelGrid>
 
+					</h:panelGroup>
 				</div>
 			</div>
-
 		</h:form>
 	</ui:define>
 
