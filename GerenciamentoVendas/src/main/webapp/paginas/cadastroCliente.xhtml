@@ -28,7 +28,7 @@ $(function() {
 					<h2 class="box-title">Cadastro de Clientes</h2>
 				</div>
 				<div class="box-body">
-					<p:growl></p:growl>
+					<p:messages></p:messages>
 					<div class="form-group" style="max-width: 400px;">
 
 
@@ -38,8 +38,8 @@ $(function() {
 							disabled="#{manterClienteMB.tipoVisao.equalsIgnoreCase('v')}" />
 
 						<h:outputLabel value="CPF" />
-						<h:inputText required="true" label="CPF" id="cpf"
-							onkeypress="mascara(this,cpf)" styleClass="form-control"
+						<p:inputMask mask="999.999.999-99" required="true" label="CPF"
+							id="cpf" styleClass="form-control"
 							validator="cpfValidator"
 							disabled="#{manterClienteMB.tipoVisao.equalsIgnoreCase('v')}"
 							value="#{manterClienteMB.cliente.cpfCnpj}" />
@@ -51,14 +51,14 @@ $(function() {
 							value="#{manterClienteMB.cliente.email}" />
 
 						<h:outputLabel value="Telefone" />
-						<h:inputText required="true" label="Telefone"
-							styleClass="form-control"
+						<p:inputMask mask="(99)999999999" required="true"
+							label="Telefone" styleClass="form-control"
 							disabled="#{manterClienteMB.tipoVisao.equalsIgnoreCase('v')}"
 							value="#{manterClienteMB.cliente.telefone}" />
 
 
 						<h:outputLabel value="Celular" />
-						<h:inputText required="true" label="Celular"
+						<p:inputMask mask="(99)999999999" required="true" label="Celular"
 							styleClass="form-control"
 							disabled="#{manterClienteMB.tipoVisao.equalsIgnoreCase('v')}"
 							value="#{manterClienteMB.cliente.celular}" />

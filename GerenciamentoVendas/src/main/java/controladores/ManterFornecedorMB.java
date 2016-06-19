@@ -22,8 +22,9 @@ public class ManterFornecedorMB {
 
 	final String MSG_FORNECEDOR_CADASTRADO = "Fornecedor cadastrado com sucesso.";
 	final String MSG_FORNECEDOR_EDITADO = "Fornecedor editado com sucesso.";
-	final String MSG_FORNECEDOR_ERRO = "Fornecedor ao cadastrar produto: ";
+	final String MSG_FORNECEDOR_ERRO = "Erro ao cadastrar produto: ";
 	final String MSG_FORNECEDOR_REMOVIDO = "Fornecedor removido com sucesso";
+	final String MSG_CNPJ_CADASTRADO = "Erro: CNPJ já cadastrado";
 
 	@EJB
 	FornecedorService fornecedorService;
@@ -62,16 +63,22 @@ public class ManterFornecedorMB {
 	public void cadastrarFornecedor() {
 
 		try {
-			fornecedorService.cadastraFornecedor(this.fornecedor);
 
-			if (tipoVisao.equalsIgnoreCase("e")) {
-				MensagensUtil.adicionaMensagemSucesso(MSG_FORNECEDOR_EDITADO);
-				FacesContext.getCurrentInstance().getExternalContext().redirect("listaFornecedores.jsf");
+			if (fornecedorService.findByCNPJ(this.fornecedor.getCpfCnpj()) == null) {
 
+				fornecedorService.cadastraFornecedor(this.fornecedor);
+
+				if (tipoVisao.equalsIgnoreCase("e")) {
+					MensagensUtil.adicionaMensagemSucesso(MSG_FORNECEDOR_EDITADO);
+					FacesContext.getCurrentInstance().getExternalContext().redirect("listaFornecedores.jsf");
+
+				} else {
+
+					MensagensUtil.adicionaMensagemSucesso(MSG_FORNECEDOR_CADASTRADO);
+					this.limparCampos();
+				}
 			} else {
-
-				MensagensUtil.adicionaMensagemSucesso(MSG_FORNECEDOR_CADASTRADO);
-				this.limparCampos();
+				MensagensUtil.adicionaMensagemErro(MSG_CNPJ_CADASTRADO);
 			}
 		} catch (Exception e) {
 			MensagensUtil.adicionaMensagemErro(MSG_FORNECEDOR_ERRO + e.getMessage());
@@ -79,12 +86,10 @@ public class ManterFornecedorMB {
 
 	}
 
-
-
 	public void filtrarFornecedores() {
 		listaFornecedores = fornecedorService.listaPorFiltro(fornecedor);
 	}
-	
+
 	public Flash getFlash() {
 		return FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	}

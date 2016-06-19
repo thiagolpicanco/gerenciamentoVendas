@@ -20,12 +20,15 @@ public class ClienteService {
 	@EJB
 	ClienteDao clienteDao;
 
-	public void cadastraCliente(Cliente cliente) {
-		try {
-			clienteDao.gravarOuAtualizar(cliente);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void cadastraCliente(Cliente cliente) throws PersistenciaException {
+
+		clienteDao.gravarOuAtualizar(cliente);
+
+	}
+
+	public Cliente buscaClientePorCPF(String cpf) {
+		return clienteDao.findByCPF(cpf);
+
 	}
 
 	public void deletaCliente(Cliente cliente) {

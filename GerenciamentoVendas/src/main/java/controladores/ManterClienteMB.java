@@ -27,6 +27,7 @@ public class ManterClienteMB {
 	final String MSG_CADASTRO_SUCESSO = "Cliente Cadastrado com Sucesso.";
 	final String MSG_EDITADO_SUCESSO = "Cliente Editado com Sucesso.";
 	final String MSG_CADASTRO_ERRO = "Erro na operação:  ";
+	final String MSG_CADASTRO_CPF_ERRO = "CPF já cadastrado para um Cliente. ";
 
 	// ------VARIAVEIS-------//
 
@@ -82,16 +83,20 @@ public class ManterClienteMB {
 	}
 
 	public void cadastrarCliente() {
-
 		try {
-			clienteService.cadastraCliente(this.cliente);
-			if (tipoVisao.equalsIgnoreCase("e")) {
-				MensagensUtil.adicionaMensagemSucesso(MSG_EDITADO_SUCESSO);
-				FacesContext.getCurrentInstance().getExternalContext()
-						.redirect("consultarCliente.jsf?faces-redirect=true.jsf");
+
+			if (clienteService.buscaClientePorCPF(this.cliente.getCpfCnpj()) == null) {
+				clienteService.cadastraCliente(this.cliente);
+				if (tipoVisao.equalsIgnoreCase("e")) {
+					MensagensUtil.adicionaMensagemSucesso(MSG_EDITADO_SUCESSO);
+					FacesContext.getCurrentInstance().getExternalContext()
+							.redirect("consultarCliente.jsf?faces-redirect=true.jsf");
+				} else {
+					MensagensUtil.adicionaMensagemSucesso(MSG_CADASTRO_SUCESSO);
+					this.limparCampos();
+				}
 			} else {
-				MensagensUtil.adicionaMensagemSucesso(MSG_CADASTRO_SUCESSO);
-				this.limparCampos();
+				MensagensUtil.adicionaMensagemErro(MSG_CADASTRO_CPF_ERRO);
 			}
 
 		} catch (Exception e) {

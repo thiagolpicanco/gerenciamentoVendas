@@ -43,4 +43,28 @@ public class FornecedorDao extends GerencialDao<Fornecedor> {
 
 	}
 
+	public Fornecedor findByCNPJ(String cnpj) {
+		Fornecedor fornecedor = null;
+		StringBuilder hql = new StringBuilder();
+		hql.append("select p from Fornecedor p ");
+		hql.append("where p.id is not null ");
+
+		if (null != cnpj && cnpj.isEmpty()) {
+			hql.append(" and p.cpfCnpj= :cnpj");
+		}
+
+		Query query = getEntityManager().createQuery(hql.toString());
+
+		if (null != cnpj && cnpj.isEmpty()) {
+			query.setParameter("cnpj", cnpj);
+		}
+
+		try {
+			fornecedor = (Fornecedor) query.getSingleResult();
+			return fornecedor;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }

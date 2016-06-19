@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 
+import entidades.Cliente;
 import entidades.Fornecedor;
 import entidades.Produto;
 import exceptions.PersistenciaException;
@@ -27,6 +29,11 @@ public class FornecedorService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public Fornecedor findByCNPJ(String cnpj) {
+		return fornecedorDao.findByCNPJ(cnpj);
+
 	}
 
 	public void deletaFornecedor(Fornecedor fornecedor) {

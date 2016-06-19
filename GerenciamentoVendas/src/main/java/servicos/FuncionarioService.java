@@ -1,5 +1,6 @@
 package servicos;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -20,12 +21,10 @@ public class FuncionarioService {
 	@EJB
 	FuncionarioDao funcionarioDao;
 
-	public void cadastraFuncionario(Funcionario funcionario) throws Exception {
-		try {
-			funcionarioDao.gravarOuAtualizar(funcionario);
-		} catch (Exception e) {
-			throw e;
-		}
+	public void cadastraFuncionario(Funcionario funcionario) throws PersistenciaException {
+
+		funcionarioDao.gravarOuAtualizar(funcionario);
+
 	}
 
 	public List<Funcionario> filtaFuncionarios(Funcionario filtro) {

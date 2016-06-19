@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
 import entidades.Funcionario;
+import exceptions.PersistenciaException;
 import persistence.TipoFuncionarioDao;
 import servicos.FuncionarioService;
 import util.MensagensUtil;
@@ -23,6 +24,7 @@ public class ManterFuncionarioMB {
 	final String MSG_CADASTRO_SUCESSO = "Funcionário Cadastrado com Sucesso.";
 	final String MSG_EDITADO_SUCESSO = "Funcionário Editado com Sucesso.";
 	final String MSG_CADASTRO_ERRO = "Erro ao cadastrar usuario: ";
+	final String MSG_CADASTRO_CPF_ERRO = "CPF já cadastrado para um Funcionário. ";
 
 	@EJB
 	private FuncionarioService funcionarioService;
@@ -68,6 +70,7 @@ public class ManterFuncionarioMB {
 	public Flash getFlash() {
 		return FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	}
+
 	public void redirecionaVisualizar(Funcionario funcionario) {
 		try {
 			Object obj[] = { funcionario, "v" };
@@ -92,7 +95,6 @@ public class ManterFuncionarioMB {
 			e.printStackTrace();
 		}
 	}
-
 
 	public void limpaCampos() {
 		funcionario = new Funcionario();
@@ -124,8 +126,14 @@ public class ManterFuncionarioMB {
 				this.limpaCampos();
 			}
 
+		} catch (PersistenciaException e) {
+			if (e.getCause().getCause().getCause().toString().contains("duplicate")) {
+				MensagensUtil.adicionaMensagemErro(MSG_CADASTRO_CPF_ERRO);
+			} else {
+				MensagensUtil.adicionaMensagemErro(MSG_CADASTRO_ERRO + e.getMessage());
+			}
 		} catch (Exception e) {
-			MensagensUtil.adicionaMensagemErro(MSG_CADASTRO_ERRO + e.getMessage());
+			// TODO: handle exception
 		}
 
 	}
