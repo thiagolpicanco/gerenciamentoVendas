@@ -3,7 +3,7 @@
 	  INCREMENT 1
 	  MINVALUE 1
 	  MAXVALUE 9223372036854775807
-	  START 1
+	  START 10
 	  CACHE 1;
 
 	ALTER TABLE sq_cliente OWNER TO postgres;
@@ -15,7 +15,7 @@
 	  INCREMENT 1
 	  MINVALUE 1
 	  MAXVALUE 9223372036854775807
-	  START 1
+	  START 10
 	  CACHE 1;
 
 	ALTER TABLE sq_funcionario OWNER TO postgres;
@@ -26,14 +26,14 @@
 	  INCREMENT 1
 	  MINVALUE 1
 	  MAXVALUE 9223372036854775807
-	  START 1
+	  START 10
 	  CACHE 1;
 	  
 	  CREATE SEQUENCE sq_nota_fiscal
 	  INCREMENT 1
 	  MINVALUE 00001
 	  MAXVALUE 9223372036854775807
-	  START 00001
+	  START 10
 	  CACHE 1;
 
 
@@ -44,7 +44,7 @@
 	  INCREMENT 1
 	  MINVALUE 1
 	  MAXVALUE 9223372036854775807
-	  START 1
+	  START 10
 	  CACHE 1;
 
 	ALTER TABLE sq_compra OWNER TO postgres;
@@ -57,7 +57,7 @@
 	  INCREMENT 1
 	  MINVALUE 1
 	  MAXVALUE 9223372036854775807
-	  START 1
+	  START 10
 	  CACHE 1;
 
 	ALTER TABLE sq_saida_produto OWNER TO postgres;
@@ -69,7 +69,7 @@
 	  INCREMENT 1
 	  MINVALUE 1
 	  MAXVALUE 9223372036854775807
-	  START 1
+	  START 10
 	  CACHE 1;
 
 	ALTER TABLE sq_entrada_produto OWNER TO postgres;
@@ -79,7 +79,7 @@
 	  INCREMENT 1
 	  MINVALUE 1
 	  MAXVALUE 9223372036854775807
-	  START 1
+	  START 10
 	  CACHE 1;
 
 	ALTER TABLE sq_venda OWNER TO postgres;
@@ -345,8 +345,7 @@ CREATE TABLE NOTA_FISCAL(nu_nota_fiscal integer primary key not null, id_cliente
 	ALTER TABLE categoria_produto OWNER TO postgres;
 
 	
-	insert into fornecedor values (0, 'Aeropostale', '212121212212', '2126212901','21970014000', 'aero@gmail.com', 'Rua Brasil 54, Centro, Rio de Janeiro');
-	insert into funcionario values (0, 'Thiago Picanço', '05782955716', '21970014018','21970014018', 'thiagolpicanco@gmail.com', 'RUa danta tal', 'Gerente');
+	insert into funcionario values (0, 'Thiago Picanço', '057.829.557-16', '(21)97001-4018','(21)97001-4018', 'thiagolpicanco@gmail.com', 'Rua Gomes de Sá, Arraial', 'Gerente');
 	insert into login values ('admin', 'A665A45920422F9D417E4867EFDC4FB8A04A1F3FFF1FA07E998E86F7F7A27AE3', 0);
 	
 	
