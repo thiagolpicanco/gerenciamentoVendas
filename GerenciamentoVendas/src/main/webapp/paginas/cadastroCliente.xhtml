@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -28,7 +28,7 @@ $(function() {
 					<h2 class="box-title">Cadastro de Clientes</h2>
 				</div>
 				<div class="box-body">
-					<p:messages></p:messages>
+					<p:messages closable="true"></p:messages>
 					<div class="form-group" style="max-width: 400px;">
 
 
@@ -51,7 +51,7 @@ $(function() {
 							value="#{manterClienteMB.cliente.email}" />
 
 						<h:outputLabel value="Telefone" />
-						<p:inputMask mask="(99)999999999" required="true"
+						<p:inputMask mask="(99)99999999" required="true"
 							label="Telefone" styleClass="form-control"
 							disabled="#{manterClienteMB.tipoVisao.equalsIgnoreCase('v')}"
 							value="#{manterClienteMB.cliente.telefone}" />
@@ -79,8 +79,8 @@ $(function() {
 
 
 
-						<h:outputLabel value="EndereÃ§o" />
-						<h:inputText required="true" label="EndereÃ§o"
+						<h:outputLabel value="Endereço" />
+						<h:inputText required="true" label="Endereço"
 							styleClass="form-control"
 							disabled="#{manterClienteMB.tipoVisao.equalsIgnoreCase('v')}"
 							value="#{manterClienteMB.cliente.endereco}" />

@@ -19,6 +19,7 @@ import entidades.Funcionario;
 import entidades.Login;
 import entidades.TipoFuncionario;
 import enums.TipoFuncionarioEnum;
+import exceptions.PersistenciaException;
 
 @ManagedBean
 @ViewScoped
@@ -74,9 +75,14 @@ public class ManterUsuarioMB {
 		try {
 			loginService.cadastrarUsuario(login);
 			MensagensUtil.adicionaMensagemSucesso(MSG_CADASTRO_SUCESSO);
+			this.listaFuncionariosSemLogin();
 			this.limpaCampos();
-		} catch (Exception e) {
-			MensagensUtil.adicionaMensagemErro(MSG_CADASTRO_ERRO + e.getMessage());
+		} catch (PersistenciaException e) {
+			if (e.getCause().getCause().getCause().toString().contains("duplicate")) {
+				MensagensUtil.adicionaMensagemErro("ERRO: Já existe um usuario com esse login");
+			} else {
+				MensagensUtil.adicionaMensagemErro(MSG_CADASTRO_ERRO + e.getMessage());
+			}
 		}
 
 	}

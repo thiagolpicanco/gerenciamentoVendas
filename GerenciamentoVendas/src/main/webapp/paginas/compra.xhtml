@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -21,7 +21,7 @@
 						style="font-size: 25px; font-weight: 800; margin: 0 auto; width: 50%;" />
 				</div>
 			</div>
-			<p:messages></p:messages>
+			<p:messages closable="true"></p:messages>
 			<h:panelGrid columns="2">
 
 
@@ -52,7 +52,7 @@
 				<p:outputLabel value="Lista de Produtos: " style="margin-top: 20px;" />
 			</h:panelGrid>
 			<p:dataTable id="listaProdutos" var="entrada"
-				emptyMessage="NÃ£o hÃ¡ produtos."
+				emptyMessage="Não há produtos."
 				value="#{manterCompraMB.compra.listaProdutos}"
 				style="min-width: 800px;">
 
@@ -66,7 +66,7 @@
 
 				<p:column>
 					<f:facet name="header">
-						<p:outputLabel value="CÃ³digo" />
+						<p:outputLabel value="Código" />
 					</f:facet>
 					<h:outputText value="#{entrada.produto.id.codigo}">
 					</h:outputText>
@@ -130,13 +130,13 @@
 			<p:dialog widgetVar="dialogProduto" header="Inserir Produto"
 				id="dialogProduto" minHeight="600" minWidth="800" height="400"
 				width="800">
-				<p:messages></p:messages>
+				<p:messages closable="true"></p:messages>
 				<h:panelGrid columns="4">
 					<p:outputLabel value="Nome do Produto" style="margin-right: 10px;" />
 					<h:inputText value="#{manterCompraMB.filtroProduto.nome}"
 						styleClass="form-control" />
 
-					<p:outputLabel value="CÃ³digo" style="margin-left: 20px;" />
+					<p:outputLabel value="Código" style="margin-left: 20px;" />
 					<h:inputText value="#{manterCompraMB.filtroProduto.id.codigo}"
 						styleClass="form-control" />
 
@@ -189,13 +189,13 @@
 					<p:outputLabel value="Quantidade:* " style="    margin-top: 10px;" />
 					<p:spinner id="basic"
 						value="#{manterCompraMB.entradaProduto.quantidade}" maxlength="4"
-						size="2" requiredMessage="Campo ObrigatÃ³rio"
+						size="2" requiredMessage="Campo Obrigatório"
 						style="text-align: center;" min="1">
 						<p:ajax event="blur" partialSubmit="true"></p:ajax>
 					</p:spinner>
 				</h:panelGrid>
 
-				<h:outputText value="*Campos ObrigatÃ³rios."
+				<h:outputText value="*Campos Obrigatórios."
 					style=" font-size: 10px; font-weight: 800;"></h:outputText>
 				<p:separator></p:separator>
 				<h:panelGrid columns="2" style="margin-top: 10px;">

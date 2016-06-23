@@ -22,6 +22,7 @@ import enums.EnumMotivoEntrada;
 import enums.EnumMotivoSaida;
 import enums.TamanhoCalcadosEnum;
 import enums.TamanhoRoupasLetrasEnum;
+import exceptions.PersistenciaException;
 import persistence.CategoriaProdutoDao;
 import servicos.FornecedorService;
 import servicos.ProdutoService;
@@ -78,7 +79,7 @@ public class ManterProdutoMB {
 		entradaProduto = new EntradaProduto();
 		qtdEntrada = 0;
 		qtdSaida = 0;
-		RequestContext.getCurrentInstance().update("principal");
+		RequestContext.getCurrentInstance().update("@form");
 	}
 
 	public void renderizaConsulta() {
@@ -129,7 +130,8 @@ public class ManterProdutoMB {
 			MensagensUtil.adicionaMensagemSucesso(MSG_PRODUTO_CADASTRADO);
 			produto = new Produto();
 
-		} catch (Exception e) {
+		} catch (PersistenciaException e) {
+
 			MensagensUtil.adicionaMensagemErro(MSG_PRODUTO_ERRO + e.getMessage());
 		}
 

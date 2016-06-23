@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -14,8 +15,8 @@
 				<div class="box-body">
 					<div class="form-group" style="width: 200px;">
 						<h:outputLabel value="Produto" />
-						<h:selectOneMenu required="true"
-							class="form-control" value="#{manterEstoqueMB.estoque.produto}"
+						<h:selectOneMenu required="true" class="form-control"
+							value="#{manterEstoqueMB.estoque.produto}"
 							converter="omnifaces.SelectItemsConverter">
 							<f:selectItem itemLabel="Selecione" naoSelectionOption="true"></f:selectItem>
 							<f:selectItems value="#{manterEstoqueMB.listaProdutos}"
@@ -27,7 +28,7 @@
 					</div>
 					<div class="form-group" style="width: 200px;">
 						<h:outputLabel value="Valor de Compra" />
-						<h:inputText value="#{manterEstoqueMB.estoque.valorCompra}" 
+						<h:inputText value="#{manterEstoqueMB.estoque.valorCompra}"
 							class="form-control" required="true" />
 						<!-- 					<pe:inputNumber id="valorCompra"  -->
 						<!-- 						value="#{manterEstoqueMB.estoque.valorCompra}" symbol="R$ " -->

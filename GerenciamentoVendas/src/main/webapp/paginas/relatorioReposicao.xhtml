@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -11,7 +12,7 @@
 			<div class="box box-primary">
 				<div class="box-header with-border"
 					style="border-bottom: 30px; margin-top: 30px; text-align: center">
-					<h:outputText value="RelatÃ³rio de Produtos Pendentes"
+					<h:outputText value="Relatório de Produtos Pendentes"
 						style="font-size: 20px; font-weight: 800; margin: 0 auto; width: 50%;" />
 				</div>
 				<div class="box-body">
@@ -23,7 +24,7 @@
 
 					<p:dataTable id="pendentes"
 						value="#{manterProdutoMB.listaProdutosPendentes()}" var="produto"
-						emptyMessage="NÃ£o existem produtos pendentes de reposiÃ§Ã£o"
+						emptyMessage="Não existem produtos pendentes de reposição"
 						style="text-align: center">
 
 

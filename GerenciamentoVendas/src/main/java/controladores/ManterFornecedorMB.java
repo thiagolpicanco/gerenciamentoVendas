@@ -12,6 +12,7 @@ import javax.faces.context.Flash;
 
 import entidades.Fornecedor;
 import entidades.Funcionario;
+import exceptions.GerencialException;
 import entidades.Fornecedor;
 import servicos.FornecedorService;
 import util.MensagensUtil;
@@ -48,6 +49,7 @@ public class ManterFornecedorMB {
 			tipoVisao = (String) vetorDados[1];
 		} else {
 			fornecedor = new Fornecedor();
+			tipoVisao = "p";
 		}
 		listaFornecedores();
 	}
@@ -64,22 +66,25 @@ public class ManterFornecedorMB {
 
 		try {
 
-			if (fornecedorService.findByCNPJ(this.fornecedor.getCpfCnpj()) == null) {
-
-				fornecedorService.cadastraFornecedor(this.fornecedor);
-
-				if (tipoVisao.equalsIgnoreCase("e")) {
-					MensagensUtil.adicionaMensagemSucesso(MSG_FORNECEDOR_EDITADO);
-					FacesContext.getCurrentInstance().getExternalContext().redirect("listaFornecedores.jsf");
-
-				} else {
-
-					MensagensUtil.adicionaMensagemSucesso(MSG_FORNECEDOR_CADASTRADO);
-					this.limparCampos();
+			if (tipoVisao.equalsIgnoreCase("e")) {
+				if (fornecedorService.findByCNPJ(this.fornecedor.getCpfCnpj()).size() > 1) {
+					throw new GerencialException(MSG_CNPJ_CADASTRADO);
 				}
+				fornecedorService.cadastraFornecedor(this.fornecedor);
+				MensagensUtil.adicionaMensagemSucesso(MSG_FORNECEDOR_EDITADO);
+				FacesContext.getCurrentInstance().getExternalContext().redirect("listaFornecedores.jsf");
+
 			} else {
-				MensagensUtil.adicionaMensagemErro(MSG_CNPJ_CADASTRADO);
+				if (fornecedorService.findByCNPJ(this.fornecedor.getCpfCnpj()).size() > 0) {
+					throw new GerencialException(MSG_CNPJ_CADASTRADO);
+				}
+				fornecedorService.cadastraFornecedor(this.fornecedor);
+				MensagensUtil.adicionaMensagemSucesso(MSG_FORNECEDOR_CADASTRADO);
+				this.limparCampos();
 			}
+
+		} catch (GerencialException e) {
+			MensagensUtil.adicionaMensagemErro(e.getMessage());
 		} catch (Exception e) {
 			MensagensUtil.adicionaMensagemErro(MSG_FORNECEDOR_ERRO + e.getMessage());
 		}

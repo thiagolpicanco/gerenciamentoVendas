@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -15,14 +15,14 @@
 
 			<div class="box box-primary">
 				<div class="box-header with-border" style="border-bottom: 30px;">
-					<h2 class="box-title">Cadastro de Usu√°rios</h2>
+					<h2 class="box-title">Cadastro de Usu·rios</h2>
 				</div>
 				<div class="box-body">
-					<p:messages></p:messages>
+					<p:messages closable="true"></p:messages>
 					<div class="form-group" style="max-width: 400px;">
 
 
-						<h:outputLabel value="Usu√°rio" />
+						<h:outputLabel value="Usu·rio" />
 						<h:inputText required="true" label="Nome"
 							styleClass="form-control"
 							value="#{manterUsuarioMB.login.usuario}" />
@@ -50,9 +50,10 @@
 								<p:commandButton value="Cadastrar"
 									action="#{manterUsuarioMB.cadastrarUsuario()}" ajax="true"
 									update="@form" />
-								<p:commandButton value="Limpar"
-									action="#{manterUsuarioMB.limpaCampos()}" immediate="true"
-									ajax="true" update="@form" />
+								<p:commandButton value="Limpar" immediate="true" ajax="true"
+									update="@form">
+									<p:ajax update="@form" resetValues="true" />
+								</p:commandButton>
 							</div>
 						</div>
 					</div>

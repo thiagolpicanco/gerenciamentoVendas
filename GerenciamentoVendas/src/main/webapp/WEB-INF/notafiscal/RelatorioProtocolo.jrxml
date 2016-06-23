@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioProtocolo" pageWidth="550" pageHeight="842" columnWidth="510" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1e1f9cd2-5481-491e-87c6-8a69d7c2b294">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{PATH}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pathRelatorioProtocolosCheques" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PATH" class="java.lang.String"/>
+	<field name="chequesRelatorios" class="java.util.List"/>
+	<field name="nuProtocolo" class="java.lang.Long"/>
+	<field name="agContDep" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="207">
+			<rectangle>
+				<reportElement x="1" y="49" width="30" height="10" uuid="384fabdc-077d-44ad-89b3-0e6cce608dfe"/>
+			</rectangle>
+			<subreport>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="1" y="59" width="510" height="21" uuid="4699bca8-6d45-49e4-9156-0aaa356130c7"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_DATA_SOURCE">
+					<subreportParameterExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{chequesRelatorios})]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{PATH} + "RelatorioProtocoloCheques.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement x="1" y="1" width="158" height="48" uuid="96a1a89d-7788-41ca-8180-3d7983e79195"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="159" y="1" width="351" height="20" uuid="3ba4a94b-9d81-4d52-adb6-f78290f22c39"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="159" y="22" width="225" height="13" uuid="9ca8f36d-ce21-4e57-b3ac-a9c85fb8d68b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="160" y="36" width="225" height="13" uuid="c1447102-52c4-459c-a86f-99bf02400b4c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="384" y="22" width="126" height="13" uuid="198dee4e-f80f-4928-b10e-8028f38ac971"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="385" y="36" width="125" height="13" uuid="44b0fc99-3b66-462e-aace-e20de1fcc67a"/>
+			</rectangle>
+			<image>
+				<reportElement x="5" y="3" width="143" height="44" uuid="d5d242fc-cbd4-4527-ac32-b6d2e27e7cd3"/>
+				<imageExpression><![CDATA[$P{PATH} + "\\img\\logo_cef_rel.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="163" y="23" width="63" height="13" uuid="bc5533d2-3ae6-4535-adfd-2c84114780ef"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<text><![CDATA[Conta Depositante:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="36" width="85" height="11" uuid="6e0c5e01-fc45-4aa0-87e1-11f1ded5f8b4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="35" width="93" height="12" uuid="45f3a310-a69b-42cb-afa2-9523e2eb88ab"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<text><![CDATA[Telefone:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="23" width="45" height="10" uuid="3b50a6dd-fe9e-498a-8629-a7cfd2eff629"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<text><![CDATA[Malote n°:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="1" width="351" height="20" uuid="78dcca18-55da-400e-a9e3-513f2bde4072"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Protocolo de Cheques Devolvidos Pela Compensação]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="226" y="24" width="140" height="10" uuid="2ba8718c-a622-4e2c-83e0-6a4c55101877"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agContDep}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="29" y="49" width="30" height="10" uuid="c3320d31-c05e-47ae-a3bc-f8d67ab1b9f8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="59" y="49" width="58" height="10" uuid="dfec5c08-55cf-4f84-aabe-c828f91770a4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="117" y="49" width="62" height="10" uuid="8e21250c-7494-4f9e-b263-faff46455822"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="179" y="49" width="29" height="10" uuid="725203e6-4f3d-4da0-9b14-0b384d3e1558"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="49" width="25" height="10" uuid="8e635ba4-a48d-45b8-ae11-35bd38cfee93"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="49" width="28" height="10" uuid="5cc18e1b-ed76-41fb-a381-d7f4d08c94c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ag.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="49" width="59" height="10" uuid="6d69d562-ed1a-4250-b0d7-f0a142e06772"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ N°cheque]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="49" width="44" height="10" uuid="1b0ffd9b-c35a-45ea-a4e7-fcfe403db41d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="49" width="27" height="10" uuid="57b11ba4-b23e-4cb7-bced-467cfd124869"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MD]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="208" y="49" width="302" height="10" uuid="8c9592cf-eb73-4f11-a888-0bd785d5ac95"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="214" y="49" width="92" height="10" uuid="6411852d-7631-4eb3-b719-6404b1d9325d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observações]]></text>
+			</staticText>
+			<line>
+				<reportElement x="89" y="195" width="90" height="1" uuid="6dde6da6-35d8-40e6-b08c-19a5d78f0a6f"/>
+			</line>
+			<staticText>
+				<reportElement x="94" y="194" width="69" height="13" uuid="8b821af2-30e9-4ca5-9db4-1cf6d08940f8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Data de entrega]]></text>
+			</staticText>
+			<line>
+				<reportElement x="183" y="195" width="150" height="1" uuid="14ab4214-f03f-4529-b52b-a67dc6ce4dab"/>
+			</line>
+			<staticText>
+				<reportElement x="185" y="194" width="117" height="13" uuid="cb72971f-9057-42ea-829d-1e4d819c6508"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Assinatura Cliente]]></text>
+			</staticText>
+			<line>
+				<reportElement x="338" y="195" width="170" height="1" uuid="feb84512-8cd3-45b0-b6df-4ca9864c397f"/>
+			</line>
+			<staticText>
+				<reportElement x="340" y="194" width="168" height="13" uuid="d96db54b-3516-4ade-b2b5-aceb95a20987"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Assinatura empregado sob carimbo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="160" width="29" height="12" uuid="51be38a5-c1ec-4ed1-a5fc-fd6b07d9a25b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Protocolo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="4" y="188" width="85" height="13" uuid="6c15ac18-b624-4fd7-851d-1f5dfbb7165c"/>
+				<textElement>
+					<font fontName="Verdana" size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nuProtocolo}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="2" y="172" width="85" height="22" uuid="2af2ee00-1c41-4f3a-a4cf-d4f3d8f6b40d"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="2of7" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{nuProtocolo}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -26,7 +26,7 @@ public class ClienteService {
 
 	}
 
-	public Cliente buscaClientePorCPF(String cpf) {
+	public List<Cliente> buscaClientePorCPF(String cpf) {
 		return clienteDao.findByCPF(cpf);
 
 	}

@@ -31,7 +31,7 @@ public class FornecedorService {
 		}
 	}
 
-	public Fornecedor findByCNPJ(String cnpj) {
+	public List<Fornecedor> findByCNPJ(String cnpj) {
 		return fornecedorDao.findByCNPJ(cnpj);
 
 	}

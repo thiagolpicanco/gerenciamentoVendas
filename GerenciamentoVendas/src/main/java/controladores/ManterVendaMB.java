@@ -53,6 +53,8 @@ public class ManterVendaMB {
 	@EJB
 	TipoPagamentoDao tipoPagamentoDao;
 
+	public static final String RELATORIO_PROTOCOLO = "/WEB-INF/notafiscal/RelatorioProtocolo.jasper";
+
 	// -------VARIAVEIS------------//
 
 	private Venda venda;
@@ -187,6 +189,16 @@ public class ManterVendaMB {
 		}
 
 	}
+
+//	public void imprimirProtocolo() {
+//		String reportUrlReal = ConstantesRelatorio.RELATORIO_PROTOCOLO;
+//		Map<String, Object> params = new HashMap<String, Object>();
+//		try {
+//			GerarRelatorioBean.gerarRelatorio(protocolosSelecionados, reportUrlReal, params, TipoRelEnum.PDF);
+//		} catch (Exception e) {
+//			MENSAGEM_FACES.adicionarMensagemErro("Erro gerar Relatório");
+//		}
+//	}
 
 	public void listaFuncionarios() {
 		listaFuncionarios = funcionarioService.listarTodos();

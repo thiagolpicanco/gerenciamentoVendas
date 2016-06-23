@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -15,7 +16,7 @@
 
 				</div>
 				<div class="box-body">
-					<p:messages></p:messages>
+					<p:messages closable="true"></p:messages>
 
 					<div class="form-group">
 
@@ -27,7 +28,7 @@
 							<f:selectItem itemLabel="Selecione" naoSelectionOption="true"></f:selectItem>
 							<f:selectItems value="#{manterProdutoMB.listaProdutos}"
 								var="prod"
-								itemLabel="Nome: #{prod.nome} | CÃ³digo: #{prod.id.codigo} |  Tamanho : #{prod.id.tamanho} "></f:selectItems>
+								itemLabel="Nome: #{prod.nome} | Código: #{prod.id.codigo} |  Tamanho : #{prod.id.tamanho} "></f:selectItems>
 
 						</h:selectOneMenu>
 
@@ -44,8 +45,8 @@
 						<h:outputLabel value="Quantidade a entrar: " />
 						<BR />
 						<p:spinner id="basic" value="#{manterProdutoMB.qtdEntrada}"
-							label="Quantidade" maxlength="4" size="4"  
-							requiredMessage="Campo ObrigatÃ³rio" style="text-align: center;"
+							label="Quantidade" maxlength="4" size="4"
+							requiredMessage="Campo Obrigatório" style="text-align: center;"
 							min="1" />
 
 

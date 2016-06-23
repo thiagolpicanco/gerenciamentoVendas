@@ -58,11 +58,11 @@ public class ProdutoService {
 
 	}
 
-	public void cadastraProduto(Produto produto) throws Exception {
+	public void cadastraProduto(Produto produto) throws PersistenciaException {
 
 		Produto produtoExistente = produtoDao.buscaPorTamanhoEProduto(produto);
 		if (null != produtoExistente) {
-			throw new Exception("Produto ja cadastrado.");
+			throw new PersistenciaException("Produto ja cadastrado.");
 		} else {
 			produtoDao.gravar(produto);
 		}

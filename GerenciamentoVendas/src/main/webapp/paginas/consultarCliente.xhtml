@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -41,7 +41,7 @@
 
 				<p:dataTable style="margin-top: 20px;"
 					value="#{manterClienteMB.listaClientes}" var="cliente"
-					emptyMessage="NÃ£o existem clientes cadastrados.">
+					emptyMessage="Não existem clientes cadastrados.">
 
 
 					<p:column>
@@ -62,7 +62,7 @@
 						<f:facet name="header">
 							<p:outputLabel value="Cidade" />
 						</f:facet>
-						<h:outputText value="#{cliente.cpfCnpj}" />
+						<h:outputText value="#{cliente.cidade}" />
 					</p:column>
 
 					<!-- 					<p:column> -->
@@ -76,7 +76,7 @@
 
 					<!-- 					<p:column> -->
 					<!-- 						<f:facet name="header"> -->
-					<!-- 							<p:outputLabel value="EndereÃ§o" /> -->
+					<!-- 							<p:outputLabel value="Endereço" /> -->
 					<!-- 						</f:facet> -->
 					<!-- 						<h:outputText value="#{cliente.cpfCnpj}" /> -->
 					<!-- 					</p:column> -->
@@ -104,7 +104,7 @@
 
 					<p:column style="text-align:center">
 						<f:facet name="header">
-							<p:outputLabel value="AÃ§Ãµes" />
+							<p:outputLabel value="Ações" />
 						</f:facet>
 						<p:commandButton icon="ui-icon-search" ajax="false"
 							action="#{manterClienteMB.redirecionaVisualizar(cliente)}"

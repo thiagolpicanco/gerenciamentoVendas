@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -22,11 +22,11 @@
 
 					<p:dataTable style="margin-top: 20px;"
 						value="#{manterCompraMB.listaCompras}" var="compra"
-						emptyMessage="NÃ£o existem compras cadastradas."
+						emptyMessage="Não existem compras cadastradas."
 						styleClass="text-align:center">
 
 
-						<p:column>
+						<p:column style="text-align:center">
 							<f:facet name="header">
 								<p:outputLabel value="Data" />
 							</f:facet>
@@ -35,25 +35,26 @@
 									pattern="dd/MM/yyyy" />
 							</h:outputText>
 						</p:column>
-						<p:column>
+						<p:column style="text-align:center">
 							<f:facet name="header">
 								<p:outputLabel value="Nota Fiscal" />
 							</f:facet>
 							<h:outputText value="#{compra.notaFiscal}" />
 						</p:column>
 
-						<p:column>
+						<p:column style="text-align:center">
 							<f:facet name="header">
 								<p:outputLabel value="Funcionario Resp." />
 							</f:facet>
 							<h:outputText value="#{compra.funcionarioResponsavel.nome}" />
 						</p:column>
 
-						<p:column>
+						<p:column style="text-align:center">
 							<f:facet name="header">
 								<p:outputLabel value="Valor total" />
 							</f:facet>
 							<h:outputText value="#{compra.valorTotal}">
+								<f:convertNumber pattern="###,###.00" locale="pt_BR" />
 							</h:outputText>
 						</p:column>
 

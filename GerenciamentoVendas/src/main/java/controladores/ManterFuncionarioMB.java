@@ -55,6 +55,8 @@ public class ManterFuncionarioMB {
 				Object vetorDados[] = (Object[]) getFlash().get("obj");
 				funcionario = (Funcionario) vetorDados[0];
 				tipoVisao = (String) vetorDados[1];
+			} else {
+				tipoVisao = "p";
 			}
 
 			if (null == funcionario)

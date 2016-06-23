@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import entidades.Login;
+import exceptions.PersistenciaException;
 import persistence.LoginDao;
 
 @Stateless
@@ -33,7 +34,7 @@ public class LoginService {
 		return loginDao.listarTudo();
 	}
 
-	public void cadastrarUsuario(Login login) throws Exception {
+	public void cadastrarUsuario(Login login) throws PersistenciaException {
 		String senhaMD5;
 		senhaMD5 = convertStringToMd5(login.getSenha());
 		login.setSenha(senhaMD5);

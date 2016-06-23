@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -28,14 +28,14 @@
 
 
 	<ui:define name="body">
-		<h:form>
+		<h:form acceptcharset="ISO-8859-1">
 
 			<div class="box box-primary">
 				<div class="box-header with-border" style="border-bottom: 30px;">
 					<h2 class="box-title">Cadastro de Produtos</h2>
 				</div>
 				<div class="box-body">
-					<p:messages></p:messages>
+					<p:messages closable="true"></p:messages>
 					<div class="row">
 						<div class="col-md-6">
 
@@ -51,14 +51,17 @@
 									styleClass="form-control" id="qtdMinima" />
 							</div>
 							<div class="form-group" style="width: 200px;">
-								<p:outputLabel value="Código" for="cod" />
+								<p:outputLabel value="CÃ³digo" for="cod" />
 								<h:inputText value="#{manterProdutoMB.produto.id.codigo}"
 									styleClass="form-control" id="cod" />
 							</div>
 							<div class="form-group" style="width: 200px;">
 								<p:outputLabel value="Valor de Venda" for="vVenda" />
-								<pe:inputNumber value="#{manterProdutoMB.produto.valorVenda}"
-									symbol="R$" id="vVenda" />
+								<h:inputText value="#{manterProdutoMB.produto.valorVenda}"
+									id="vVenda" styleClass="form-control mask-money"
+									onfocus="maskMoney(this)">
+									<f:convertNumber pattern="#0.00" />
+								</h:inputText>
 							</div>
 
 
@@ -91,7 +94,7 @@
 								</h:selectOneMenu>
 							</div>
 							<div class="form-group" style="width: 200px;">
-								<p:outputLabel value="Descrição" />
+								<p:outputLabel value="DescriÃ§Ã£o" />
 								<h:inputTextarea value="#{manterProdutoMB.produto.descricao}"
 									styleClass="form-control"></h:inputTextarea>
 							</div>
@@ -115,9 +118,10 @@
 						<p:commandButton value="Cadastrar"
 							actionListener="#{manterProdutoMB.cadastraProduto()}"
 							ajax="false" />
-						<p:commandButton value="Limpar"
-							action="#{manterProdutoMB.limpaCampos()}" ajax="true"
-							update="@form" />
+						<p:commandButton value="Limpar" ajax="true">
+							<p:ajax update="@form" resetValues="true" />
+						</p:commandButton>
+
 					</div>
 				</div>
 

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -12,7 +13,7 @@
 				<div class="box-header with-border" style="border-bottom: 30px;">
 					<h2 class="box-title">Saida Manual de Produtos em Estoque</h2>
 				</div>
-				<p:messages></p:messages>
+				<p:messages closable="true"></p:messages>
 				<div class="box-body" style="max-width: 400px;">
 
 					<div class="form-group">
@@ -25,7 +26,7 @@
 							<f:selectItem itemLabel="Selecione" naoSelectionOption="true"></f:selectItem>
 							<f:selectItems value="#{manterProdutoMB.listaProdutos}"
 								var="prod"
-								itemLabel="Nome: #{prod.nome} | CÃ³digo: #{prod.id.codigo}  |  Tamanho : #{prod.id.tamanho}"></f:selectItems>
+								itemLabel="Nome: #{prod.nome} | Código: #{prod.id.codigo}  |  Tamanho : #{prod.id.tamanho}"></f:selectItems>
 							<p:ajax update="basicSaida" event="change"></p:ajax>
 						</h:selectOneMenu>
 
@@ -42,7 +43,7 @@
 						<BR />
 						<p:spinner id="basicSaida" value="#{manterProdutoMB.qtdSaida}"
 							maxlength="4" size="4" required="true" label="Quantidade"
-							requiredMessage="Campo ObrigatÃ³rio" style="text-align: center;"
+							requiredMessage="Campo Obrigatório" style="text-align: center;"
 							min="1" max="#{manterProdutoMB.produto.qtdAtual}">
 
 							<p:ajax event="blur" update="@form:btn"></p:ajax>
@@ -51,7 +52,7 @@
 					</div>
 					<BR />
 					<div class="form-group">
-						<p:commandButton value="Efetuar remoÃ§Ã£o" id="btn"
+						<p:commandButton value="Efetuar remoção" id="btn"
 							action="#{manterProdutoMB.efetuarSaidaEstoque()}"
 							disabled="#{manterProdutoMB.qtdSaida == null || manterProdutoMB.qtdSaida == 0}"
 							update="@form"></p:commandButton>

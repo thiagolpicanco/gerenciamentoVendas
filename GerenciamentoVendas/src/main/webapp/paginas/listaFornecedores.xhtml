@@ -1,4 +1,4 @@
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -41,7 +41,7 @@
 
 				<p:dataTable style="margin-top: 20px;" editable="true"
 					value="#{manterFornecedorMB.listaFornecedores}" var="forn"
-					emptyMessage="NÃ£o existem fornecedores cadastrados.">
+					emptyMessage="Não existem fornecedores cadastrados.">
 
 
 					<p:column>
@@ -83,7 +83,7 @@
 
 					<p:column style="text-align:center">
 						<f:facet name="header">
-							<p:outputLabel value="AÃ§Ãµes" />
+							<p:outputLabel value="Ações" />
 						</f:facet>
 						<p:commandButton icon="ui-icon-search" ajax="false"
 							action="#{manterFornecedorMB.redirecionaVisualizar(forn)}"

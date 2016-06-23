@@ -42,24 +42,20 @@ public class ClienteDao extends GerencialDao<Cliente> {
 		}
 	}
 
-	public Cliente findByCPF(String cpf) {
-		Cliente cli = null;
+	public List<Cliente> findByCPF(String cpf) {
+		List<Cliente> cli = null;
 		StringBuilder hql = new StringBuilder();
 		hql.append("select p from Cliente p ");
 		hql.append("where p.id is not null ");
 
-		if (null != cpf && cpf.isEmpty()) {
-			hql.append(" and p.cpf= :cpf");
-		}
+		hql.append(" and p.cpfCnpj= :cpf");
 
 		Query query = getEntityManager().createQuery(hql.toString());
 
-		if (null != cpf && cpf.isEmpty()) {
-			query.setParameter("cpf", cpf);
-		}
+		query.setParameter("cpf", cpf);
 
 		try {
-			cli = (Cliente) query.getSingleResult();
+			cli = query.getResultList();
 			return cli;
 		} catch (Exception e) {
 			return null;

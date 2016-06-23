@@ -12,7 +12,10 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
+import org.jboss.security.auth.login.ParseException;
+
 import entidades.Cliente;
+import exceptions.GerencialException;
 import entidades.Cliente;
 import servicos.ClienteService;
 import util.MensagensUtil;
@@ -48,6 +51,7 @@ public class ManterClienteMB {
 		} else {
 			cliente = new Cliente();
 			listarClientes();
+			tipoVisao = "p";
 		}
 	}
 
@@ -85,19 +89,26 @@ public class ManterClienteMB {
 	public void cadastrarCliente() {
 		try {
 
-			if (clienteService.buscaClientePorCPF(this.cliente.getCpfCnpj()) == null) {
-				clienteService.cadastraCliente(this.cliente);
-				if (tipoVisao.equalsIgnoreCase("e")) {
-					MensagensUtil.adicionaMensagemSucesso(MSG_EDITADO_SUCESSO);
-					FacesContext.getCurrentInstance().getExternalContext()
-							.redirect("consultarCliente.jsf?faces-redirect=true.jsf");
-				} else {
-					MensagensUtil.adicionaMensagemSucesso(MSG_CADASTRO_SUCESSO);
-					this.limparCampos();
+			if (tipoVisao.equalsIgnoreCase("e")) {
+				if (clienteService.buscaClientePorCPF(this.cliente.getCpfCnpj()).size() > 1) {
+					throw new GerencialException(MSG_CADASTRO_CPF_ERRO);
 				}
+
+				clienteService.cadastraCliente(this.cliente);
+				MensagensUtil.adicionaMensagemSucesso(MSG_EDITADO_SUCESSO);
+				FacesContext.getCurrentInstance().getExternalContext()
+						.redirect("consultarCliente.jsf?faces-redirect=true.jsf");
 			} else {
-				MensagensUtil.adicionaMensagemErro(MSG_CADASTRO_CPF_ERRO);
+				if (!clienteService.buscaClientePorCPF(this.cliente.getCpfCnpj()).isEmpty()) {
+					throw new GerencialException(MSG_CADASTRO_CPF_ERRO);
+				}
+				clienteService.cadastraCliente(this.cliente);
+				MensagensUtil.adicionaMensagemSucesso(MSG_CADASTRO_SUCESSO);
+				this.limparCampos();
 			}
+
+		} catch (GerencialException e) {
+			MensagensUtil.adicionaMensagemErro(e.getMessage());
 
 		} catch (Exception e) {
 			MensagensUtil.adicionaMensagemErro(MSG_CADASTRO_ERRO + e.getMessage());

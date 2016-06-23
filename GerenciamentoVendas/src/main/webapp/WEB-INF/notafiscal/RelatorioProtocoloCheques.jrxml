@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioProtocoloCheques" pageWidth="510" pageHeight="100" columnWidth="510" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2e2b2e09-622e-449d-a656-83dc0ccd1d58">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="banco" class="java.lang.String"/>
+	<field name="agencia" class="java.lang.String"/>
+	<field name="nuCheque" class="java.lang.Integer"/>
+	<field name="valorChequeTroca" class="java.lang.Double"/>
+	<field name="deObservacao" class="java.lang.String"/>
+	<field name="deMotivo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="10">
+			<rectangle>
+				<reportElement x="178" y="0" width="32" height="10" uuid="70ab46bc-ac47-44fc-88cd-3d52d6708b84"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="116" y="0" width="62" height="10" uuid="76e6a1a8-3f39-48c8-ba16-2cdd79b92e24"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="28" y="0" width="30" height="10" uuid="bf231dc1-0e5a-4e9e-a1da-d2d6b09c5d2d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="207" y="0" width="301" height="10" uuid="ab5f9c08-ca28-49dc-9056-57b28999bf93"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="58" y="0" width="58" height="10" uuid="e2fb552f-8ccf-4c0a-86bc-c2f8c3a17bca"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="28" height="10" uuid="60833bba-74fb-40c7-b5d2-1047b48dfd56"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="28" height="10" uuid="a6c3a07a-bbe0-4e97-86a4-9a8fc59855b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{banco}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="28" y="0" width="30" height="10" uuid="4c5949eb-46c2-4950-88e3-3381985d987d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agencia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="58" y="0" width="58" height="10" uuid="f2d61e31-859a-49f6-91ed-744c22c789a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nuCheque}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement x="116" y="0" width="62" height="10" uuid="3cae5fd5-4608-46f2-b633-d8e5f39d8935"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorChequeTroca}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="207" y="0" width="301" height="10" uuid="dfc3bc57-a5eb-473f-ac64-b0ceee68b174"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deObservacao}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="178" y="0" width="32" height="10" uuid="071d6e8f-c5f1-458a-8245-a50cf3cf7068"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Verdana" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deMotivo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
