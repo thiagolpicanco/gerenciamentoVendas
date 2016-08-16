@@ -9,19 +9,7 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRField;
 import net.sf.jasperreports.engine.data.JRAbstractBeanDataSource;
 
-/**
- * <p>
- * ExtDataSource
- * </p>
- * <p>
- * Descrição: TODO descrição do tipo
- * </p>
- * <br>
- * <b>Empresa:</b> Cef - Caixa Econômica Federal
- *
- * @author lidoan.andrade
- * @version 1.0
- */
+
 public class ExtDataSource extends JRAbstractBeanDataSource {
 
 	private transient Collection<?> data;
